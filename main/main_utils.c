@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:46:54 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/24 06:48:17 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:27:34 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
