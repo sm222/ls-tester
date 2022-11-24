@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/24 15:06:27 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:52:50 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,20 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include "get_next_line.h"
+# define  GCCF "gcc -Wall -Werror -Wextra"
 
 //$(shell find . -name '*.c')
 
 # ifndef INDEX
 #  define INDEX 0
 # endif
+
+# define GNL_C "get_next_line.c"
+# define GNLU_C "get_next_line_utils.c"
+# define GNL_H "get_next_line.h"
+# define GNLB_C "get_next_line_bonus.c"
+# define GNLUB_C "get_next_line_utils_bonus.c"
+# define GNLB_H "get_next_line_bonus.h"
 
 # define RED    "\x1B[31m"
 # define GRN    "\x1B[32m"
@@ -35,5 +43,6 @@
 # define CLE    "\e[1;1H\e[2J"
 
 void	*xfree(void *p);
+void	logo(void);
 
 #endif
