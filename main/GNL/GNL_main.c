@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/25 12:04:43 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/25 12:54:53 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,20 +68,22 @@ int	main(void)
 {
 	int		fd;
 	char	*tmp;
-	char	*i;
+	int		i;
 
-	i = ft_itoa(C);
+	i = 0;
 	fd = open("text/peepy.ans", O_RDONLY);
 	if (fd < 0)
-		printf("can't open file\n");
+		printf(RED"can't open file\n"WHT);
 	tmp = "\n";
 	while (tmp)
 	{
 		tmp = get_next_line(fd);
-		printf("%s", tmp);
+		printf(GRN"%4d "YEL"%4zu"WHT" = %s", i + 1, strlen(tmp), tmp);
 		peepyfree(tmp);
+		i++;
 	}
-	peepyfree(i);
+	printf(WHT"\ntime call -- %d\n", i);
+	printf(WHT"\ntotal line read -- %d\n", --i);
 }
 
 //system("gcc -Wall -Werror -Wextra get_next_line.c get_next_line_utils.c main_utils.c get_next_line_main.c -D ");

@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/25 12:00:22 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/25 12:52:16 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,3 +89,6 @@ int	main(int ac, char **av)
 	else
 		printf(GRN "NORM OK !\n"WHT);
 }
+
+
+//gccf get_next_line_main.c main_utils.c -D LEAK=1
