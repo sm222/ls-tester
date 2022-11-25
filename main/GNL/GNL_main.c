@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   GNL_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/25 17:29:39 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/25 17:45:31 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ int	main(void)
 		printf(GRN"%4d "YEL"%4zu"WHT" = %s", i + 1, peepy_strlen(tmp), tmp);
 		peepyfree(tmp);
 		i++;
+		if (i > 10000)
+		{
+			printf(RED"Never return NULL!\n"WHT);
+			break ;
+		}
 	}
 	printf(WHT"\ntime call -- %d\n", i);
 	printf(WHT"\ntotal line read -- %d\n", --i);
