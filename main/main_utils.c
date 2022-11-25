@@ -6,7 +6,7 @@
 /*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:46:54 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/25 16:07:15 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/25 18:10:29 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	logo(void)
 	printf(RED"		██║░░░░░"BLU"░╚═══██╗	"GRN"░░░██║░░░"YEL"██╔══╝░░"MAG"░╚═══██╗"CYN"░░░██║░░░"RED"██╔══╝░░"WHT"██╔══██╗\n");
 	printf(RED"		███████╗"BLU"██████╔╝	"GRN"░░░██║░░░"YEL"███████╗"MAG"██████╔╝"CYN"░░░██║░░░"RED"███████╗"WHT"██║░░██║\n");
 	printf(RED"		╚══════╝"BLU"╚═════╝░	"GRN"░░░╚═╝░░░"YEL"╚══════╝"MAG"╚═════╝░"CYN"░░░╚═╝░░░"RED"╚══════╝"WHT"╚═╝░░╚═╝\n");
-	printf("					Made by ,"GRN" wdelaros, "BLU"anboisve"WHT"\n");
+	printf("				Made by "GRN" wdelaros, "BLU"anboisve,"GRN" brheaume"WHT"\n");
 }
 
 void	*xfree(void *p)
