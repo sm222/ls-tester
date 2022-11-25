@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/25 09:32:06 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/25 12:01:52 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
-# include "get_next_line.h"
+# include <unistd.h>
 # define  GCCF "gcc -Wall -Werror -Wextra"
 # define VAL "valgrind"
 # define VALL "valgrind --leak-check=full"
@@ -32,13 +32,13 @@
 #  define LEAK 0
 # endif
 
-# define GNL_C "get_next_line.c"
-# define GNLU_C "get_next_line_utils.c"
-# define GNL_H "get_next_line.h"
+# define GNL_C "../get_next_line.c"
+# define GNLU_C "../get_next_line_utils.c"
+# define GNL_H "../get_next_line.h"
 # define GNLB_C "get_next_line_bonus.c"
 # define GNLUB_C "get_next_line_utils_bonus.c"
 # define GNLB_H "get_next_line_bonus.h"
-# define VAL_GNL "get_next_line_utils.c get_next_line.c val_gnl_main.c"
+# define VAL_GNL "../get_next_line_utils.c ../get_next_line.c val_gnl_main.c"
 
 # define RED    "\x1B[31m"
 # define GRN    "\x1B[32m"

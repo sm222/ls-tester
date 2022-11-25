@@ -6,11 +6,11 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:51:26 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/24 16:05:54 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/25 10:55:57 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>
 

@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/25 09:46:13 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/25 12:00:22 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,47 +53,37 @@ int	check(int ac, char **av, int norm)
 	return (norm);
 }
 
-//gcc -Wall -Werror -Wextra get_next_line.c get_next_line_utils.c main_utils.c get_next_line_main.c
-
 int	main(int ac, char **av)
 {
-	int		fd[3];
 	char	*tmp;
-	int		i;
 	int		norm;
 
 	logo();
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
-	if (ac != 1)
-		printf(RED"YES\n"WHT);
 	norm = check(ac, av, norm);
-	fd[0] = open(TF"peepy.ans", O_RDONLY);
-	fd[1] = open(TF"text1.txt", O_RDONLY);
-	fd[2] = open(TF"text2.txt", O_RDONLY);
-	i = 0;
+	system(GCCF" GNL/GNL_main.c -o test1.out "GNL_C" "GNLU_C" -D C=0");
+	system("./test1.out");
 	tmp = "\n";
-	while (tmp)
+	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)
 	{
-		tmp = get_next_line(fd[INDEX]);
-		printf(GRN"%4d "YEL"%4zu"WHT" = %s", i + 1, ft_strlen(tmp), tmp);
-		xfree(tmp);
-		i++;
+		if (LEAK == 0)
+		{	
+			if (system(VAL" ./val_test.out") != 0)
+				printf(RED"valgrind could not run\n"WHT);
+			else
+				goto END;
+		}
+		else
+		{
+			if (system(VALL" ./val_test.out") != 0)
+				printf(RED"valgrind could not run\n"WHT);
+			else
+				system("leaks -atExit -- ./val_test.out");
+		}
+		system("rm val_test.out");
 	}
-	printf(WHT"\ntotal line read -- %d\n", --i);
-	system(GCCF" -o val_test.out "VAL_GNL);
-	if (LEAK == 0)
-	{	
-		if (system(VAL" ./val_test.out") != 0)
-			printf(RED"valgrind could not run\n"WHT);
-	}
-	else
-		if (system(VALL" ./val_test.out") != 0)
-			printf(RED"valgrind could not run\n"WHT);
-	system("rm val_test.out");
-	close(fd[0]);
-	close(fd[1]);
-	close(fd[2]);
+	END:
 	if (norm != 0)
 		printf(YEL "NORM ERROR !\n"WHT);
 	else

@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"*.c": "c",
-		"main.h": "c"
+		"main.h": "c",
+		"fcntl.h": "c"
 	}
 }
