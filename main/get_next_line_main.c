@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_main.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/25 17:29:41 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/25 17:38:02 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	main(int ac, char **av)
 			system("leaks -atExit -- ./val_test.out");
 		}
 	}
-	system("rm -rf val_test.out val_test.out.dSYM");
+	system("rm -rf val_test.out val_test.out.dSYM test1.out");
 	if (norm != 0)
 		printf(YEL "NORM ERROR !\n"WHT);
 	else
