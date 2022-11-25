@@ -6,55 +6,22 @@
 /*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/25 16:04:59 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/25 17:25:46 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "GNL.h"
 
-static int	ft_intlen(long int n)
+static size_t	peepy_strlen(const char *s)
 {
-	int	i;
+	size_t	i;
 
-	i = 1;
-	if (n < 0)
-	{
-		n *= -1;
-		i++;
-	}
-	while (n > 9)
-	{
-		n /= 10;
-		i++;
-	}
-	return (i);
-}
-
-char	*ft_itoa(int n)
-{
-	char		*str;
-	int			len;
-	long int	nb;
-
-	nb = n;
-	len = ft_intlen(nb);
-	str = malloc(len * sizeof(char) + 1);
-	if (!str)
+	i = 0;
+	if (!s)
 		return (0);
-	str[len--] = '\0';
-	if (nb == 0)
-		str[len--] = 48;
-	if (nb < 0)
-	{
-		str[0] = 45;
-		nb *= -1;
-	}
-	while (nb > 0)
-	{
-		str[len--] = (nb % 10) + 48;
-		nb /= 10;
-	}
-	return (str);
+	while (s[i++])
+		continue ;
+	return (i - 1);
 }
 
 void	*peepyfree(void *p)
@@ -78,7 +45,7 @@ int	main(void)
 	while (tmp)
 	{
 		tmp = get_next_line(fd);
-		printf(GRN"%4d "YEL"%4zu"WHT" = %s", i + 1, strlen(tmp), tmp);
+		printf(GRN"%4d "YEL"%4zu"WHT" = %s", i + 1, peepy_strlen(tmp), tmp);
 		peepyfree(tmp);
 		i++;
 	}

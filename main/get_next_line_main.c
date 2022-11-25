@@ -6,7 +6,7 @@
 /*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/25 16:02:08 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/25 17:25:46 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,28 +67,17 @@ int	main(int ac, char **av)
 	tmp = "\n";
 	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)
 	{
-		if (LEAK == 0)
-		{	
-			if (system(VAL" ./val_test.out") != 0)
-				printf(RED"valgrind could not run\n"WHT);
-			else
-				goto END;
-		}
-		else
+		if (system(VALL" ./val_test.out") != 0)
 		{
-			if (system(VALL" ./val_test.out") != 0)
-				printf(RED"valgrind could not run\n"WHT);
-			else
-				system("leaks -atExit -- ./val_test.out");
+			printf(RED"valgrind could not run\n"WHT);
+			system("leaks -atExit -- ./val_test.out");
 		}
-		system("rm val_test.out");
 	}
-	END:
+	system("rm -rf val_test.out val_test.out.dSYM");
 	if (norm != 0)
 		printf(YEL "NORM ERROR !\n"WHT);
 	else
 		printf(GRN "NORM OK !\n"WHT);
 }
-
 
 //gccf get_next_line_main.c main_utils.c -D LEAK=1

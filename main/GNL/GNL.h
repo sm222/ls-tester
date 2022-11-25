@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   GNL.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:05:44 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/25 12:54:58 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/25 17:22:42 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define CLE    "\e[1;1H\e[2J"
 
 // Standard Library headers
-#include <string.h>
+# include <string.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
