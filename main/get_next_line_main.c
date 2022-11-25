@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_main.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/24 23:48:15 by marvin           ###   ########.fr       */
+/*   Updated: 2022/11/25 09:46:13 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ int	main(int ac, char **av)
 	while (tmp)
 	{
 		tmp = get_next_line(fd[INDEX]);
-		printf(GRN"%5d"WHT"	= %s", i + 1, tmp);
+		printf(GRN"%4d "YEL"%4zu"WHT" = %s", i + 1, ft_strlen(tmp), tmp);
 		xfree(tmp);
 		i++;
 	}
 	printf(WHT"\ntotal line read -- %d\n", --i);
-	system(GCCF" -o val_test.out get_next_line_utils.c get_next_line.c val_gnl_main.c");
+	system(GCCF" -o val_test.out "VAL_GNL);
 	if (LEAK == 0)
 	{	
 		if (system(VAL" ./val_test.out") != 0)
@@ -90,8 +90,6 @@ int	main(int ac, char **av)
 	else
 		if (system(VALL" ./val_test.out") != 0)
 			printf(RED"valgrind could not run\n"WHT);
-
-		
 	system("rm val_test.out");
 	close(fd[0]);
 	close(fd[1]);

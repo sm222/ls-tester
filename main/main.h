@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/24 23:46:30 by marvin           ###   ########.fr       */
+/*   Updated: 2022/11/25 09:32:06 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # define VAL "valgrind"
 # define VALL "valgrind --leak-check=full"
 # define TF "text/"
-
 
 //$(shell find . -name '*.c')
 
@@ -39,6 +38,7 @@
 # define GNLB_C "get_next_line_bonus.c"
 # define GNLUB_C "get_next_line_utils_bonus.c"
 # define GNLB_H "get_next_line_bonus.h"
+# define VAL_GNL "get_next_line_utils.c get_next_line.c val_gnl_main.c"
 
 # define RED    "\x1B[31m"
 # define GRN    "\x1B[32m"
