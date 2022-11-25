@@ -10,6 +10,6 @@ all:
 clean:
 	rm -f a.out
 leaks: 
-	$(CC) $(CFLAGS) $(SRC) -D LEAKS=1
+	$(CC) $(CFLAGS) $(SRC) -D LEAK=1
 re: clean all
 releaks: clean leaks
