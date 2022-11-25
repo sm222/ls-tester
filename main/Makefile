@@ -7,3 +7,5 @@ CFLAGS = -Wall -Werror -Wextra
 all:
 	$(CC) $(CFLAGS) $(SRC)
 	@echo "compile"
+leaks: 
+	$(CC) $(CFLAGS) $(SRC) -D LEAKS=1
