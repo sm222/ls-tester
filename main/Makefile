@@ -8,6 +8,8 @@ all:
 	$(CC) $(CFLAGS) $(SRC)
 	@echo "compile"
 clean:
-	@rm -f a.out
+	rm -f a.out
 leaks: 
 	$(CC) $(CFLAGS) $(SRC) -D LEAKS=1
+re: clean all
+releaks: clean leaks
