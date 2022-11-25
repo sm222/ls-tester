@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_main.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/24 17:51:50 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/24 23:48:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	check(int ac, char **av, int norm)
 	return (norm);
 }
 
+//gcc -Wall -Werror -Wextra get_next_line.c get_next_line_utils.c main_utils.c get_next_line_main.c
+
 int	main(int ac, char **av)
 {
 	int		fd[3];
@@ -63,23 +65,34 @@ int	main(int ac, char **av)
 	logo();
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
+	if (ac != 1)
+		printf(RED"YES\n"WHT);
 	norm = check(ac, av, norm);
-	system(GCCF" -o val_test.out get_next_line_utils.c get_next_line.c val_gnl_main.c");
-	system("valgrind --leak-check=full ./val_test.out");
-	system("rm val_test.out");
-	fd[0] = open("text/peepy.ans", O_RDONLY);
-	fd[1] = open("text/text1.txt", O_RDONLY);
-	fd[2] = open("text/text2.txt", O_RDONLY);
+	fd[0] = open(TF"peepy.ans", O_RDONLY);
+	fd[1] = open(TF"text1.txt", O_RDONLY);
+	fd[2] = open(TF"text2.txt", O_RDONLY);
 	i = 0;
 	tmp = "\n";
 	while (tmp)
 	{
 		tmp = get_next_line(fd[INDEX]);
-		printf(GRN"%d."WHT" = %s", i + 1, tmp);
+		printf(GRN"%5d"WHT"	= %s", i + 1, tmp);
 		xfree(tmp);
 		i++;
 	}
-	printf(WHT"\ntime call -- %d\n", i);
+	printf(WHT"\ntotal line read -- %d\n", --i);
+	system(GCCF" -o val_test.out get_next_line_utils.c get_next_line.c val_gnl_main.c");
+	if (LEAK == 0)
+	{	
+		if (system(VAL" ./val_test.out") != 0)
+			printf(RED"valgrind could not run\n"WHT);
+	}
+	else
+		if (system(VALL" ./val_test.out") != 0)
+			printf(RED"valgrind could not run\n"WHT);
+
+		
+	system("rm val_test.out");
 	close(fd[0]);
 	close(fd[1]);
 	close(fd[2]);

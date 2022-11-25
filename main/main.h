@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/24 17:52:50 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/24 23:46:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,19 @@
 # include <stdio.h>
 # include "get_next_line.h"
 # define  GCCF "gcc -Wall -Werror -Wextra"
+# define VAL "valgrind"
+# define VALL "valgrind --leak-check=full"
+# define TF "text/"
+
 
 //$(shell find . -name '*.c')
 
 # ifndef INDEX
 #  define INDEX 0
+# endif
+
+# ifndef LEAK
+#  define LEAK 0
 # endif
 
 # define GNL_C "get_next_line.c"
