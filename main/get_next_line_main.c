@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_main.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/25 12:52:16 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/25 16:02:08 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	main(int ac, char **av)
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
 	norm = check(ac, av, norm);
-	system(GCCF" GNL/GNL_main.c -o test1.out "GNL_C" "GNLU_C" -D C=0");
+	system(GCCF" main/GNL/GNL_main.c -o test1.out "GNL_C" "GNLU_C" -D C=0");
 	system("./test1.out");
 	tmp = "\n";
 	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)

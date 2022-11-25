@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/25 15:55:07 by brheaume         ###   ########.fr       */
+/*   Updated: 2022/11/25 16:04:11 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@
 # define GNL_C "get_next_line.c"
 # define GNLU_C "get_next_line_utils.c"
 # define GNL_H "get_next_line.h"
-# define GNLB_C "main/get_next_line_bonus.c"
-# define GNLUB_C "main/get_next_line_utils_bonus.c"
-# define GNLB_H "main/get_next_line_bonus.h"
+# define GNLB_C "get_next_line_bonus.c"
+# define GNLUB_C "get_next_line_utils_bonus.c"
+# define GNLB_H "get_next_line_bonus.h"
 # define VAL_GNL "get_next_line_utils.c get_next_line.c main/val_gnl_main.c"
 
 # define RED    "\x1B[31m"
