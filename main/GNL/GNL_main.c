@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/25 17:45:31 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/25 19:52:40 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(void)
 			break ;
 		}
 	}
-	printf(WHT"\ntime call -- %d\n", i);
+	printf(RESET WHT"\ntime call -- %d\n", i);
 	printf(WHT"\ntotal line read -- %d\n", --i);
 }
 

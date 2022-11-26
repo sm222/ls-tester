@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/25 17:38:02 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/25 18:31:37 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ int	check(int ac, char **av, int norm)
 	}
 	if (verif[0] < 0 || verif[1] < 0 || verif[2] < 0)
 	{
-		printf(RED"Missing file: ");
+		printf(RED"\nMissing file: ");
 		if (verif[0] < 0)
 			printf(RED"get_next_line.c "WHT);
 		if (verif[1] < 0)
 			printf(RED"get_next_line_utils.c "WHT);
 		if (verif[2] < 0)
 			printf(RED"get_next_line.h"WHT);
+		printf("\n");
 		exit(0);
 	}
 	printf(GRN"\nNo files missing, ready to go!\n"WHT);
