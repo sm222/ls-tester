@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/27 09:21:57 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/27 12:12:25 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	gnl_tester(void)
 		printf(YEL "NORM ERROR !\n"WHT);
 	else
 		printf(GRN "NORM OK !\n"WHT);
-	menu_loop("ls-tester", "");
+	return ;
 }
 
 //gccf get_next_line_main.c main_utils.c -D LEAK=1

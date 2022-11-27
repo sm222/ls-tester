@@ -6,54 +6,60 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/27 09:58:15 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/27 13:46:00 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void menu_loop(char *name,char *call_back)
+char	*menu_loop(int *loop, char *call_back)
 {
-	int size_i = 80;
-	char u_input[size_i];
-	char copy[size_i];
-	int str_p = 0;
+	int		size_i = 80;
+	char	u_input[size_i];
+	char	copy[size_i];
+	int		str_p = 0;
+	char	up[4] = {27, 91, 65, 0};
 
-	//look for recall input
-	if (sm_func_looking(call_back, "", &str_p) == 0)
+	printf("lc : %s\n", call_back);
+	printf("ls-tester: ");
+	//						look for recall input					//
+	if (call_back && *loop == 1)
 	{
-		printf("%s: ", name);
+		*loop = 0;
+		sm_copy_str_to(call_back, u_input, 0, -1);
+		free(call_back);
+	}
+	else
+	{
+		*loop = 0;
 		sm_get_keybord_input(u_input, size_i);
 		sm_clear_str(u_input);
 	}
-	else
-		sm_copy_str_to(call_back, u_input, 0, -1);
 	str_p = 0;
-	//help func
-	if (sm_func_looking(u_input, ("help"), &str_p) == 0)
+	//							help func							//
+	if (sm_func_looking(u_input, "help", &str_p) == 0)
 	{
-		if (sm_func_looking(u_input, "-a", &str_p) == 0)
+		if(sm_func_looking(u_input, "", &str_p) == 0)
 		{
-			menu_loop("ls-test", "test");
-		}
-		else if(sm_func_looking(u_input, "", &str_p) == 0)
-		{
-			printf("help list\n\n");
+			printf("\nHelp List\n");
+			printf("gnl - GNL tester\n");
+			printf("norm - norminette all the filles\n");
 			printf("\n");
 		}
 		else
 		{
 			sm_copy_str_to(u_input ,copy ,str_p +1,-1);
-			printf(YEL "help "RED"%s " WHT "is not a valid argumant\n",copy);
+			printf(YEL "help "RED"%s " WHT "is not a valid argumant\n", copy);
 		}
-		menu_loop(name,"");
-		return;
+		
+		return (sm_str_dup(u_input));
 	}
-	else if (sm_func_looking(u_input,("gnl"), &str_p) == 0)
+	//							GNL									//
+	else if (sm_func_looking(u_input,"gnl", &str_p) == 0)
 	{
 		if (sm_func_looking(u_input,"-a",&str_p) == 0)
 		{
-			printf("help list -a\n\n");
+			printf("help list -a\n");
 			printf("\n");
 		}
 		else if(sm_func_looking(u_input, "", &str_p) == 0)
@@ -61,39 +67,46 @@ void menu_loop(char *name,char *call_back)
 		else
 		{
 			sm_copy_str_to(u_input ,copy ,str_p +1,-1);
-			printf(YEL "gnl "RED"%s " WHT "is not a valid argumant\n",copy);
+			printf(YEL "gnl "RED"%s " WHT "is not a valid argumant\n", copy);
 		}
-		menu_loop(name,"");
-		return;
+		return(sm_str_dup(u_input));
 	}
-	//example
+	//							example								//
 	else if (sm_func_looking(u_input,("yes"), &str_p) == 0)
 	{
 		if(sm_find_mix_str(u_input,("itwork"), &str_p) == 0)
 			printf("yes\n");
-		menu_loop(name, "");
 	}
-	//void
+	//							void								//
 	else if (sm_func_looking(u_input,(""), &str_p) == 0)
+		return(sm_str_dup(u_input));
+	else if (sm_func_looking(u_input,(up), &str_p) == 0)
 	{
-		menu_loop(name, "");
-		return;
+		*loop = 1;
+		return(call_back);
 	}
-	//exit
+	//							exit								//
 	else if (sm_func_looking(u_input,("exit"), &str_p) == 0)
 		exit(0);
-	//default 
+	//							default 							//
 	else
-	{
 		printf(RED"%s " WHT"is not a valid input\n",u_input);
-		menu_loop(name, "");
-	}
+	return(sm_str_dup(u_input));
 }
 
 int	main(void)
 {
+	int		loop;
+	char	*last_call;
+
+	loop = 0;
 	logo();
 	printf("this is not a finish product\n");
-	menu_loop("ls-tester", "");
+	last_call = NULL;
+	while (1)
+	{
+		printf("last call = %s\n", last_call);
+		last_call = menu_loop(&loop, last_call);
+	}
 	return (0);
 }

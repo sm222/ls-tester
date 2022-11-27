@@ -124,7 +124,7 @@ void sm_inspect_arr(void *p, char type ,int size, int color)
 			else if (c[i] == 1)
 				printf("SOH");
 			else
-				printf(" %c " ,c[i]);
+				printf(" %d " ,c[i]);
 			printf(RESET "|");
 			i++;
 		}
@@ -380,4 +380,36 @@ void    show_color(void)
         CYN "cyan\n"
         WHT
         "\n");
+}
+
+/*
+char	*join_str_arg(char *str, ...)
+{
+	va_list	list;
+	int		i;
+	char	*s;
+
+	va_start(list, str);
+}
+*/
+
+void	*sm_bzero(void *p, size_t size)
+{
+	while (size--)
+		((char *)p)[size] = 0;
+	return (p);
+}
+
+char	*sm_str_dup(char	*s)
+{
+	size_t	i;
+	char	*new;
+
+	i = 0;
+	while(s && s[i])
+		i++;
+	new = sm_calloc(i, sizeof(char));
+	while (i--)
+		new[i] = s[i];
+	return (new);
 }

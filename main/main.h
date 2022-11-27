@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/27 09:20:36 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/27 12:20:01 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <string.h>
+# include <stdarg.h>
 
 # define  GCCF "gcc -Wall -Werror -Wextra"
 # define VAL "valgrind"
@@ -38,19 +39,19 @@
 # define GNLB_H "get_next_line_bonus.h"
 # define VAL_GNL "get_next_line_utils.c get_next_line.c main/val_gnl_main.c"
 
-# define RED    "\x1B[31m"
-# define GRN    "\x1B[32m"
-# define YEL    "\x1B[33m"
-# define BLU    "\x1B[34m"
-# define MAG    "\x1B[35m"
-# define CYN    "\x1B[36m"
-# define WHT    "\x1B[37m"
-# define RESET  "\x1B[0m"
-# define CLE    "\e[1;1H\e[2J"
+# define RED	"\x1B[31m"
+# define GRN	"\x1B[32m"
+# define YEL	"\x1B[33m"
+# define BLU	"\x1B[34m"
+# define MAG	"\x1B[35m"
+# define CYN	"\x1B[36m"
+# define WHT	"\x1B[37m"
+# define RESET	"\x1B[0m"
+# define CLE 	"\e[1;1H\e[2J"
 
 void	*xfree(void *p);
 void	logo(void);
-void	menu_loop(char *name,char *call_back);
+char	*menu_loop(int *loop, char *call_back);
 
 //--------- anboisve ft
 
@@ -75,6 +76,9 @@ void	sm_inspect_arr(void *p, char type ,int size, int color);
 void	noise(int loop, int size);
 void	*sm_calloc(size_t type, size_t size);
 void	show_color(void);
+void	*sm_bzero(void *p, size_t size);
+char	*sm_str_dup(char	*s);
+
 //-----------------------------------------------
 
 
