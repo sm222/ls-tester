@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/27 16:42:01 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/27 17:10:48 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 
 //				GNL				//
 
+# define GNL_PATH_O " main/GNL/GNL_main.c -o "
 # define GNL_C "get_next_line.c"
 # define GNLU_C "get_next_line_utils.c"
 # define GNL_H "get_next_line.h"

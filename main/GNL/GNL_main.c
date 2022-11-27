@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/27 16:59:07 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/27 17:20:07 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	main(int ac, char **av)
 
 	(void)ac;
 	i = 0;
-	fd = open("main/text/peepy.ans", O_RDONLY);
+	//av[1] main/text/peepy.ans
+	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		printf(RED"can't open file\n"WHT);
 	tmp = "\n";
@@ -56,8 +57,8 @@ int	main(int ac, char **av)
 		}
 	}
 	printf(RESET WHT"\ntime call -- %d\n", i);
-	printf(WHT"\ntotal line read -- %d\n", --i);
-	printf(RED"!%s\n!"WHT, av[1]);
+	printf(WHT"total line read -- %d\n", --i);
+	printf(GRN"[file use : %s]\n"WHT, av[1]);
 }
 
 //system("gcc -Wall -Werror -Wextra get_next_line.c get_next_line_utils.c main_utils.c get_next_line_main.c -D ");

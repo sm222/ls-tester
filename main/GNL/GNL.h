@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   GNL.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:05:44 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/25 17:22:42 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/27 17:11:59 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,6 @@
 
 // Enum declarations
 
-// Macro declarations
-# ifndef C
-#  define C 0
-# endif
 // Struct declarations
 
 // Function declarations
