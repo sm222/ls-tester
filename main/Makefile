@@ -1,15 +1,20 @@
-SRC = get_next_line_main.c \
-	  main_utils.c\
-	  ls_tester.c\
-	  anboisve_ft.c
+SRC = \
+		ls_tester.c\
+		main_utils.c\
+		anboisve_ft.c\
+		get_next_line_main.c
 
 
 CC = clang
 CFLAGS = -Wall -Werror -Wextra
 
+GRE		:= \033[1;32m
+WHT		:= \033[0m
+RED		:= \033[1;31m
+
 all:
 	$(CC) $(CFLAGS) $(SRC)
-	@echo "\x1B[32mcompile\x1B[37m"
+	@echo "$(GRE)compile$(WHT)"
 clean:
 	rm -f a.out
 leaks: 
