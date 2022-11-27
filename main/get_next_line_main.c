@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/27 17:29:37 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/27 17:51:14 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ void	gnl_tester(void)
 	char	*tmp;
 	int		norm;
 	char	*txt;
+	int		i;
 
 
+	i = 0;
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
 	norm = check(norm);
@@ -67,11 +69,14 @@ void	gnl_tester(void)
 	txt = ft_str_ffront_join("./test1.out text",ft_itoa(4));
 	txt = ft_str_fback_join(txt, ".txt");
 	*/
-	txt = ft_strjoin("./test1.out", " main/text/logo.txt");
-	txt = ft_str_fback_join(txt, " main/text/text0.txt");
-	txt = ft_str_fback_join(txt, " main/text/text1.txt");
-	txt = ft_str_fback_join(txt, " main/text/text2.txt");
-	txt = ft_str_fback_join(txt, " main/text/text3.txt");
+	txt = ft_strjoin("./test1.out", " main/text/peepy.ans");
+	while (i < 5)
+	{	
+		txt = ft_str_fback_join(txt, " main/text/text");
+		txt = ft_str_ff_join(txt, ft_itoa(i));
+		txt = ft_str_fback_join(txt, ".txt");
+		i++;
+	}
 	system(txt);//call ./test1.out
 	tmp = "\n";
 	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)

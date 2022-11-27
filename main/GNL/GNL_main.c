@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/27 17:31:44 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/27 17:54:37 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int ac, char **av)
 
 	while (--ac)
 	{
+		sleep(1);
 		printf(GRN"\n\n\n[file use : %s]\n"WHT, av[ac]);
 		i = 0;
 		//av[1] main/text/peepy.ans
@@ -52,6 +53,7 @@ int	main(int ac, char **av)
 			printf(GRN"%4d "YEL"%4zu"WHT" = %s", i + 1, peepy_strlen(tmp), tmp);
 			peepyfree(tmp);
 			i++;
+			usleep(35000);
 			if (i > 10000)
 			{
 				printf(RED"Never return NULL!\n"WHT);

@@ -515,3 +515,21 @@ char	*ft_strjoin(char *s1, char *s2)
 		new[s1_i] = s1[s1_i];
 	return (new);
 }
+
+char	*ft_str_ff_join(char *s1f, char *s2f)
+{
+	size_t	s1_i;
+	size_t	s2_i;
+	char	*new;
+
+	s1_i = strlen(s1f);
+	s2_i = strlen(s2f);
+	new = sm_calloc(s1_i + s2_i + 1, sizeof(char));
+	if (!new)
+		return (new = xfree(new));
+	while (s1_i + s2_i-- > s1_i)
+		new[s1_i + s2_i] = s2f[s2_i];
+	while (s1_i--)
+		new[s1_i] = s1f[s1_i];
+	return (xfree(s1f), xfree(s2f), new);
+}

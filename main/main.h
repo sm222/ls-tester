@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/27 17:10:48 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/27 17:47:28 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ char	*sm_str_dup(char	*s);
 char	*ft_str_ffront_join(char *s1, char *sfree);
 char	*ft_str_fback_join(char *sfree, char *s2);
 char	*ft_strjoin(char *s1, char *s2);
+char	*ft_str_ff_join(char *s1f, char *s2f);
 char	*ft_itoa(int n);
 
 //-----------------------------------------------
