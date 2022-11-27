@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/27 13:46:00 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:07:40 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	*menu_loop(int *loop, char *call_back)
 	int		str_p = 0;
 	char	up[4] = {27, 91, 65, 0};
 
-	printf("lc : %s\n", call_back);
+	if (call_back != NULL)
+		printf("lc : "YEL "%s\n" WHT, call_back);
 	printf("ls-tester: ");
 	//						look for recall input					//
 	if (call_back && *loop == 1)
@@ -71,6 +72,15 @@ char	*menu_loop(int *loop, char *call_back)
 		}
 		return(sm_str_dup(u_input));
 	}
+	//							ORMINETTE							//
+	else if (sm_func_looking(u_input,"norm", &str_p) == 0)
+	{
+		printf(BLU"\n-	"GRN"-	"RED"-	\n");
+		system("echo " WHT);
+		system("norminette *.c *.h");
+		printf(RED"\n-	"GRN"-	"BLU"-	\n"WHT);
+		return(sm_str_dup(u_input));
+	}
 	//							example								//
 	else if (sm_func_looking(u_input,("yes"), &str_p) == 0)
 	{
@@ -79,16 +89,22 @@ char	*menu_loop(int *loop, char *call_back)
 	}
 	//							void								//
 	else if (sm_func_looking(u_input,(""), &str_p) == 0)
-		return(sm_str_dup(u_input));
+		return(call_back);
+	//							UP									//
 	else if (sm_func_looking(u_input,(up), &str_p) == 0)
 	{
 		*loop = 1;
+		printf("\n");
 		return(call_back);
 	}
 	//							exit								//
 	else if (sm_func_looking(u_input,("exit"), &str_p) == 0)
+	{
+		if (call_back)
+			free(call_back);
 		exit(0);
-	//							default 							//
+	}
+	//							default								//
 	else
 		printf(RED"%s " WHT"is not a valid input\n",u_input);
 	return(sm_str_dup(u_input));
@@ -104,9 +120,6 @@ int	main(void)
 	printf("this is not a finish product\n");
 	last_call = NULL;
 	while (1)
-	{
-		printf("last call = %s\n", last_call);
 		last_call = menu_loop(&loop, last_call);
-	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/27 12:20:01 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:42:01 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <string.h>
 # include <stdarg.h>
 
+//			System			//
+
 # define  GCCF "gcc -Wall -Werror -Wextra"
 # define VAL "valgrind"
 # define VALL "valgrind --leak-check=full"
@@ -31,6 +33,8 @@
 #  define INDEX 0
 # endif
 
+//				GNL				//
+
 # define GNL_C "get_next_line.c"
 # define GNLU_C "get_next_line_utils.c"
 # define GNL_H "get_next_line.h"
@@ -38,6 +42,8 @@
 # define GNLUB_C "get_next_line_utils_bonus.c"
 # define GNLB_H "get_next_line_bonus.h"
 # define VAL_GNL "get_next_line_utils.c get_next_line.c main/val_gnl_main.c"
+
+//--			Color			--//
 
 # define RED	"\x1B[31m"
 # define GRN	"\x1B[32m"
@@ -78,6 +84,10 @@ void	*sm_calloc(size_t type, size_t size);
 void	show_color(void);
 void	*sm_bzero(void *p, size_t size);
 char	*sm_str_dup(char	*s);
+char	*ft_str_ffront_join(char *s1, char *sfree);
+char	*ft_str_fback_join(char *sfree, char *s2);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_itoa(int n);
 
 //-----------------------------------------------
 

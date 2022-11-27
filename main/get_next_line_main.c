@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/27 12:12:25 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:58:00 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,16 @@ void	gnl_tester(void)
 {
 	char	*tmp;
 	int		norm;
+	char	*txt;
 
+
+	txt = ft_str_ffront_join("./test1.out text",ft_itoa(4));
+	txt = ft_str_fback_join(txt, ".txt");
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
 	norm = check(norm);
 	system(GCCF" main/GNL/GNL_main.c -o test1.out "GNL_C" "GNLU_C" -D C=0");
-	system("./test1.out");
+	system(txt);//call ./test1.out
 	tmp = "\n";
 	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)
 	{
@@ -76,6 +80,7 @@ void	gnl_tester(void)
 		printf(YEL "NORM ERROR !\n"WHT);
 	else
 		printf(GRN "NORM OK !\n"WHT);
+	free(txt);
 	return ;
 }
 

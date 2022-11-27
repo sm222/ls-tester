@@ -19,19 +19,19 @@ int	sm_while_space(char *str, int i)
 
 int	sm_get_keybord_input(char *return_txt,int size)
 {
-    if(fgets(return_txt,size + 1,stdin))
-    {
-        char *p;
-        if((p = strchr(return_txt, '\n')))
-        {//check exist newline
-            *p = 0;
-        }
-        else
-        {
-            scanf("%*[^\n]");
-            scanf("%*c");
-        }
-    }
+	if(fgets(return_txt,size + 1,stdin))
+	{
+		char *p;
+		if((p = strchr(return_txt, '\n')))
+		{//check exist newline
+			*p = 0;
+		}
+		else
+		{
+			scanf("%*[^\n]");
+			scanf("%*c");
+		}
+	}
 	return(strlen(return_txt));
 }
 
@@ -124,7 +124,7 @@ void sm_inspect_arr(void *p, char type ,int size, int color)
 			else if (c[i] == 1)
 				printf("SOH");
 			else
-				printf(" %d " ,c[i]);
+				printf(" %c " ,c[i]);
 			printf(RESET "|");
 			i++;
 		}
@@ -153,7 +153,7 @@ void sm_inspect_arr(void *p, char type ,int size, int color)
 		break;
 	
 	default:
-		printf(RED"%c "RESET"not reconise\n", type);
+		printf(RED"%c "RESET"type not found\n", type);
 		break;
 	}
 }
@@ -346,58 +346,96 @@ void noise(int loop, int size)
 
 int sm_print_file(char *name)
 {
-    int f;
-    char d[1];
-    f = open(name,O_RDWR);
-    if (f == -1)
-        return (1);
-    while(read(f ,d ,1) > 0)
-        putchar(d[0]);
-    close(f);
+	int f;
+	char d[1];
+	f = open(name,O_RDWR);
+	if (f == -1)
+		return (1);
+	while(read(f ,d ,1) > 0)
+		putchar(d[0]);
+	close(f);
 	write(1,"\n",1);
-    return (0);
+	return (0);
 }
 
 void    show_color(void)
 {
     int i, j, n;
 
-    for (i = 0; i < 11; i++) {
-        for (j = 0; j < 10; j++) {
-            n = 10 * i + j;
-            if (n > 108) break;
-            printf("\033[%dm %3d\033[m", n, n);
-        }
-        printf("\n");
-    }
-            printf(WHT
-        "\nwhite\n"
-        RED "red\n"
-        GRN "green\n"
-        YEL "yellow\n"
-        BLU "blue\n"
-        MAG "magenta\n"
-        CYN "cyan\n"
-        WHT
-        "\n");
+	for (i = 0; i < 11; i++) {
+		for (j = 0; j < 10; j++) {
+			n = 10 * i + j;
+			if (n > 108) break;
+				printf("\033[%dm %3d\033[m", n, n);
+		}
+		printf("\n");
+	}
+		printf(WHT
+		"\nwhite\n"
+		RED "red\n"
+		GRN "green\n"
+		YEL "yellow\n"
+		BLU "blue\n"
+		MAG "magenta\n"
+		CYN "cyan\n"
+		WHT
+		"\n");
 }
-
-/*
-char	*join_str_arg(char *str, ...)
-{
-	va_list	list;
-	int		i;
-	char	*s;
-
-	va_start(list, str);
-}
-*/
 
 void	*sm_bzero(void *p, size_t size)
 {
 	while (size--)
 		((char *)p)[size] = 0;
 	return (p);
+}
+
+//-----------------------------------------------------------------------------
+static int	ft_num_s(int n)
+{
+	int	i;
+
+	i = 1;
+	if (n == -2147483648)
+		return (11);
+	else if (n < 0)
+	{	
+		n = n * -1;
+		i++;
+	}
+	while (n > 9)
+	{
+		n = n / 10;
+		i++;
+	}
+	return (i);
+}
+
+static void	ft_set_str(char *s, int i, int long n)
+{
+	if (i > 0)
+	{
+		s[i] = n % 10 + '0';
+		ft_set_str(s, i - 1, n / 10);
+	}
+	else
+		s[i] = n % 10 + '0';
+}
+
+char	*ft_itoa(int n)
+{
+	char		*r;
+	long int	temp;
+
+	temp = n;
+	r = sm_calloc(ft_num_s(n) + 1, sizeof(char));
+	if (!r)
+		return (NULL);
+	else if (temp < 0)
+		temp = temp * -1;
+	ft_set_str(r, ft_num_s(n) - 1, temp);
+	if (n < 0)
+		r[0] = '-';
+	return (r);
 }
 
 char	*sm_str_dup(char	*s)
@@ -411,5 +449,69 @@ char	*sm_str_dup(char	*s)
 	new = sm_calloc(i, sizeof(char));
 	while (i--)
 		new[i] = s[i];
+	return (new);
+}
+
+
+char	*ft_join_select(va_list list, char c)
+{
+	if (c == 'i' || c == 'd')
+		return (ft_itoa(va_arg(list, int)));
+	else if (c == '%')
+		return (sm_str_dup("%"));
+	return (NULL);
+}
+
+char	*ft_str_fback_join(char *sfree, char *s2)
+{
+	size_t	s1_i;
+	size_t	s2_i;
+	char	*new;
+
+	s1_i = strlen(sfree);
+	s2_i = strlen(s2);
+	new = sm_calloc(s1_i + s2_i + 1, sizeof(char));
+	if (!new)
+		return (new = xfree(new));
+	while (s1_i + s2_i-- > s1_i)
+		new[s1_i + s2_i] = s2[s2_i];
+	while (s1_i--)
+		new[s1_i] = sfree[s1_i];
+	return (xfree(sfree), new);
+}
+
+char	*ft_str_ffront_join(char *s1, char *sfree)
+{
+	size_t	s1_i;
+	size_t	s2_i;
+	char	*new;
+
+	s1_i = strlen(s1);
+	s2_i = strlen(sfree);
+	new = sm_calloc(s1_i + s2_i + 1, sizeof(char));
+	if (!new)
+		return (new = xfree(new));
+	while (s1_i + s2_i-- > s1_i)
+		new[s1_i + s2_i] = sfree[s2_i];
+	while (s1_i--)
+		new[s1_i] = s1[s1_i];
+	return (xfree(sfree), new);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	size_t	s1_i;
+	size_t	s2_i;
+	char	*new;
+
+	s1_i = strlen(s1);
+	s2_i = strlen(s2);
+	new = sm_calloc(s1_i + s2_i + 1, sizeof(char));
+	if (!new)
+		return (new = xfree(new));
+	while (s1_i + s2_i-- > s1_i)
+		new[s1_i + s2_i] = s2[s2_i];
+	while (s1_i--)
+		new[s1_i] = s1[s1_i];
 	return (new);
 }
