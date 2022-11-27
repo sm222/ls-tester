@@ -6,19 +6,17 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/25 18:31:37 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/27 09:21:57 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	check(int ac, char **av, int norm)
+int	check(int norm)
 {
 	int	verif[3];
 	int	i;
 
-	(void)ac;
-	(void)av;
 	i = 0;
 	verif[0] = open(GNL_C, O_RDONLY);
 	verif[1] = open(GNLU_C, O_RDONLY);
@@ -26,7 +24,7 @@ int	check(int ac, char **av, int norm)
 	printf("looking for files  ");
 	while (i++ < 3)
 	{
-		sleep(1);
+		usleep(200000);
 		printf(YEL"."WHT);
 	}
 	if (verif[0] < 0 || verif[1] < 0 || verif[2] < 0)
@@ -54,15 +52,14 @@ int	check(int ac, char **av, int norm)
 	return (norm);
 }
 
-int	main(int ac, char **av)
+void	gnl_tester(void)
 {
 	char	*tmp;
 	int		norm;
 
-	logo();
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
-	norm = check(ac, av, norm);
+	norm = check(norm);
 	system(GCCF" main/GNL/GNL_main.c -o test1.out "GNL_C" "GNLU_C" -D C=0");
 	system("./test1.out");
 	tmp = "\n";
@@ -79,6 +76,7 @@ int	main(int ac, char **av)
 		printf(YEL "NORM ERROR !\n"WHT);
 	else
 		printf(GRN "NORM OK !\n"WHT);
+	menu_loop("ls-tester", "");
 }
 
 //gccf get_next_line_main.c main_utils.c -D LEAK=1
