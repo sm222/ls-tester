@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/27 17:16:16 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/27 17:29:37 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ void	gnl_tester(void)
 	txt = ft_str_fback_join(txt, ".txt");
 	*/
 	txt = ft_strjoin("./test1.out", " main/text/logo.txt");
+	txt = ft_str_fback_join(txt, " main/text/text0.txt");
+	txt = ft_str_fback_join(txt, " main/text/text1.txt");
+	txt = ft_str_fback_join(txt, " main/text/text2.txt");
+	txt = ft_str_fback_join(txt, " main/text/text3.txt");
 	system(txt);//call ./test1.out
 	tmp = "\n";
 	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)
