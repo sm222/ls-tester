@@ -6,11 +6,13 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/28 14:38:18 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/28 14:49:29 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "GNL.h"
+
+
 
 static size_t	peepy_strlen(const char *s)
 {
@@ -105,12 +107,12 @@ char	*ft_str_fback_join(char *sfree, char *s2)
 	s2_i = strlen(s2);
 	new = calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
-		return (new = xfree(new));
+		return (new = peepyfree(new));
 	while (s1_i + s2_i-- > s1_i)
 		new[s1_i + s2_i] = s2[s2_i];
 	while (s1_i--)
 		new[s1_i] = sfree[s1_i];
-	return (xfree(sfree), new);
+	return (peepyfree(sfree), new);
 }
 
 char	*ft_str_ffront_join(char *s1, char *sfree)
@@ -123,12 +125,12 @@ char	*ft_str_ffront_join(char *s1, char *sfree)
 	s2_i = strlen(sfree);
 	new = calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
-		return (new = xfree(new));
+		return (new = peepyfree(new));
 	while (s1_i + s2_i-- > s1_i)
 		new[s1_i + s2_i] = sfree[s2_i];
 	while (s1_i--)
 		new[s1_i] = s1[s1_i];
-	return (xfree(sfree), new);
+	return (peepyfree(sfree), new);
 }
 
 char	*f_strjoin(char *s1, char *s2)
@@ -141,7 +143,7 @@ char	*f_strjoin(char *s1, char *s2)
 	s2_i = strlen(s2);
 	new = calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
-		return (new = xfree(new));
+		return (new = peepyfree(new));
 	while (s1_i + s2_i-- > s1_i)
 		new[s1_i + s2_i] = s2[s2_i];
 	while (s1_i--)
@@ -159,12 +161,12 @@ char	*ft_str_ff_join(char *s1f, char *s2f)
 	s2_i = strlen(s2f);
 	new = calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
-		return (new = xfree(new));
+		return (new = peepyfree(new));
 	while (s1_i + s2_i-- > s1_i)
 		new[s1_i + s2_i] = s2f[s2_i];
 	while (s1_i--)
 		new[s1_i] = s1f[s1_i];
-	return (xfree(s1f), xfree(s2f), new);
+	return (peepyfree(s1f), peepyfree(s2f), new);
 }
 
 char	*ft_join_select(va_list list, char c)

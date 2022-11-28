@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:05:44 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/28 12:27:45 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/28 14:49:08 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@
 # include <stdarg.h>
 
 # include "../../get_next_line.h"
-
-// Enum declarations
-
-// Struct declarations
+void	*peepyfree(void *p);
 
 // Function declarations
 
