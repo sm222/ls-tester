@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/28 10:34:46 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:15:07 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define VALL "valgrind --leak-check=full"
 # define TF "text/"
 
-//$(shell find . -name '*.c')
+// system("ls | tee -a output.txt");
 
 # ifndef INDEX
 #  define INDEX 0
@@ -92,6 +92,8 @@ char	*ft_str_fback_join(char *sfree, char *s2);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_str_ff_join(char *s1f, char *s2f);
 char	*ft_itoa(int n);
+char	*combine(char *s, ...);
+char	*f_strjoin(char *s1, char *s2);
 
 //-----------------------------------------------
 

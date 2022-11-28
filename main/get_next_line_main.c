@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/28 09:47:29 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:13:41 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,9 @@ void	gnl_tester(void)
 	txt = ft_str_ffront_join("./test1.out text",ft_itoa(4));
 	txt = ft_str_fback_join(txt, ".txt");
 	*/
-	txt = ft_strjoin("./test1.out", " main/text/peepy.ans");
-	while (i < 5)
-	{	
-		txt = ft_str_fback_join(txt, " main/text/text");
-		txt = ft_str_ff_join(txt, ft_itoa(i));
-		txt = ft_str_fback_join(txt, ".txt");
-		i++;
-	}
+	txt = f_strjoin("./test1.out", " main/text/peepy.ans");
+	while (i < 5)	
+		txt = ft_str_ff_join(txt, combine(" main/text/text%d.txt", i++));
 	//txt = ft_str_fback_join(txt, " > out_test.txt");
 	system(txt);//call ./test1.out
 	tmp = "\n";

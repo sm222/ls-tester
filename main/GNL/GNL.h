@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:05:44 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/27 17:11:59 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/28 12:27:45 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdlib.h>  
+# include <stdarg.h>
+
 # include "../../get_next_line.h"
 
 // Enum declarations

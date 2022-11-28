@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/27 16:07:40 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/28 11:10:30 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char	*menu_loop(int *loop, char *call_back)
 			printf("\nHelp List\n");
 			printf("gnl - GNL tester\n");
 			printf("norm - norminette all the filles\n");
+			printf("exit or q - exit the program\n");
 			printf("\n");
 		}
 		else
@@ -98,7 +99,7 @@ char	*menu_loop(int *loop, char *call_back)
 		return(call_back);
 	}
 	//							exit								//
-	else if (sm_func_looking(u_input,("exit"), &str_p) == 0)
+	else if (sm_func_looking(u_input,("exit"), &str_p) == 0 || sm_func_looking(u_input,("q"), &str_p) == 0)
 	{
 		if (call_back)
 			free(call_back);

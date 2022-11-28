@@ -427,7 +427,7 @@ char	*ft_itoa(int n)
 	long int	temp;
 
 	temp = n;
-	r = sm_calloc(ft_num_s(n) + 1, sizeof(char));
+	r = calloc(ft_num_s(n) + 1, sizeof(char));
 	if (!r)
 		return (NULL);
 	else if (temp < 0)
@@ -446,20 +446,10 @@ char	*sm_str_dup(char	*s)
 	i = 0;
 	while(s && s[i])
 		i++;
-	new = sm_calloc(i, sizeof(char));
+	new = calloc(i, sizeof(char));
 	while (i--)
 		new[i] = s[i];
 	return (new);
-}
-
-
-char	*ft_join_select(va_list list, char c)
-{
-	if (c == 'i' || c == 'd')
-		return (ft_itoa(va_arg(list, int)));
-	else if (c == '%')
-		return (sm_str_dup("%"));
-	return (NULL);
 }
 
 char	*ft_str_fback_join(char *sfree, char *s2)
@@ -470,7 +460,7 @@ char	*ft_str_fback_join(char *sfree, char *s2)
 
 	s1_i = strlen(sfree);
 	s2_i = strlen(s2);
-	new = sm_calloc(s1_i + s2_i + 1, sizeof(char));
+	new = calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
 		return (new = xfree(new));
 	while (s1_i + s2_i-- > s1_i)
@@ -488,7 +478,7 @@ char	*ft_str_ffront_join(char *s1, char *sfree)
 
 	s1_i = strlen(s1);
 	s2_i = strlen(sfree);
-	new = sm_calloc(s1_i + s2_i + 1, sizeof(char));
+	new = calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
 		return (new = xfree(new));
 	while (s1_i + s2_i-- > s1_i)
@@ -498,7 +488,7 @@ char	*ft_str_ffront_join(char *s1, char *sfree)
 	return (xfree(sfree), new);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*f_strjoin(char *s1, char *s2)
 {
 	size_t	s1_i;
 	size_t	s2_i;
@@ -506,7 +496,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	s1_i = strlen(s1);
 	s2_i = strlen(s2);
-	new = sm_calloc(s1_i + s2_i + 1, sizeof(char));
+	new = calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
 		return (new = xfree(new));
 	while (s1_i + s2_i-- > s1_i)
@@ -524,7 +514,7 @@ char	*ft_str_ff_join(char *s1f, char *s2f)
 
 	s1_i = strlen(s1f);
 	s2_i = strlen(s2f);
-	new = sm_calloc(s1_i + s2_i + 1, sizeof(char));
+	new = calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
 		return (new = xfree(new));
 	while (s1_i + s2_i-- > s1_i)
@@ -532,4 +522,51 @@ char	*ft_str_ff_join(char *s1f, char *s2f)
 	while (s1_i--)
 		new[s1_i] = s1f[s1_i];
 	return (xfree(s1f), xfree(s2f), new);
+}
+
+char	*ft_join_select(va_list list, char c)
+{
+	if (c == 'i' || c == 'd')
+		return (ft_itoa(va_arg(list, int)));
+	else if (c == 's')
+		return (sm_str_dup(va_arg(list, char *)));
+	return (NULL);
+}
+
+char	*str_join_char(char *s, char c)
+{
+	size_t	size;
+	char	*new;
+
+	size = strlen(s) + 1;
+	new = calloc(size + 1, sizeof(char));
+	new = strcpy(new, s);
+	new[size - 1] = c;
+	free(s);
+	return (new);
+}
+
+char	*combine(char *s, ...)
+{
+	va_list	list;
+	size_t	i;
+	size_t	j;
+	char	*new;
+	
+	va_start(list, s);
+	new = calloc(1, sizeof(char));
+	i = 0;
+	j = 0;
+	while (s[i])
+	{
+		if(s[i] != '%')
+			new = str_join_char(new, s[i++]);
+		else
+		{
+			new = ft_str_ff_join(new, ft_join_select(list, s[++i]));
+			i++;
+		}
+	}
+	va_end(list);
+	return(new);
 }
