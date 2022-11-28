@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/27 17:47:28 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/28 10:34:46 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define VAL_GNL "get_next_line_utils.c get_next_line.c main/val_gnl_main.c"
 
 //--			Color			--//
-
+//https://talyian.github.io/ansicolors/
 # define RED	"\x1B[31m"
 # define GRN	"\x1B[32m"
 # define YEL	"\x1B[33m"
@@ -54,6 +54,8 @@
 # define CYN	"\x1B[36m"
 # define WHT	"\x1B[37m"
 # define RESET	"\x1B[0m"
+# define ORG	"\x1b[38;5;202m"
+# define PIK	"\x1b[38;5;176m"
 # define CLE 	"\e[1;1H\e[2J"
 
 void	*xfree(void *p);

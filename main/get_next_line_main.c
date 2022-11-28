@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/27 17:51:14 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/28 09:47:29 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	check(int norm)
 		norm = 1;
 		printf(YEL "NORM ERROR !\n"WHT);
 	}
-	sleep(1);
 	close(verif[0]);
 	close(verif[1]);
 	close(verif[2]);
@@ -55,8 +54,8 @@ int	check(int norm)
 void	gnl_tester(void)
 {
 	char	*tmp;
-	int		norm;
 	char	*txt;
+	int		norm;
 	int		i;
 
 
@@ -77,6 +76,7 @@ void	gnl_tester(void)
 		txt = ft_str_fback_join(txt, ".txt");
 		i++;
 	}
+	//txt = ft_str_fback_join(txt, " > out_test.txt");
 	system(txt);//call ./test1.out
 	tmp = "\n";
 	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)

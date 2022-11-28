@@ -12,9 +12,11 @@ GRE		:= \033[1;32m
 WHT		:= \033[0m
 RED		:= \033[1;31m
 
+
 all:
 	$(CC) $(CFLAGS) $(SRC)
-	@echo "$(GRE)compile$(WHT)"
+	@reset
+	@echo "$(GRE)compile$(WHT)				welcome in ..."
 clean:
 	rm -f a.out
 leaks: 
