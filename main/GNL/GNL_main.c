@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/28 13:29:12 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/28 14:38:18 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,6 +224,9 @@ int	main(int ac, char **av)
 	int		i;
 	int		test;
 
+	if (system("touch main/GNL/GNL_dif.txt"))
+		printf(RED"can't make file"WHT);
+	system("echo '\nStart of Test - - -'$(date '+ %A %d %B %Y%n %T')'\n' >> main/GNL/GNL_dif.txt");
 	while (--ac)
 	{
 		sleep(1);
@@ -251,7 +254,7 @@ int	main(int ac, char **av)
 			}
 		}
 		sleep(1);
-		tmp2 = combine("diff -a main/text/result.txt %s >> dif.txt", " main/text/text3.txt");
+		tmp2 = combine("diff -a main/text/result.txt %s >> main/GNL/GNL_dif.txt", av[ac]);
 		printf("\n %s", ac[av]);
 		system(tmp2);
 		free(tmp2);
@@ -260,6 +263,7 @@ int	main(int ac, char **av)
 		printf(RESET WHT"\ntime call -- %d\n", i);
 		printf(WHT"total line read -- %d\n", --i);
 	}
+	system("echo '\nEnd of Test - - -'$(date '+ %A %d %B %Y%n %T')'\n' >> main/GNL/GNL_dif.txt");
 }
 
 //system("gcc -Wall -Werror -Wextra get_next_line.c get_next_line_utils.c main_utils.c get_next_line_main.c -D ");
