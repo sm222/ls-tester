@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/28 16:16:13 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/28 17:51:32 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,7 +248,7 @@ int	main(int ac, char **av)
 			printf(GRN"%4d "YEL"%4zu"WHT" = %s", i + 1, peepy_strlen(tmp), tmp);
 			peepyfree(tmp);
 			i++;
-			usleep(35000);
+			usleep(10000);
 			if (i > 10000)
 			{
 				printf(RED"Never return NULL!\n"WHT);

@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/28 13:15:07 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/28 18:31:49 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ char	*f_strjoin(char *s1, char *s2);
 //-----------------------------------------------
 
 
-//tester
+//tester INT32_MAX / 50
 void	gnl_tester(void);
 
 #endif

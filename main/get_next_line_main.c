@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/28 13:13:41 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/28 18:58:08 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	gnl_tester(void)
 	txt = ft_str_fback_join(txt, ".txt");
 	*/
 	txt = f_strjoin("./test1.out", " main/text/peepy.ans");
-	while (i < 5)	
+	while (i < 8)	
 		txt = ft_str_ff_join(txt, combine(" main/text/text%d.txt", i++));
 	//txt = ft_str_fback_join(txt, " > out_test.txt");
 	system(txt);//call ./test1.out
