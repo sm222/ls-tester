@@ -6,7 +6,7 @@
 /*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/29 11:27:50 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/29 13:22:36 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,23 @@ char	*menu_loop(int *loop, char *call_back)
 		
 		return (sm_str_dup(u_input));
 	}
+	//						PRINTF								//
+	/* else if (sm_func_looking(u_input,"printf", &str_p) == 0)
+	{
+		if (sm_func_looking(u_input,"-a",&str_p) == 0)
+		{
+			printf("help list -a\n");
+			printf("\n");
+		}
+		else if(sm_func_looking(u_input, "", &str_p) == 0)
+			printf_tester();
+		else
+		{
+			sm_copy_str_to(u_input ,copy ,str_p +1,-1);
+			printf(YEL "printf "RED"%s " WHT "is not a valid argumant\n", copy);
+		}
+		return(sm_str_dup(u_input));
+	} */
 	//							GNL									//
 	else if (sm_func_looking(u_input,"gnl", &str_p) == 0)
 	{
