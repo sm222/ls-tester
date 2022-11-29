@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/28 17:51:32 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/29 09:44:27 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,7 +253,6 @@ int	main(int ac, char **av)
 			{
 				printf(RED"Never return NULL!\n"WHT);
 				system("echo break\n >> main/GNL/GNL_dif.txt");
-				
 				break ;
 			}
 		}
