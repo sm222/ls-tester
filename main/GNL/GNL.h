@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   GNL.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:05:44 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/29 14:05:17 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:16:33 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GNL_H
 # define GNL_H
-
-# include "../settings.h"
 
 # define RED    "\x1B[31m"
 # define GRN    "\x1B[32m"

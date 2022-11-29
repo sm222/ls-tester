@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_main.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/29 13:51:19 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:09:06 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,6 @@ void	gnl_tester(int buff)
 	cmd = combine(GCCF GNL_PATH_O "test1.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d ", buff);
 	system(cmd);
 	free(cmd);
-	/*--
-	txt = ft_str_ffront_join("./test1.out text",ft_itoa(4));
-	txt = ft_str_fback_join(txt, ".txt");
-	*/
 	txt = f_strjoin("./test1.out", " main/text/peepy.ans");
 	while (i < 9)	
 		txt = ft_str_ff_join(txt, combine(" main/text/text%d.txt", i++));

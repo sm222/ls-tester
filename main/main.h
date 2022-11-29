@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/29 13:45:05 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:10:00 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,23 @@ char	*menu_loop(int *loop, char *call_back);
 //--------- anboisve ft
 
 //text
-int		sm_while_space_tab(int start,char *str);
-int		sm_get_keybord_input(char *return_txt,int size);
+int		sm_while_space_tab(int start, char *str);
+int		sm_get_keybord_input(char *return_txt, int size);
 void	sm_clear_str(char *str);
 int		sm_atoi(char *str);
-int		sm_copy_str_to(char *input,char *return_v,int start_p, int end_p);
-int		sm_look_for_word(char *str,char *word);
+int		sm_copy_str_to(char *input, char *return_v, int start_p, int end_p);
+int		sm_look_for_word(char *str, char *word);
 //menu
-int		sm_func_looking(char *str,char *word, int *path);
-int		sm_find_mix_str(char *str,char *word, int *path);
+int		sm_func_looking(char *str, char *word, int *path);
+int		sm_find_mix_str(char *str, char *word, int *path);
 void	sm_signature(void);
-int		sm_look_for_char_p(char *str, int start_p ,int number ,char look);
+int		sm_look_for_char_p(char *str, int start_p, int number, char look);
 int		sm_ls(char *path);
 int		sm_print_file(char *name);
 
 //other
-int		sm_r_num(int lower ,int upper);
-void	sm_inspect_arr(void *p, char type ,int size, int color);
+int		sm_r_num(int lower, int upper);
+void	sm_inspect_arr(void *p, char type, int size, int color);
 void	noise(int loop, int size);
 void	*sm_calloc(size_t type, size_t size);
 void	show_color(void);
@@ -99,8 +99,8 @@ char	*f_strjoin(char *s1, char *s2);
 //-----------------------------------------------
 
 //--------- wdelaros ft
-int	peepy_atoi(const char *str);
-int	intlen(long int n, int base);
+int		peepy_atoi(const char *str);
+int		intlen(long int n, int base);
 
 //tester INT32_MAX / 50
 void	gnl_tester(int buff);

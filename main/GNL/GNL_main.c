@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   GNL_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/29 13:48:53 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:22:43 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,7 +282,7 @@ int	main(int ac, char **av)
 	printf("BUFFER_SIZE = %d\n", BUFFER_SIZE);
 	while (--ac)
 	{
-		sleep(1);
+		sleep(1); 
 		printf(GRN"\n\n\n[file use : %s]\n"WHT, av[ac]);
 		i = 0;
 		//av[1] main/text/peepy.ans
@@ -292,6 +292,12 @@ int	main(int ac, char **av)
 		tmp = "\n";
 		system("touch main/text/result.txt");
 		test = open("main/text/result.txt", O_RDWR);
+		if (BUFFER_SIZE <= 0 && get_next_line(fd) == NULL)
+		{
+			printf("work with invalid buffer size\n");
+			system("rm main/text/result.txt");
+			exit(0);
+		}
 		start = clock();
 		while (tmp)
 		{
