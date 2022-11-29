@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/29 09:44:27 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/29 09:46:32 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,13 +195,11 @@ char	*combine(char *s, ...)
 {
 	va_list	list;
 	size_t	i;
-	size_t	j;
 	char	*new;
 	
 	va_start(list, s);
 	new = calloc(1, sizeof(char));
 	i = 0;
-	j = 0;
 	while (s[i])
 	{
 		if(s[i] != '%')
@@ -216,6 +214,65 @@ char	*combine(char *s, ...)
 	return(new);
 }
 
+
+int compare(char *f1, int argc, char *argv[])
+{
+    FILE *fp1   ;
+    FILE *fp2   ;
+     
+    int cnt1 = 0;
+    int cnt2 = 0;
+    int flg  = 0;
+     
+    fp1 = fopen(f1,"r");
+    if( fp1 == NULL )
+    {
+        printf("\n%s File can not be opened : \n",argv[1]);
+        return -1;
+    }
+     
+    // move file pointer to end and get total number of bytes
+    fseek(fp1,0,SEEK_END);
+    cnt1 = ftell(fp1);
+     
+    fp2 = fopen(argv[argc],"r");
+    if( fp2 == NULL )
+    {
+        printf("\n%s File can not be opened : \n",argv[2]);
+        return -1;
+    }
+     
+    // move file pointer to end and get total number of bytes
+    fseek(fp2,0,SEEK_END);
+    cnt2 = ftell(fp2);
+     
+    fseek(fp1,0,SEEK_SET);
+    fseek(fp2,0,SEEK_SET);
+     
+    // check for the total number of bytes
+    if( cnt1 != cnt2 ){
+        printf(RED"\n[KO]\n"WHT);
+    }
+    else
+    {
+        while( ! feof(fp1) )
+        {
+                if( fgetc(fp1) != fgetc(fp2) )
+                {
+                    flg = 1;
+                    break;
+                }
+        }
+         
+        if( flg )   printf(RED"\n[KO]\n"WHT);
+        else        printf(GRN"\n[OK]\n"WHT);
+    }
+ 
+    fclose(fp1);
+    fclose(fp2);
+ 
+    return 0;
+}
 
 //
 int	main(int ac, char **av)
@@ -262,6 +319,7 @@ int	main(int ac, char **av)
 		system(tmp2);
 		free(tmp2);
 		close(test);
+		compare("main/text/result.txt", ac, av);
 		system("rm main/text/result.txt");
 		printf(RESET WHT"\ntime call -- %d\n", i);
 		printf(WHT"total line read -- %d\n", --i);

@@ -550,13 +550,11 @@ char	*combine(char *s, ...)
 {
 	va_list	list;
 	size_t	i;
-	size_t	j;
 	char	*new;
 	
 	va_start(list, s);
 	new = calloc(1, sizeof(char));
 	i = 0;
-	j = 0;
 	while (s[i])
 	{
 		if(s[i] != '%')
