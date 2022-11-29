@@ -1,37 +1,5 @@
 
-Start of Test - - - Tuesday 29 November 2022 15:07:45
-
-
-End of Test - - - Tuesday 29 November 2022 15:08:40
-
-
-Start of Test - - - Tuesday 29 November 2022 15:11:39
-
-[OK]
-
-[OK]
-
-[OK]
-
-[OK]
-
-[OK]
-
-[OK]
-
-[OK]
-
-[OK]
-
-[OK]
-
-[OK]
-
-
-End of Test - - - Tuesday 29 November 2022 15:12:33
-
-
-Start of Test - - - Tuesday 29 November 2022 15:13:55
+Start of Test - - - Tuesday 29 November 2022 15:16:08
 
 main/text/text8.txt
 [OK]
@@ -56,4 +24,13 @@ main/text/text2.txt
 
 main/text/text1.txt
 [OK]
+
+main/text/text0.txt
+[OK]
+
+main/text/peepy.ans
+[OK]
+
+
+End of Test - - - Tuesday 29 November 2022 15:17:01
 

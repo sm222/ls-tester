@@ -1,7 +1,5 @@
-Gmail	Ballon- rond-Bleu <ballon.rond.bleu@gmail.com>
 [Deepthought] Your trace for 42cursus-get_next_line
 deepthought-no-reply@42quebec.com <deepthought-no-reply@42quebec.com>	24 novembre 2022 à 12:15
-À : anboisve@student.42quebec.com
 = Host-specific information ====================================================
 $> hostname; uname -msr
 c1r5p7.42quebec.com
@@ -26,7 +24,7 @@ Repository URL: git@vogsphere.42quebec.com:vogsphere/intra-uuid-5d09d952-8115-48
 
 = Git history ==================================================================
 $> git -C /tmp/tmph1y7nuw_/user log --pretty='%H - %an, %ad : %s'
-03f686af523f44b227cae8bdb0e629efbf210df0 - Antoine Boisvert, Thu Nov 24 10:04:18 2022 -0500 : v1
+03f686af523f44b227cae8bdb0e629efbf210df0 - , Thu Nov 24 10:04:18 2022 -0500 : v1
 
 = Collected files ==========================================
 $> ls -lAR /tmp/tmph1y7nuw_/user
