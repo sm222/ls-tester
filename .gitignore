@@ -56,4 +56,4 @@ dkms.conf
 get_next_line_utils.c
 get_next_line.c
 get_next_line.h
-GNL_dif.txt
+main/GNL/GNL_dif.txt
