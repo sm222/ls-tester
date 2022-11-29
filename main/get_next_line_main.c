@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_main.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/29 10:47:45 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:16:19 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	gnl_tester(void)
 	txt = ft_str_fback_join(txt, ".txt");
 	*/
 	txt = f_strjoin("./test1.out", " main/text/peepy.ans");
-	while (i < 8)	
+	while (i < 9)	
 		txt = ft_str_ff_join(txt, combine(" main/text/text%d.txt", i++));
 	//txt = ft_str_fback_join(txt, " > out_test.txt");
 	system(txt);//call ./test1.out
