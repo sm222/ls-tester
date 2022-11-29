@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_main.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/28 18:58:08 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/29 10:47:45 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,10 @@ int	check(int norm)
 
 void	gnl_tester(void)
 {
-	char	*tmp;
 	char	*txt;
 	int		norm;
 	int		i;
-
-
+	
 	i = 0;
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
@@ -73,7 +71,6 @@ void	gnl_tester(void)
 		txt = ft_str_ff_join(txt, combine(" main/text/text%d.txt", i++));
 	//txt = ft_str_fback_join(txt, " > out_test.txt");
 	system(txt);//call ./test1.out
-	tmp = "\n";
 	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)
 	{
 		if (system(VALL" ./val_test.out") != 0)

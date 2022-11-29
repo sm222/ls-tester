@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   GNL_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/29 09:46:32 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/29 11:20:32 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,6 +282,7 @@ int	main(int ac, char **av)
 	char	*tmp2;
 	int		i;
 	int		test;
+	clock_t	start, end, duration;
 
 	if (system("touch main/GNL/GNL_dif.txt"))
 		printf(RED"can't make file"WHT);
@@ -298,6 +299,7 @@ int	main(int ac, char **av)
 		tmp = "\n";
 		system("touch main/text/result.txt");
 		test = open("main/text/result.txt", O_RDWR);
+		start = clock();
 		while (tmp)
 		{
 			tmp = get_next_line(fd);
@@ -313,6 +315,8 @@ int	main(int ac, char **av)
 				break ;
 			}
 		}
+		end = clock();
+		duration = (end - start);
 		sleep(1);
 		tmp2 = combine("diff -a main/text/result.txt %s >> main/GNL/GNL_dif.txt", av[ac]);
 		printf("\n %s", ac[av]);
@@ -323,6 +327,7 @@ int	main(int ac, char **av)
 		system("rm main/text/result.txt");
 		printf(RESET WHT"\ntime call -- %d\n", i);
 		printf(WHT"total line read -- %d\n", --i);
+		printf("test taken : %.2f seconds\n", (double)duration/CLOCKS_PER_SEC  * 100);
 	}
 	system("echo '\nEnd of Test - - -'$(date '+ %A %d %B %Y%n %T')'\n' >> main/GNL/GNL_dif.txt");
 }

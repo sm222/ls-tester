@@ -6,7 +6,7 @@
 /*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:05:44 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/29 08:45:12 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/29 10:06:22 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # define WHT    "\x1B[37m"
 # define RESET  "\x1B[0m"
 # define CLE    "\e[1;1H\e[2J"
-# define MAX 1000
 
 // Standard Library headers
 # include <string.h>
@@ -32,6 +31,7 @@
 # include <math.h>
 # include <stdlib.h>  
 # include <stdarg.h>
+# include <time.h>
 
 # include "../../get_next_line.h"
 void	*peepyfree(void *p);

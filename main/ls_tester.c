@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ls_tester.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/28 11:10:30 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/29 11:27:50 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*menu_loop(int *loop, char *call_back)
 		{
 			printf("\nHelp List\n");
 			printf("gnl - GNL tester\n");
-			printf("norm - norminette all the filles\n");
+			printf("norm - norminette all the files\n");
 			printf("exit or q - exit the program\n");
 			printf("\n");
 		}
@@ -73,7 +73,7 @@ char	*menu_loop(int *loop, char *call_back)
 		}
 		return(sm_str_dup(u_input));
 	}
-	//							ORMINETTE							//
+	//							NORMINETTE							//
 	else if (sm_func_looking(u_input,"norm", &str_p) == 0)
 	{
 		printf(BLU"\n-	"GRN"-	"RED"-	\n");
