@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ls_tester.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/29 13:45:13 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/29 16:50:35 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,12 @@ char	*menu_loop(int *loop, char *call_back)
 		system("echo " WHT);
 		system("norminette *.c *.h");
 		printf(RED"\n-	"GRN"-	"BLU"-	\n"WHT);
+		return(sm_str_dup(u_input));
+	}
+	//							RM									//
+	else if (sm_func_looking(u_input,"rm", &str_p) == 0)
+	{
+		system("rm main/GNL/GNL_dif.txt");
 		return(sm_str_dup(u_input));
 	}
 	//							example								//

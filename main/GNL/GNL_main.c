@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/29 15:13:51 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:13:11 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,7 +290,7 @@ int	main(int ac, char **av)
 	printf("BUFFER_SIZE = %d\n", BUFFER_SIZE);
 	while (--ac)
 	{
-		sleep(1);
+		sleep(3);
 		printf(GRN"\n\n\n[file use : %s]\n"WHT, av[ac]);
 		i = 0;
 		fd = open(av[ac], O_RDONLY);
@@ -323,7 +323,7 @@ int	main(int ac, char **av)
 		}
 		end = clock();
 		duration = (end - start);
-		sleep(1);
+		//sleep(2);
 		tmp2 = combine("diff -a main/text/result.txt %s >> main/GNL/GNL_dif.txt", av[ac]);
 		printf("\n %s", ac[av]);
 		system(tmp2);
