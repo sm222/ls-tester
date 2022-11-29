@@ -1,42 +1,59 @@
 
-Start of Test - - - Tuesday 29 November 2022 14:16:44
+Start of Test - - - Tuesday 29 November 2022 15:07:45
 
 
-Start of Test - - - Tuesday 29 November 2022 14:18:31
+End of Test - - - Tuesday 29 November 2022 15:08:40
 
 
-Start of Test - - - Tuesday 29 November 2022 14:19:41
+Start of Test - - - Tuesday 29 November 2022 15:11:39
+
+[OK]
+
+[OK]
+
+[OK]
+
+[OK]
+
+[OK]
+
+[OK]
+
+[OK]
+
+[OK]
+
+[OK]
+
+[OK]
 
 
-Start of Test - - - Tuesday 29 November 2022 14:20:14
+End of Test - - - Tuesday 29 November 2022 15:12:33
 
 
-Start of Test - - - Tuesday 29 November 2022 14:28:58
+Start of Test - - - Tuesday 29 November 2022 15:13:55
 
+main/text/text8.txt
+[OK]
 
-End of Test - - - Tuesday 29 November 2022 14:29:30
+main/text/text7.txt
+[OK]
 
+main/text/text6.txt
+[OK]
 
-Start of Test - - - Tuesday 29 November 2022 14:29:38
+main/text/text5.txt
+[OK]
 
+main/text/text4.txt
+[OK]
 
-End of Test - - - Tuesday 29 November 2022 14:30:10
+main/text/text3.txt
+[OK]
 
+main/text/text2.txt
+[OK]
 
-Start of Test - - - Tuesday 29 November 2022 14:32:27
-
-
-End of Test - - - Tuesday 29 November 2022 14:33:00
-
-
-Start of Test - - - Tuesday 29 November 2022 14:34:19
-
-
-End of Test - - - Tuesday 29 November 2022 14:34:53
-
-
-Start of Test - - - Tuesday 29 November 2022 14:44:09
-
-
-End of Test - - - Tuesday 29 November 2022 14:44:43
+main/text/text1.txt
+[OK]
 

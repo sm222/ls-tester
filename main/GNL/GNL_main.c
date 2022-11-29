@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/29 14:39:25 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/29 15:13:51 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,7 +242,11 @@ int	compare(char *f1, int argc, char *argv[])
 	fseek(fp2, 0, SEEK_SET);
 	// check for the total number of bytes
 	if (cnt1 != cnt2)
+	{
 		printf(RED"\n[KO]\n"WHT);
+		system("echo '[KO]\n' >> main/GNL/GNL_dif.txt");
+		
+	}
 	else
 	{
 		while (!feof(fp1))
@@ -254,9 +258,15 @@ int	compare(char *f1, int argc, char *argv[])
 			}
 		}
 		if (flg)
+		{
 			printf(RED"\n[KO]\n"WHT);
+			system("echo '[KO]\n' >> main/GNL/GNL_dif.txt");
+		}
 		else
+		{
 			printf(GRN"\n[OK]\n"WHT);
+			system("echo '[OK]\n' >> main/GNL/GNL_dif.txt");
+		}
 	}
 	fclose(fp1);
 	fclose(fp2);
@@ -300,11 +310,11 @@ int	main(int ac, char **av)
 		{
 			tmp = get_next_line(fd);
 			write(test, tmp, peepy_strlen(tmp));
-			//printf(GRN"%4d "YEL"%4zu"WHT" = %s", i + 1, peepy_strlen(tmp), tmp);
+			printf(GRN"%4d "YEL"%4zu"WHT" = %s", i + 1, peepy_strlen(tmp), tmp);
 			peepyfree(tmp);
 			i++;
-			usleep(9000);
-			if (i > 10000)
+			usleep(2000);
+			if (i > 100000)
 			{
 				printf(RED"Never return NULL!\n"WHT);
 				system("echo break\n >> main/GNL/GNL_dif.txt");
@@ -316,6 +326,9 @@ int	main(int ac, char **av)
 		sleep(1);
 		tmp2 = combine("diff -a main/text/result.txt %s >> main/GNL/GNL_dif.txt", av[ac]);
 		printf("\n %s", ac[av]);
+		system(tmp2);
+		free(tmp2);
+		tmp2 = combine("echo %s >> main/GNL/GNL_dif.txt", av[ac]);
 		system(tmp2);
 		free(tmp2);
 		close(test);
