@@ -2,6 +2,7 @@ SRC = \
 		ls_tester.c\
 		main_utils.c\
 		anboisve_ft.c\
+		wdelaros_ft.c\
 		get_next_line_main.c
 
 

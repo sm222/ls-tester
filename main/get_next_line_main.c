@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_main.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/29 12:16:19 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/29 13:51:19 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,10 @@ int	check(int norm)
 	return (norm);
 }
 
-void	gnl_tester(void)
+void	gnl_tester(int buff)
 {
 	char	*txt;
+	char	*cmd;
 	int		norm;
 	int		i;
 	
@@ -61,7 +62,9 @@ void	gnl_tester(void)
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
 	norm = check(norm);
-	system(GCCF GNL_PATH_O "test1.out "GNL_C" "GNLU_C" -D C=0");
+	cmd = combine(GCCF GNL_PATH_O "test1.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d ", buff);
+	system(cmd);
+	free(cmd);
 	/*--
 	txt = ft_str_ffront_join("./test1.out text",ft_itoa(4));
 	txt = ft_str_fback_join(txt, ".txt");

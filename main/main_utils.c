@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:46:54 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/28 13:10:53 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/29 13:42:55 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,6 @@ void	*xfree(void *p)
 		free(p);
 	return (NULL);
 }
-
-// int	intlen(long int n, int base)
-// {
-// 	int	i;
-
-// 	i = 1;
-// 	if (n < 0)
-// 	{
-// 		n *= -1;
-// 		i++;
-// 	}
-// 	while (n > (base - 1))
-// 	{
-// 		n /= base;
-// 		i++;
-// 	}
-// 	return (i);
-// }
 
 // char	*ft_itoa(int n)
 // {

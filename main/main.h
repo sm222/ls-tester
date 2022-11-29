@@ -6,7 +6,7 @@
 /*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/29 10:43:20 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/29 13:45:05 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,11 @@ char	*f_strjoin(char *s1, char *s2);
 
 //-----------------------------------------------
 
+//--------- wdelaros ft
+int	peepy_atoi(const char *str);
+int	intlen(long int n, int base);
 
 //tester INT32_MAX / 50
-void	gnl_tester(void);
+void	gnl_tester(int buff);
 
 #endif
