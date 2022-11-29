@@ -6,13 +6,11 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/29 14:22:43 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:39:25 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "GNL.h"
-
-
 
 static size_t	peepy_strlen(const char *s)
 {
@@ -282,10 +280,9 @@ int	main(int ac, char **av)
 	printf("BUFFER_SIZE = %d\n", BUFFER_SIZE);
 	while (--ac)
 	{
-		sleep(1); 
+		sleep(1);
 		printf(GRN"\n\n\n[file use : %s]\n"WHT, av[ac]);
 		i = 0;
-		//av[1] main/text/peepy.ans
 		fd = open(av[ac], O_RDONLY);
 		if (fd < 0)
 			printf(RED"can't open file\n"WHT);
@@ -303,7 +300,7 @@ int	main(int ac, char **av)
 		{
 			tmp = get_next_line(fd);
 			write(test, tmp, peepy_strlen(tmp));
-			printf(GRN"%4d "YEL"%4zu"WHT" = %s", i + 1, peepy_strlen(tmp), tmp);
+			//printf(GRN"%4d "YEL"%4zu"WHT" = %s", i + 1, peepy_strlen(tmp), tmp);
 			peepyfree(tmp);
 			i++;
 			usleep(9000);

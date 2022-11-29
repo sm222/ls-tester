@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   val_gnl_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:51:26 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/25 17:29:40 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:43:22 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(void)
 	char	*s;
 	char	o;
 
+	system("echo " WHT);
 	s = &o;
 	fd = open("main/text/peepy.ans", O_RDONLY);
 	if (fd < 0)
