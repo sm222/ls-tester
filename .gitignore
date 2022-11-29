@@ -51,7 +51,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
 # .c not wanted
 get_next_line_utils.c
 get_next_line.c
 get_next_line.h
+GNL_dif.txt
