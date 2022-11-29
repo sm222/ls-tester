@@ -6,7 +6,7 @@
 /*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/29 11:53:03 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:01:21 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,11 +273,12 @@ int	main(int ac, char **av)
 	char	*tmp2;
 	int		i;
 	int		test;
-	clock_t	start, end, duration;
+	clock_t	start, end, duration, start1, end1, duration1;
 
 	if (system("touch main/GNL/GNL_dif.txt"))
 		printf(RED"can't make file"WHT);
 	system("echo '\nStart of Test - - -'$(date '+ %A %d %B %Y%n %T')'\n' >> main/GNL/GNL_dif.txt");
+	start1 = clock();
 	while (--ac)
 	{
 		sleep(1);
@@ -318,9 +319,12 @@ int	main(int ac, char **av)
 		system("rm main/text/result.txt");
 		printf(RESET WHT"\ntime call -- %d\n", i);
 		printf(WHT"total line read -- %d\n", --i);
-		printf("test time taken : %.2f seconds\n", (double)duration/CLOCKS_PER_SEC  * 100);
+		printf(YEL"test time taken : %.2f seconds\n"WHT, (double)duration/CLOCKS_PER_SEC  * 100);
 	}
+	end1 = clock();
+	duration1 = (end1 - start1);
 	system("echo '\nEnd of Test - - -'$(date '+ %A %d %B %Y%n %T')'\n' >> main/GNL/GNL_dif.txt");
+	printf(RED"\ntotal time taken : %.2f seconds\n"WHT, (double)duration1/CLOCKS_PER_SEC  * 100);
 }
 
 //system("gcc -Wall -Werror -Wextra get_next_line.c get_next_line_utils.c main_utils.c get_next_line_main.c -D ");
