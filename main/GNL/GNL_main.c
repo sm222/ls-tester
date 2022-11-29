@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   GNL_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/29 11:46:34 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/29 11:53:03 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -318,7 +318,7 @@ int	main(int ac, char **av)
 		system("rm main/text/result.txt");
 		printf(RESET WHT"\ntime call -- %d\n", i);
 		printf(WHT"total line read -- %d\n", --i);
-		printf("test taken : %.2f seconds\n", (double)duration/CLOCKS_PER_SEC  * 100);
+		printf("test time taken : %.2f seconds\n", (double)duration/CLOCKS_PER_SEC  * 100);
 	}
 	system("echo '\nEnd of Test - - -'$(date '+ %A %d %B %Y%n %T')'\n' >> main/GNL/GNL_dif.txt");
 }
