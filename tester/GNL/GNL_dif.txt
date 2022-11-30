@@ -475,3 +475,75 @@ main/text/peepy.ans
 
 End of Test - - - Wednesday 30 November 2022 07:58:12
 
+
+Start of Test - - - Wednesday 30 November 2022 08:44:29
+
+tester/text/text8.txt
+[OK]
+
+tester/text/text7.txt
+[OK]
+
+tester/text/text6.txt
+[OK]
+
+tester/text/text5.txt
+[OK]
+
+tester/text/text4.txt
+[OK]
+
+tester/text/text3.txt
+[OK]
+
+tester/text/text2.txt
+[OK]
+
+tester/text/text1.txt
+[OK]
+
+tester/text/text0.txt
+[OK]
+
+tester/text/peepy.ans
+[OK]
+
+
+End of Test - - - Wednesday 30 November 2022 08:45:35
+
+
+Start of Test - - - Wednesday 30 November 2022 08:48:32
+
+tester/text/text8.txt
+[OK]
+
+tester/text/text7.txt
+[OK]
+
+tester/text/text6.txt
+[OK]
+
+tester/text/text5.txt
+[OK]
+
+tester/text/text4.txt
+[OK]
+
+tester/text/text3.txt
+[OK]
+
+tester/text/text2.txt
+[OK]
+
+tester/text/text1.txt
+[OK]
+
+tester/text/text0.txt
+[OK]
+
+tester/text/peepy.ans
+[OK]
+
+
+End of Test - - - Wednesday 30 November 2022 08:49:37
+
