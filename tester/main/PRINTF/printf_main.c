@@ -6,13 +6,13 @@
 /*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 07:25:09 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/30 07:26:13 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:32:03 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../../main.h"
 
-void printf_testter(void)
+void printf_tester(void)
 {
-	
+	return ;
 }

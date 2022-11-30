@@ -6,7 +6,7 @@
 /*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/30 08:38:17 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:30:22 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ int		intlen(long int n, int base);
 
 //tester INT32_MAX / 50
 void	gnl_tester(int buff);
-// void	printf_tester(void);
+void	printf_tester(void);
 
 #endif
