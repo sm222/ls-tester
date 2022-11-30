@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   val_gnl_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:51:26 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/29 14:43:22 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/30 08:41:27 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../get_next_line.h"
+#include "../../../get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>
 
@@ -32,7 +32,7 @@ int	main(void)
 
 	system("echo " WHT);
 	s = &o;
-	fd = open("main/text/peepy.ans", O_RDONLY);
+	fd = open("tester/text/peepy.ans", O_RDONLY);
 	if (fd < 0)
 		return (printf(RED "[KO] : can't open file\n"WHT), 0);
 	while (s != NULL)

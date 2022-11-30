@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_main.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/29 14:09:06 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/30 08:41:00 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../../main.h"
 
 int	check(int norm)
 {
@@ -65,9 +65,9 @@ void	gnl_tester(int buff)
 	cmd = combine(GCCF GNL_PATH_O "test1.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d ", buff);
 	system(cmd);
 	free(cmd);
-	txt = f_strjoin("./test1.out", " main/text/peepy.ans");
+	txt = f_strjoin("./test1.out", " tester/text/peepy.ans");
 	while (i < 9)	
-		txt = ft_str_ff_join(txt, combine(" main/text/text%d.txt", i++));
+		txt = ft_str_ff_join(txt, combine(" tester/text/text%d.txt", i++));
 	//txt = ft_str_fback_join(txt, " > out_test.txt");
 	system(txt);//call ./test1.out
 	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)

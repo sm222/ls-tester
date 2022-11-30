@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/29 14:10:00 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/30 08:38:17 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@
 
 //				GNL				//
 
-# define GNL_PATH_O " main/GNL/GNL_main.c -o "
+# define GNL_PATH_O " tester/GNL/GNL_main.c -o "
 # define GNL_C "get_next_line.c"
 # define GNLU_C "get_next_line_utils.c"
 # define GNL_H "get_next_line.h"
 # define GNLB_C "get_next_line_bonus.c"
 # define GNLUB_C "get_next_line_utils_bonus.c"
 # define GNLB_H "get_next_line_bonus.h"
-# define VAL_GNL "get_next_line_utils.c get_next_line.c main/val_gnl_main.c"
+# define VAL_GNL "get_next_line_utils.c get_next_line.c tester/main/GNL/val_gnl_main.c"
 
 //--			Color			--//
 //https://talyian.github.io/ansicolors/
@@ -104,5 +104,6 @@ int		intlen(long int n, int base);
 
 //tester INT32_MAX / 50
 void	gnl_tester(int buff);
+// void	printf_tester(void);
 
 #endif

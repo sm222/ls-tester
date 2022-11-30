@@ -3,9 +3,9 @@
 import os
 
 def main():
-    os.system('make -C $(pwd)/main')
-    os.system('main/a.out')
-    os.system('rm main/a.out')
+    os.system('make -C $(pwd)/tester')
+    os.system('tester/a.out')
+    os.system('rm tester/a.out')
 
 if __name__ == "__main__":
     main()
