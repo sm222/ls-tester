@@ -17,9 +17,11 @@ RED		:= \033[1;31m
 
 
 all:
+	
 	$(CC) $(CFLAGS) $(SRC)
 	@reset
 	@echo "$(GRE)compile$(WHT)				welcome in ..."
+# @afplay ./p.wav &>/dev/null &
 clean:
 	rm -f a.out
 leaks: 

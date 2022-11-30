@@ -6,7 +6,7 @@
 /*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/30 13:06:44 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:21:11 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ char	*menu_loop(int *loop, char *call_back)
 		{
 			printf("\nHelp List\n");
 			printf("gnl - GNL tester\n");
+			printf("printf - PRINTF tester\n");
 			printf("norm - norminette all the files\n");
+			printf("rm - RM all trace files\n");
 			printf("exit or q - exit the program\n");
 			printf("\n");
 		}
@@ -57,11 +59,11 @@ char	*menu_loop(int *loop, char *call_back)
 		return (sm_str_dup(u_input));
 	}
 	//						PRINTF								//
-	else if (sm_func_looking(u_input,"printf", &str_p) == 0)
+	else if (sm_func_looking(u_input,"pf", &str_p) == 0)
 	{
-		if (sm_func_looking(u_input,"-a",&str_p) == 0)
+		if (sm_func_looking(u_input,"-h",&str_p) == 0)
 		{
-			printf("help list -a\n");
+			printf("pf -h\n");
 			printf("\n");
 		}
 		else if(sm_func_looking(u_input, "", &str_p) == 0)
@@ -146,6 +148,7 @@ int	main(void)
 
 	loop = 0;
 	logo();
+	system("open https://www.youtube.com/watch?v=Yep6GVM0IYs");
 	printf("this is not a finish product\n");
 	last_call = NULL;
 	while (1)

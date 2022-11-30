@@ -6,7 +6,7 @@
 /*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 07:25:09 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/30 13:32:03 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:19:28 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void printf_tester(void)
 {
+	
 	return ;
 }
