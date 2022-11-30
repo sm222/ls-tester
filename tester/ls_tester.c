@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ls_tester.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/29 16:50:35 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:06:44 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*menu_loop(int *loop, char *call_back)
 		return (sm_str_dup(u_input));
 	}
 	//						PRINTF								//
-	/* else if (sm_func_looking(u_input,"printf", &str_p) == 0)
+	else if (sm_func_looking(u_input,"printf", &str_p) == 0)
 	{
 		if (sm_func_looking(u_input,"-a",&str_p) == 0)
 		{
@@ -72,7 +72,7 @@ char	*menu_loop(int *loop, char *call_back)
 			printf(YEL "printf "RED"%s " WHT "is not a valid argumant\n", copy);
 		}
 		return(sm_str_dup(u_input));
-	} */
+	}
 	//							GNL									//
 	else if (sm_func_looking(u_input,"gnl", &str_p) == 0)
 	{
@@ -80,6 +80,11 @@ char	*menu_loop(int *loop, char *call_back)
 		{
 			sm_copy_str_to(u_input, copy, str_p + 1, -1);
 			gnl_tester(peepy_atoi(copy));
+		}
+		else if (sm_func_looking(u_input,"-rm", &str_p) == 0)
+		{
+			system("rm tester/GNL/GNL_dif.txt");
+			return(sm_str_dup(u_input));
 		}
 		else if(sm_func_looking(u_input, "", &str_p) == 0)
 			gnl_tester(1);
@@ -102,7 +107,7 @@ char	*menu_loop(int *loop, char *call_back)
 	//							RM									//
 	else if (sm_func_looking(u_input,"rm", &str_p) == 0)
 	{
-		system("rm main/GNL/GNL_dif.txt");
+		system("rm tester/GNL/GNL_dif.txt");
 		return(sm_str_dup(u_input));
 	}
 	//							example								//
