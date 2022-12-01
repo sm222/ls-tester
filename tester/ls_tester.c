@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ls_tester.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/30 23:44:11 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/01 08:49:17 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*menu_loop(int *loop, char *call_back)
 		{
 			printf("\nHelp List\n");
 			printf("gnl - GNL tester\n");
-			printf("printf - PRINTF tester\n");
+			printf("pf - PRINTF tester\n");
 			printf("norm - norminette all the files\n");
 			printf("rm - RM all trace files\n");
 			printf("exit or q - exit the program\n");
@@ -71,7 +71,7 @@ char	*menu_loop(int *loop, char *call_back)
 		else
 		{
 			sm_copy_str_to(u_input ,copy ,str_p +1,-1);
-			printf(YEL "printf "RED"%s " WHT "is not a valid argumant\n", copy);
+			printf(YEL "pf "RED"%s " WHT "is not a valid argumant\n", copy);
 		}
 		return(sm_str_dup(u_input));
 	}
