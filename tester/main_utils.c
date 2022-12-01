@@ -6,7 +6,7 @@
 /*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:46:54 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/29 13:42:55 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/12/01 07:12:48 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,64 +31,3 @@ void	*xfree(void *p)
 		free(p);
 	return (NULL);
 }
-
-// char	*ft_itoa(int n)
-// {
-// 	char		*str;
-// 	int			len;
-// 	long int	nb;
-
-// 	nb = n;
-// 	len = intlen(nb);
-// 	str = calloc(len * sizeof(char) + 1);
-// 	if (!str)
-// 		return (0);
-// 	if (nb == 0)
-// 		str[len--] = 48;
-// 	if (nb < 0)
-// 	{
-// 		str[0] = 45;
-// 		nb *= -1;
-// 	}
-// 	while (nb > 0)
-// 	{
-// 		str[len--] = (nb % 10) + 48;
-// 		nb /= 10;
-// 	}
-// 	return (str);
-// }
-
-// static size_t	peepy_strlen(const char *s)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	if (!s)
-// 		return (0);
-// 	while (s[i++])
-// 		continue ;
-// 	return (i - 1);
-// }
-
-// char	*ft_str_f_join(char *s1, char *s2, int nb)
-// {
-// 	int		i;
-// 	int		j;
-// 	int		k;
-// 	char	*str;
-
-// 	i = 0;
-// 	j = 0;
-// 	k = 0;
-// 	str = calloc(peepy_strlen(s1) + peepy_strlen(s2) + intlen(nb) + 1, sizeof(char));
-// 	if (!str)
-// 		return (str = xfree(str));
-// 	while (s1[i])
-// 		str[j++] = s1[i++];
-// 	while (s2[k])
-// 		str[j++] = s2[k++];
-// 	i = 0;
-// 	while (++i <= intlen(nb))
-// 		str[peepy_strlen(s1) + peepy_strlen(s2) + i] = itoa(nb);
-// 	return (xfree(s1), str);
-// }

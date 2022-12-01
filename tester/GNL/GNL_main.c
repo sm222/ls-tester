@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   GNL_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/30 23:59:09 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/01 07:41:43 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,7 +245,6 @@ int	compare(char *f1, int argc, char *argv[])
 	{
 		printf(RED"\n[KO]\n"WHT);
 		system("echo '[KO]\n' >> tester/GNL/GNL_dif.txt");
-		
 	}
 	else
 	{
@@ -342,6 +341,7 @@ int	main(int ac, char **av)
 	duration1 = (end1 - start1);
 	system("echo '\nEnd of Test - - -'$(date '+ %A %d %B %Y%n %T')'\n' >> tester/GNL/GNL_dif.txt");
 	printf(RED"\ntotal time taken : %.2f seconds\n"WHT, (double)duration1/CLOCKS_PER_SEC  * 100);
+	printf(MAG"[error log: %s]\n", "tester/GNL/GNL_dif.txt"WHT);
 }
 
 //system("gcc -Wall -Werror -Wextra get_next_line.c get_next_line_utils.c main_utils.c get_next_line_main.c -D ");

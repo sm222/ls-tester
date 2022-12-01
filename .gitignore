@@ -54,6 +54,11 @@ dkms.conf
 
 # .c not wanted
 get_next_line_utils.c
+get_next_line_utils_bonus.c
 get_next_line.c
+get_next_line_bonus.c
 get_next_line.h
-./main/GNL/GNL_dif.txt
+get_next_line_bonus.h
+
+# .txt not wanted
+tester/GNL/GNL_dif.txt
