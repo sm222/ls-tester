@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ls_tester.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/12/01 08:49:17 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/12/01 11:05:41 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*menu_loop(int *loop, char *call_back)
 	//							help func							//
 	if (sm_func_looking(u_input, "help", &str_p) == 0)
 	{
-		if(sm_func_looking(u_input, "", &str_p) == 0)
+		if (sm_func_looking(u_input, "", &str_p) == 0)
 		{
 			printf("\nHelp List\n");
 			printf("gnl - GNL tester\n");
@@ -52,92 +52,91 @@ char	*menu_loop(int *loop, char *call_back)
 		}
 		else
 		{
-			sm_copy_str_to(u_input ,copy ,str_p +1,-1);
+			sm_copy_str_to(u_input, copy, str_p + 1, -1);
 			printf(YEL "help "RED"%s " WHT "is not a valid argumant\n", copy);
 		}
-		
 		return (sm_str_dup(u_input));
 	}
 	//						PRINTF								//
-	else if (sm_func_looking(u_input,"pf", &str_p) == 0)
+	else if (sm_func_looking(u_input, "pf", &str_p) == 0)
 	{
-		if (sm_func_looking(u_input,"-h",&str_p) == 0)
+		if (sm_func_looking(u_input, "-h", &str_p) == 0)
 		{
 			printf("pf -h\n");
 			printf("\n");
 		}
-		else if(sm_func_looking(u_input, "", &str_p) == 0)
+		else if (sm_func_looking(u_input, "", &str_p) == 0)
 			printf_tester();
 		else
 		{
-			sm_copy_str_to(u_input ,copy ,str_p +1,-1);
+			sm_copy_str_to(u_input, copy, str_p + 1, -1);
 			printf(YEL "pf "RED"%s " WHT "is not a valid argumant\n", copy);
 		}
-		return(sm_str_dup(u_input));
+		return (sm_str_dup(u_input));
 	}
 	//							GNL									//
-	else if (sm_func_looking(u_input,"gnl", &str_p) == 0)
+	else if (sm_func_looking(u_input, "gnl", &str_p) == 0)
 	{
-		if (sm_func_looking(u_input,"-buff",&str_p) == 0)
+		if (sm_func_looking(u_input, "-buff", &str_p) == 0)
 		{
 			sm_copy_str_to(u_input, copy, str_p + 1, -1);
 			gnl_tester(peepy_atoi(copy));
 		}
-		else if (sm_func_looking(u_input,"-rm", &str_p) == 0)
+		else if (sm_func_looking(u_input, "-rm", &str_p) == 0)
 		{
 			if (!system("rm tester/GNL/GNL_dif.txt"))
 				printf(RED"GNL_dif.txt, was remove\n"WHT);
-			return(sm_str_dup(u_input));
+			return (sm_str_dup(u_input));
 		}
-		else if (sm_func_looking(u_input,"-dif", &str_p) == 0)
+		else if (sm_func_looking(u_input, "-dif", &str_p) == 0)
 		{
 			if (system("cat tester/GNL/GNL_dif.txt"))
 				printf(RED"GNL_dif.txt, don't exist\n"WHT);
-			return(sm_str_dup(u_input));
+			return (sm_str_dup(u_input));
 		}
-		else if(sm_func_looking(u_input, "", &str_p) == 0)
+		else if (sm_func_looking(u_input, "", &str_p) == 0)
 			gnl_tester(1);
 		else
 		{
-			sm_copy_str_to(u_input ,copy ,str_p +1,-1);
+			sm_copy_str_to(u_input, copy, str_p + 1, -1);
 			printf(YEL "gnl "RED"%s " WHT "is not a valid argumant\n", copy);
 		}
-		return(sm_str_dup(u_input));
+		return (sm_str_dup(u_input));
 	}
 	//							NORMINETTE							//
-	else if (sm_func_looking(u_input,"norm", &str_p) == 0)
+	else if (sm_func_looking(u_input, "norm", &str_p) == 0)
 	{
 		printf(BLU"\n-	"GRN"-	"RED"-	\n");
 		system("echo " WHT);
 		system("norminette *.c *.h");
 		printf(RED"\n-	"GRN"-	"BLU"-	\n"WHT);
-		return(sm_str_dup(u_input));
+		return (sm_str_dup(u_input));
 	}
 	//							RM									//
-	else if (sm_func_looking(u_input,"rm", &str_p) == 0)
+	else if (sm_func_looking(u_input, "rm", &str_p) == 0)
 	{
 		if (!system("rm tester/GNL/GNL_dif.txt"))
 			printf(RED"GNL_dif.txt, was remove\n"WHT);
-		return(sm_str_dup(u_input));
+		return (sm_str_dup(u_input));
 	}
 	//							example								//
-	else if (sm_func_looking(u_input,("yes"), &str_p) == 0)
+	else if (sm_func_looking(u_input, ("yes"), &str_p) == 0)
 	{
-		if(sm_find_mix_str(u_input,("itwork"), &str_p) == 0)
+		if (sm_find_mix_str(u_input, ("itwork"), &str_p) == 0)
 			printf("yes\n");
 	}
 	//							void								//
-	else if (sm_func_looking(u_input,(""), &str_p) == 0)
-		return(call_back);
+	else if (sm_func_looking(u_input, (""), &str_p) == 0)
+		return (call_back);
 	//							UP									//
-	else if (sm_func_looking(u_input,(up), &str_p) == 0)
+	else if (sm_func_looking(u_input, (up), &str_p) == 0)
 	{
 		*loop = 1;
 		printf("\n");
-		return(call_back);
+		return (call_back);
 	}
 	//							exit								//
-	else if (sm_func_looking(u_input,("exit"), &str_p) == 0 || sm_func_looking(u_input,("q"), &str_p) == 0)
+	else if (sm_func_looking(u_input, ("exit"), &str_p) == 0 || sm_func_looking(u_input, "q", &str_p) == 0)
 	{
 		if (call_back)
 			free(call_back);
@@ -145,8 +144,8 @@ char	*menu_loop(int *loop, char *call_back)
 	}
 	//							default								//
 	else
-		printf(RED"%s " WHT"is not a valid input\n",u_input);
-	return(sm_str_dup(u_input));
+		printf(RED"%s " WHT"is not a valid input\n", u_input);
+	return (sm_str_dup(u_input));
 }
 
 int	main(void)
@@ -157,7 +156,7 @@ int	main(void)
 	loop = 0;
 	logo();
 	//system("open https://www.youtube.com/watch?v=Yep6GVM0IYs");
-	//system("wopen ./p.wav");
+	//system("open p.wav");
 	printf("this is not a finish product\n");
 	last_call = NULL;
 	while (1)
