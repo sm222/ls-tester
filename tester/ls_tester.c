@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ls_tester.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/30 16:21:11 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/30 23:44:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,14 @@ char	*menu_loop(int *loop, char *call_back)
 		}
 		else if (sm_func_looking(u_input,"-rm", &str_p) == 0)
 		{
-			system("rm tester/GNL/GNL_dif.txt");
+			if (!system("rm tester/GNL/GNL_dif.txt"))
+				printf(RED"GNL_dif.txt, was remove\n"WHT);
+			return(sm_str_dup(u_input));
+		}
+		else if (sm_func_looking(u_input,"-dif", &str_p) == 0)
+		{
+			if (system("cat tester/GNL/GNL_dif.txt"))
+				printf(RED"GNL_dif.txt, don't exist\n"WHT);
 			return(sm_str_dup(u_input));
 		}
 		else if(sm_func_looking(u_input, "", &str_p) == 0)
@@ -109,7 +116,8 @@ char	*menu_loop(int *loop, char *call_back)
 	//							RM									//
 	else if (sm_func_looking(u_input,"rm", &str_p) == 0)
 	{
-		system("rm tester/GNL/GNL_dif.txt");
+		if (!system("rm tester/GNL/GNL_dif.txt"))
+			printf(RED"GNL_dif.txt, was remove\n"WHT);
 		return(sm_str_dup(u_input));
 	}
 	//							example								//
@@ -148,7 +156,8 @@ int	main(void)
 
 	loop = 0;
 	logo();
-	system("open https://www.youtube.com/watch?v=Yep6GVM0IYs");
+	//system("open https://www.youtube.com/watch?v=Yep6GVM0IYs");
+	//system("wopen ./p.wav");
 	printf("this is not a finish product\n");
 	last_call = NULL;
 	while (1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   GNL_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/30 08:40:28 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/11/30 23:59:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -314,7 +314,7 @@ int	main(int ac, char **av)
 			peepyfree(tmp);
 			i++;
 			usleep(2000);
-			if (i > 100000)
+			if (i > 13000)
 			{
 				printf(RED"Never return NULL!\n"WHT);
 				system("echo break\n >> tester/GNL/GNL_dif.txt");
