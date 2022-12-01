@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/12/01 11:05:41 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:28:19 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*menu_loop(int *loop, char *call_back)
 	int		size_i = 80;
 	char	u_input[size_i];
 	char	copy[size_i];
+	char	temp[size_i];
 	int		str_p = 0;
 	char	up[4] = {27, 91, 65, 0};
 
@@ -27,7 +28,7 @@ char	*menu_loop(int *loop, char *call_back)
 	if (call_back && *loop == 1)
 	{
 		*loop = 0;
-		sm_copy_str_to(call_back, u_input, 0, -1);
+		strcpy(u_input, call_back);
 		free(call_back);
 	}
 	else
@@ -36,7 +37,6 @@ char	*menu_loop(int *loop, char *call_back)
 		sm_get_keybord_input(u_input, size_i);
 		sm_clear_str(u_input);
 	}
-	str_p = 0;
 	//							help func							//
 	if (sm_func_looking(u_input, "help", &str_p) == 0)
 	{
@@ -93,6 +93,29 @@ char	*menu_loop(int *loop, char *call_back)
 			if (system("cat tester/GNL/GNL_dif.txt"))
 				printf(RED"GNL_dif.txt, don't exist\n"WHT);
 			return (sm_str_dup(u_input));
+		}
+		else if (sm_func_looking(u_input, "-pp", &str_p) == 0)
+		{
+
+			if (sm_func_looking(u_input, "-buff", &str_p) == 0)
+			{
+				sm_copy_str_to(u_input, copy, str_p + 1, -1);
+				gnl_partial_tester(peepy_atoi(copy), "pp");
+			}
+			else
+				gnl_partial_tester(1, "pp");
+		}
+		else if (sm_func_looking(u_input, "-test", &str_p) == 0)
+		{
+			str_p += sm_copy_str_to(u_input, temp, str_p + 1, -1);
+			if (sm_func_looking(u_input, "-buff", &str_p) == 0)
+			{
+				//WIP
+				sm_copy_str_to(u_input, copy, str_p + 1, -1);
+				gnl_partial_tester(peepy_atoi(copy), combine("text%s", temp));
+			}
+			else
+				gnl_partial_tester(1, combine("text%s", temp));
 		}
 		else if (sm_func_looking(u_input, "", &str_p) == 0)
 			gnl_tester(1);

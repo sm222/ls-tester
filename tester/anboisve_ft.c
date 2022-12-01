@@ -251,7 +251,7 @@ int sm_copy_str_to(char *input,char *return_v,int start_p, int end_p)
 		end_p = 100000;
 	if(input[i] == '\0' || input[i] == ' ' || input[i] == '\t' || end_p == 0)
 		return(0);
-	while(input[i] != '\0' && j < end_p)
+	while(input[i] != '\0' && input[i] != ' ' && input[i] != '\t' && j < end_p)
 	{
 		return_v[j] = input[i];
 		j++;

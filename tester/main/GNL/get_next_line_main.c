@@ -6,7 +6,7 @@
 /*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/30 08:41:00 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/12/01 16:54:26 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,43 @@ int	check(int norm)
 	close(verif[1]);
 	close(verif[2]);
 	return (norm);
+}
+
+void	gnl_partial_tester(int buff, char *test)
+{
+	char	*txt;
+	char	*cmd;
+	int		norm;
+	int		i;
+	
+	i = 0;
+	norm = 0;
+	setvbuf(stdout, NULL, _IONBF, 0);
+	norm = check(norm);
+	cmd = combine(GCCF GNL_PATH_O "test1.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d ", buff);
+	system(cmd);
+	free(cmd);
+	if (!strcmp(test, "pp"))
+		txt = f_strjoin("./test1.out", " tester/text/peepy.ans");
+	else
+		txt = f_strjoin("./test1.out", combine(" tester/text/%s.txt", test));
+	//txt = ft_str_fback_join(txt, " > out_test.txt");
+	system(txt);//call ./test1.out
+	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)
+	{
+		if (system(VALL" ./val_test.out") != 0)
+		{
+			printf(RED"valgrind could not run\n"WHT);
+			system("leaks -atExit -- ./val_test.out");
+		}
+	}
+	system("rm -rf val_test.out val_test.out.dSYM test1.out");
+	if (norm != 0)
+		printf(YEL "NORM ERROR !\n"WHT);
+	else
+		printf(GRN "NORM OK !\n"WHT);
+	free(txt);
+	return ;
 }
 
 void	gnl_tester(int buff)
