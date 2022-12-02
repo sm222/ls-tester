@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/12/02 11:26:26 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/12/02 13:19:06 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ void	gnl_partial_tester(int buff, char *test)
 	char	*txt;
 	char	*cmd;
 	int		norm;
-	int		i;
 
-	i = 0;
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
 	norm = check(norm);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   GNL_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/12/01 07:41:43 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:04:33 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,6 +265,9 @@ int	compare(char *f1, int argc, char *argv[])
 		{
 			printf(GRN"\n[OK]\n"WHT);
 			system("echo '[OK]\n' >> tester/GNL/GNL_dif.txt");
+			fclose(fp1);
+			fclose(fp2);
+			return(1);
 		}
 	}
 	fclose(fp1);
@@ -275,13 +278,12 @@ int	compare(char *f1, int argc, char *argv[])
 //
 int	main(int ac, char **av)
 {
-	int		fd;
+	int		fd, i, num, to = 0, test;
 	char	*tmp;
 	char	*tmp2;
-	int		i;
-	int		test;
 	clock_t	start, end, duration, start1, end1, duration1;
 
+	num = ac - 1;
 	if (system("touch tester/GNL/GNL_dif.txt"))
 		printf(RED"can't make file"WHT);
 	system("echo '\nStart of Test - - -'$(date '+ %A %d %B %Y%n %T')'\n' >> tester/GNL/GNL_dif.txt");
@@ -331,7 +333,8 @@ int	main(int ac, char **av)
 		system(tmp2);
 		free(tmp2);
 		close(test);
-		compare("tester/text/result.txt", ac, av);
+		if (compare("tester/text/result.txt", ac, av))
+			to++;
 		system("rm tester/text/result.txt");
 		printf(RESET WHT"\ntime call -- %d\n", i);
 		printf(WHT"total line read -- %d\n", --i);
@@ -339,6 +342,12 @@ int	main(int ac, char **av)
 	}
 	end1 = clock();
 	duration1 = (end1 - start1);
+	to = to / num * 100;
+	if (to == 100)
+		printf(GRN);
+	else
+		printf(RED);
+	printf("\nyou got %d%%\n"WHT, to);
 	system("echo '\nEnd of Test - - -'$(date '+ %A %d %B %Y%n %T')'\n' >> tester/GNL/GNL_dif.txt");
 	printf(RED"\ntotal time taken : %.2f seconds\n"WHT, (double)duration1/CLOCKS_PER_SEC  * 100);
 	printf(MAG"[error log: %s]\n", "tester/GNL/GNL_dif.txt"WHT);
