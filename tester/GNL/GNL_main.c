@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/12/02 15:04:33 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:46:55 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,9 +278,10 @@ int	compare(char *f1, int argc, char *argv[])
 //
 int	main(int ac, char **av)
 {
-	int		fd, i, num, to = 0, test;
+	int		fd, i, test;
 	char	*tmp;
 	char	*tmp2;
+	float	num, to = 0;
 	clock_t	start, end, duration, start1, end1, duration1;
 
 	num = ac - 1;
@@ -342,12 +343,12 @@ int	main(int ac, char **av)
 	}
 	end1 = clock();
 	duration1 = (end1 - start1);
-	to = to / num * 100;
+	to = (to / num) * 100;
 	if (to == 100)
 		printf(GRN);
 	else
 		printf(RED);
-	printf("\nyou got %d%%\n"WHT, to);
+	printf("\nyou got %.0f%%\n"WHT, to);
 	system("echo '\nEnd of Test - - -'$(date '+ %A %d %B %Y%n %T')'\n' >> tester/GNL/GNL_dif.txt");
 	printf(RED"\ntotal time taken : %.2f seconds\n"WHT, (double)duration1/CLOCKS_PER_SEC  * 100);
 	printf(MAG"[error log: %s]\n", "tester/GNL/GNL_dif.txt"WHT);
