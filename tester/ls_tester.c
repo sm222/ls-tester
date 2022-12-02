@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/12/01 17:28:19 by brheaume         ###   ########.fr       */
+/*   Updated: 2022/12/02 11:50:57 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ char	*menu_loop(int *loop, char *call_back)
 		}
 		else if (sm_func_looking(u_input, "-pp", &str_p) == 0)
 		{
-
 			if (sm_func_looking(u_input, "-buff", &str_p) == 0)
 			{
 				sm_copy_str_to(u_input, copy, str_p + 1, -1);
@@ -107,7 +106,7 @@ char	*menu_loop(int *loop, char *call_back)
 		}
 		else if (sm_func_looking(u_input, "-test", &str_p) == 0)
 		{
-			str_p += sm_copy_str_to(u_input, temp, str_p + 1, -1);
+			str_p += sm_copy_str_to(u_input, temp, str_p + 1, -1) + 1;
 			if (sm_func_looking(u_input, "-buff", &str_p) == 0)
 			{
 				//WIP

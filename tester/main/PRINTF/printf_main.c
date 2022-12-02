@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   printf_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 07:25:09 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/11/30 14:19:28 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/12/01 13:53:26 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main.h"
 
-void printf_tester(void)
+void	printf_tester(void)
 {
 	
 	return ;

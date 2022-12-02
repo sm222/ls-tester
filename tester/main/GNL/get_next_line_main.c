@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_main.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/12/01 16:54:26 by brheaume         ###   ########.fr       */
+/*   Updated: 2022/12/02 11:26:26 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	gnl_partial_tester(int buff, char *test)
 	char	*cmd;
 	int		norm;
 	int		i;
-	
+
 	i = 0;
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
@@ -68,7 +68,7 @@ void	gnl_partial_tester(int buff, char *test)
 	if (!strcmp(test, "pp"))
 		txt = f_strjoin("./test1.out", " tester/text/peepy.ans");
 	else
-		txt = f_strjoin("./test1.out", combine(" tester/text/%s.txt", test));
+		txt = ft_str_ffront_join("./test1.out", combine(" tester/text/%s.txt", test));
 	//txt = ft_str_fback_join(txt, " > out_test.txt");
 	system(txt);//call ./test1.out
 	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)
@@ -94,7 +94,7 @@ void	gnl_tester(int buff)
 	char	*cmd;
 	int		norm;
 	int		i;
-	
+
 	i = 0;
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
@@ -103,7 +103,7 @@ void	gnl_tester(int buff)
 	system(cmd);
 	free(cmd);
 	txt = f_strjoin("./test1.out", " tester/text/peepy.ans");
-	while (i < 9)	
+	while (i < 9)
 		txt = ft_str_ff_join(txt, combine(" tester/text/text%d.txt", i++));
 	//txt = ft_str_fback_join(txt, " > out_test.txt");
 	system(txt);//call ./test1.out

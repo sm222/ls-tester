@@ -13,7 +13,6 @@ int	sm_while_space(char *str, int i)
 	if (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
 		|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
 		return(1);
-
 	return(-1);
 }
 
@@ -46,16 +45,17 @@ void sm_clear_str(char *str)
 	str[i + 1] = '\0';
 }
 
-int		sm_r_num(int lower ,int upper)
+int	sm_r_num(int lower ,int upper)
 {
-	int swap;
+	int	swap;
+
 	if (lower > upper)
 	{
 		swap = lower;
 		lower = upper;
 		upper = swap;
 	}
-	int numb = (rand() % (upper - lower + 1)) + lower;
+	int	numb = (rand() % (upper - lower + 1)) + lower;
 	return(numb);
 }
 
@@ -81,7 +81,7 @@ int	sm_atoi(char *str)
 	return (num * min);
 }
 
-void sm_inspect_arr(void *p, char type ,int size, int color)
+void	sm_inspect_arr(void *p, char type ,int size, int color)
 {
 	int i = 0;
 	int item = 0;
@@ -242,15 +242,15 @@ int sm_find_mix_str(char *str,char *word, int *path)
 	return(0);
 }
 
-int sm_copy_str_to(char *input,char *return_v,int start_p, int end_p)
+int	sm_copy_str_to(char *input,char *return_v,int start_p, int end_p)
 {
 	int i = start_p;
 	int j = 0;
 
 	if (end_p < 0)
 		end_p = 100000;
-	if(input[i] == '\0' || input[i] == ' ' || input[i] == '\t' || end_p == 0)
-		return(0);
+	//if(input[i] == '\0' || input[i] == ' ' || input[i] == '\t' || end_p == 0)
+	//	return(0);
 	while(input[i] != '\0' && input[i] != ' ' && input[i] != '\t' && j < end_p)
 	{
 		return_v[j] = input[i];
@@ -551,7 +551,7 @@ char	*combine(char *s, ...)
 	va_list	list;
 	size_t	i;
 	char	*new;
-	
+
 	va_start(list, s);
 	new = calloc(1, sizeof(char));
 	i = 0;

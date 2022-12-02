@@ -1,9 +1,0 @@
-{
-	"files.associations": {
-		"*.c": "c",
-		"main.h": "c",
-		"fcntl.h": "c",
-		"gnl.h": "c",
-		"typeinfo": "c"
-	}
-}
