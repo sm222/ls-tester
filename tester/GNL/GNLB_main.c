@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   GNL_main.c                                         :+:      :+:    :+:   */
+/*   GNLB_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/25 11:04:36 by anboisve          #+#    #+#             */
-/*   Updated: 2022/12/02 15:46:55 by anboisve         ###   ########.fr       */
+/*   Created: 2022/12/03 14:45:32 by anboisve          #+#    #+#             */
+/*   Updated: 2022/12/03 14:45:32 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,8 +278,8 @@ int	compare(char *f1, int argc, char *argv[])
 //
 int	main(int ac, char **av)
 {
-	int		fd, i, test;
-	char	*tmp;
+	int		fd[3], i, test[3];
+	char	*tmp[4];
 	char	*tmp2;
 	float	num, to = 0;
 	clock_t	start, end, duration, start1, end1, duration1;
@@ -290,30 +290,40 @@ int	main(int ac, char **av)
 	system("echo '\nStart of Test - - -'$(date '+ %A %d %B %Y%n %T')'\n' >> tester/GNL/GNL_dif.txt");
 	start1 = clock();
 	printf("BUFFER_SIZE = %d\n", BUFFER_SIZE);
-	while (--ac)
-	{
 		sleep(3);
-		printf(GRN"\n\n\n[file use : %s]\n"WHT, av[ac]);
+		printf(GRN"\n\n\n[file use : peepy1.ans, peepy2.ans, peepy3.ans]\n"WHT);
 		i = 0;
-		fd = open(av[ac], O_RDONLY);
-		if (fd < 0)
-			printf(RED"can't open file\n"WHT);
-		tmp = "\n";
-		system("touch tester/text/result.txt");
-		test = open("tester/text/result.txt", O_RDWR);
-		if (BUFFER_SIZE <= 0 && get_next_line(fd) == NULL)
-		{
-			printf("work with invalid buffer size\n");
-			system("rm tester/text/result.txt");
-			exit(0);
-		}
+		fd[0] = open("tester/text/result0.txt", O_RDONLY);
+		fd[1] = open("tester/text/result1.txt", O_RDONLY);
+		fd[2] = open("tester/text/result2.txt", O_RDONLY);
+		if (fd[0] < 0 || fd[1] < 0 || fd[2] < 0)
+			printf(RED"can't open all file\n"WHT);
+		system("touch tester/text/result0.txt && touch tester/text/result1.txt && touch tester/text/result2.txt");
+		test[0] = open("tester/text/result0.txt", O_RDWR);
+		test[1] = open("tester/text/result1.txt", O_RDWR);
+		test[2] = open("tester/text/result2.txt", O_RDWR);
 		start = clock();
-		while (tmp)
+		//test
+		tmp[0] = "\n";
+		tmp[1] = "\n";
+		tmp[2] = "\n";
+		while (tmp[0] != NULL || tmp[1] != NULL || tmp[2] != NULL)
 		{
-			tmp = get_next_line(fd);
-			write(test, tmp, peepy_strlen(tmp));
-			printf(GRN"%4d "YEL"%4zu"WHT" = %s", i + 1, peepy_strlen(tmp), tmp);
-			peepyfree(tmp);
+			//0
+			tmp[0] = get_next_line(fd[0]);
+			write(test[0], tmp[0], peepy_strlen(tmp[0]));
+			printf(GRN"%4d "YEL"%4zu"WHT" = %s", i + 1, peepy_strlen(tmp[0]), tmp[0]);
+			//1
+			tmp[1] = get_next_line(fd[1]);
+			write(test[1], tmp[1], peepy_strlen(tmp[1]));
+			printf(BLU"%4d "YEL"%4zu"WHT" = %s", i + 1, peepy_strlen(tmp[1]), tmp[1]);
+			//2
+			tmp[2] = get_next_line(fd[2]);
+			write(test[2], tmp[2], peepy_strlen(tmp[2]));
+			printf(BLU"%4d "YEL"%4zu"WHT" = %s", i + 1, peepy_strlen(tmp[2]), tmp[2]);
+			peepyfree(tmp[0]);
+			peepyfree(tmp[1]);
+			peepyfree(tmp[2]);
 			i++;
 			usleep(2000);
 			if (i > 13000)
@@ -340,7 +350,6 @@ int	main(int ac, char **av)
 		printf(RESET WHT"\ntime call -- %d\n", i);
 		printf(WHT"total line read -- %d\n", --i);
 		printf(YEL"test time taken : %.2f seconds\n"WHT, (double)duration/CLOCKS_PER_SEC  * 100);
-	}
 	end1 = clock();
 	duration1 = (end1 - start1);
 	to = (to / num) * 100;

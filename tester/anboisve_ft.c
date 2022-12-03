@@ -167,7 +167,6 @@ int sm_func_looking(char *str,char *word, int *path)
 
 	while(str[i] == ' ' || str[i] == '\t')
 		i++;
-
 	while(word[j])
 	{
 		if (word[j] != str[i])

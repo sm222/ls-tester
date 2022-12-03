@@ -37,6 +37,7 @@
 //				GNL				//
 
 # define GNL_PATH_O " tester/GNL/GNL_main.c -o "
+# define GNLB_PATH_O " tester/GNL/GNLB_main.c -o "
 # define GNL_C "get_next_line.c"
 # define GNLU_C "get_next_line_utils.c"
 # define GNL_H "get_next_line.h"
