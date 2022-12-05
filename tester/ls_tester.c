@@ -6,7 +6,7 @@
 /*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/12/05 09:30:43 by wdelaros         ###   ########.fr       */
+/*   Updated: 2022/12/05 10:12:14 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,6 @@ char	*menu_loop(int *loop, char *call_back)
 			str_p += sm_copy_str_to(u_input, temp, str_p + 1, -1) + 1;
 			if (sm_func_looking(u_input, "-buff", &str_p) == 0)
 			{
-				//WIP
 				sm_copy_str_to(u_input, copy, str_p + 1, -1);
 				gnl_partial_tester(peepy_atoi(copy), combine("text%s", temp));
 			}
