@@ -242,8 +242,8 @@ int	compare(char *f1, int argc, char *argv[])
 	// check for the total number of bytes
 	if (cnt1 != cnt2)
 	{
-		printf(RED"\n[KO]\n"WHT);
-		system("echo '[KO]\n' >> tester/GNL/GNL_dif.txt");
+		printf(RED"\n❌[KO]\n"WHT);
+		system("echo '❌[KO]\n' >> tester/GNL/GNL_dif.txt");
 	}
 	else
 	{
@@ -257,16 +257,16 @@ int	compare(char *f1, int argc, char *argv[])
 		}
 		if (flg)
 		{
-			printf(RED"\n[KO]\n"WHT);
-			system("echo '[KO]\n' >> tester/GNL/GNL_dif.txt");
+			printf(RED"\n❌[KO]\n"WHT);
+			system("echo '❌[KO]\n' >> tester/GNL/GNL_dif.txt");
 		}
 		else
 		{
-			printf(GRN"\n[OK]\n"WHT);
-			system("echo '[OK]\n' >> tester/GNL/GNL_dif.txt");
+			printf(GRN"\n✅[OK]\n"WHT);
+			system("echo '✅[OK]\n' >> tester/GNL/GNL_dif.txt");
 			fclose(fp1);
 			fclose(fp2);
-			return(1);
+			return (1);
 		}
 	}
 	fclose(fp1);
@@ -286,7 +286,7 @@ int	main(int ac, char **av)
 	num = ac - 1;
 	if (system("touch tester/GNL/GNL_dif.txt"))
 		printf(RED"can't make file"WHT);
-	system("echo '\nStart of Test - - -'$(date '+ %A %d %B %Y%n %T')'\n' >> tester/GNL/GNL_dif.txt");
+	system("echo '\nStart of Test - - -⏱'$(date '+ %A %d %B %Y%n %T')'\n' >> tester/GNL/GNL_dif.txt");
 	start1 = clock();
 	printf("BUFFER_SIZE = %d\n", BUFFER_SIZE);
 	while (--ac)
@@ -317,7 +317,7 @@ int	main(int ac, char **av)
 			usleep(2000);
 			if (i > 13000)
 			{
-				printf(RED"Never return NULL!\n"WHT);
+				printf(RED"Never return NULL!❗️\n"WHT);
 				system("echo break\n >> tester/GNL/GNL_dif.txt");
 				break ;
 			}
@@ -348,7 +348,7 @@ int	main(int ac, char **av)
 	else
 		printf(RED);
 	printf("\nyou got %.0f%%\n"WHT, to);
-	system("echo '\nEnd of Test - - -'$(date '+ %A %d %B %Y%n %T')'\n' >> tester/GNL/GNL_dif.txt");
+	system("echo '\nEnd of Test - - - ⏰'$(date '+ %A %d %B %Y%n %T')'\n' >> tester/GNL/GNL_dif.txt");
 	printf(RED"\ntotal time taken : %.2f seconds\n"WHT, (double)duration1/CLOCKS_PER_SEC  * 100);
 	printf(MAG"[error log: %s]\n", "tester/GNL/GNL_dif.txt"WHT);
 }

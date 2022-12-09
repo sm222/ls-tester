@@ -24,17 +24,19 @@
 #define RESET  "\x1B[0m"
 #define CLE    "\e[1;1H\e[2J"
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	int		fd;
 	char	*s;
 	char	o;
 
+	(void)ac;
+	printf("file test :%s\n", av[1]);
 	system("echo " WHT);
 	s = &o;
-	fd = open("tester/text/peepy.ans", O_RDONLY);
+	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
-		return (printf(RED "[KO] : can't open file\n"WHT), 0);
+		return (printf(RED "[KO] : can't open file %s\n"WHT, av[1]));
 	while (s != NULL)
 	{
 		s = get_next_line(fd);

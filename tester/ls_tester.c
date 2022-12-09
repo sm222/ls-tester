@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/12/09 12:55:24 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/12/09 14:54:49 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,9 +190,7 @@ int	main(void)
 	loop = 0;
 	system("rm tester/a.out");
 	logo();
-	//system("open https://www.youtube.com/watch?v=Yep6GVM0IYs");
-	//system("open p.wav");
-	printf("this is not a finish product\n");
+	printf("this is not a finish product⚠️\n");
 	last_call = NULL;
 	while (1)
 		last_call = menu_loop(&loop, last_call);

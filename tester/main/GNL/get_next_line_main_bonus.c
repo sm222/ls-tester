@@ -20,7 +20,6 @@ void	gnlb_partial_tester(int buff, char *test)
 
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
-	//norm = check(norm);
 	cmd = combine(GCCF GNL_PATH_O "test1.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d ", buff);
 	system(cmd);
 	free(cmd);
@@ -28,11 +27,10 @@ void	gnlb_partial_tester(int buff, char *test)
 		txt = f_strjoin("./test1.out", " tester/text/peepy.ans");
 	else
 		txt = ft_str_ffront_join("./test1.out", combine(" tester/text/%s.txt", test));
-	//txt = ft_str_fback_join(txt, " > out_test.txt");
-	system(txt);//call ./test1.out
+	system(txt);
 	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)
 	{
-		if (system(VALL" ./val_test.out") != 0)
+		if (system(VALL" ./val_test.out tester/text/peepy.ans") != 0)
 		{
 			printf(RED"valgrind could not run\n"WHT);
 			system("leaks -atExit -- ./val_test.out");
@@ -68,7 +66,7 @@ void	gnlb_tester(int buff)
 	system(txt);//call ./test1.out
 	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)
 	{
-		if (system(VALL" ./val_test.out") != 0)
+		if (system(VALL" ./val_test.out ") != 0)
 		{
 			printf(RED"valgrind could not run\n"WHT);
 			system("leaks -atExit -- ./val_test.out");

@@ -67,22 +67,25 @@ void	gnl_partial_tester(int buff, char *test)
 		txt = f_strjoin("./test1.out", " tester/text/peepy.ans");
 	else
 		txt = ft_str_ffront_join("./test1.out", combine(" tester/text/%s.txt", test));
-	//txt = ft_str_fback_join(txt, " > out_test.txt");
-	system(txt);//call ./test1.out
+	system(txt);
+	free(txt);
 	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)
 	{
-		if (system(VALL" ./val_test.out") != 0)
+		txt = combine(VALL " ./val_test.out tester/text/%s.txt", test);
+		if (system(txt) != 0)
 		{
+			free(txt);
 			printf(RED"valgrind could not run\n"WHT);
+			txt = combine("leaks -atExit -- ./val_test.out tester/text/%s.txt", test);
 			system("leaks -atExit -- ./val_test.out");
 		}
+		free(txt);
 	}
 	system("rm -rf val_test.out val_test.out.dSYM test1.out");
 	if (norm != 0)
 		printf(YEL "NORM ERROR !\n"WHT);
 	else
 		printf(GRN "NORM OK !\n"WHT);
-	free(txt);
 	return ;
 }
 
@@ -107,7 +110,7 @@ void	gnl_tester(int buff)
 	system(txt);//call ./test1.out
 	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)
 	{
-		if (system(VALL" ./val_test.out") != 0)
+		if (system(VALL" ./val_test.out tester/text/peepy.ans") != 0)
 		{
 			printf(RED"valgrind could not run\n"WHT);
 			system("leaks -atExit -- ./val_test.out");
