@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/12/01 16:39:14 by brheaume         ###   ########.fr       */
+/*   Updated: 2022/12/04 09:11:58 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,16 @@
 //				GNL				//
 
 # define GNL_PATH_O " tester/GNL/GNL_main.c -o "
-# define GNLB_PATH_O " tester/GNL/GNLB_main.c -o "
 # define GNL_C "get_next_line.c"
 # define GNLU_C "get_next_line_utils.c"
 # define GNL_H "get_next_line.h"
+# define VAL_GNL "get_next_line_utils.c get_next_line.c tester/main/GNL/val_gnl_main.c"
+//				GNLB			//
+# define GNLB_PATH_O " tester/GNL/GNLB_main.c -o "
 # define GNLB_C "get_next_line_bonus.c"
 # define GNLUB_C "get_next_line_utils_bonus.c"
 # define GNLB_H "get_next_line_bonus.h"
-# define VAL_GNL "get_next_line_utils.c get_next_line.c tester/main/GNL/val_gnl_main.c"
+
 
 //--			Color			--//
 //https://talyian.github.io/ansicolors/
@@ -105,6 +107,7 @@ int		intlen(long int n, int base);
 
 //tester INT32_MAX / 50
 void	gnl_tester(int buff);
+void	gnlb_tester(int buff);
 void	gnl_partial_tester(int buff, char *test);
 void	printf_tester(void);
 

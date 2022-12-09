@@ -31,7 +31,6 @@ void	*peepyfree(void *p)
 	return (NULL);
 }
 
-
 //
 static int	ft_num_s(int n)
 {

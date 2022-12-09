@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/12/02 11:50:57 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/12/04 09:16:09 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*menu_loop(int *loop, char *call_back)
 			printf("\n");
 		}
 		else if (sm_func_looking(u_input, "", &str_p) == 0)
-			printf_tester();
+			gnlb_tester(1);
 		else
 		{
 			sm_copy_str_to(u_input, copy, str_p + 1, -1);

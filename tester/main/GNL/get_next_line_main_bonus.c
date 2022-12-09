@@ -12,46 +12,7 @@
 
 #include "../../main.h"
 
-int	check(int norm)
-{
-	int	verif[3];
-	int	i;
-
-	i = 0;
-	verif[0] = open(GNLB_C, O_RDONLY);
-	verif[1] = open(GNLUB_C, O_RDONLY);
-	verif[2] = open(GNLB_H, O_RDONLY);
-	printf("looking for files  ");
-	while (i++ < 3)
-	{
-		usleep(200000);
-		printf(YEL"."WHT);
-	}
-	if (verif[0] < 0 || verif[1] < 0 || verif[2] < 0)
-	{
-		printf(RED"\nMissing file: ");
-		if (verif[0] < 0)
-			printf(RED GNLB_C WHT);
-		if (verif[1] < 0)
-			printf(RED GNLUB_C WHT);
-		if (verif[2] < 0)
-			printf(RED GNLB_H WHT);
-		printf("\n");
-		exit(0);
-	}
-	printf(GRN"\nNo files missing, ready to go!\n"WHT);
-	if (system("norminette " GNLB_C " " GNLB_H " " GNLUB_C) > 0)
-	{
-		norm = 1;
-		printf(YEL "NORM ERROR !\n"WHT);
-	}
-	close(verif[0]);
-	close(verif[1]);
-	close(verif[2]);
-	return (norm);
-}
-
-void	gnl_partial_tester(int buff, char *test)
+void	gnlb_partial_tester(int buff, char *test)
 {
 	char	*txt;
 	char	*cmd;
@@ -59,7 +20,7 @@ void	gnl_partial_tester(int buff, char *test)
 
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
-	norm = check(norm);
+	//norm = check(norm);
 	cmd = combine(GCCF GNL_PATH_O "test1.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d ", buff);
 	system(cmd);
 	free(cmd);
@@ -86,7 +47,7 @@ void	gnl_partial_tester(int buff, char *test)
 	return ;
 }
 
-void	gnl_tester(int buff)
+void	gnlb_tester(int buff)
 {
 	char	*txt;
 	char	*cmd;
@@ -96,7 +57,7 @@ void	gnl_tester(int buff)
 	i = 1;
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
-	norm = check(norm);
+	//norm = check(norm);
 	cmd = combine(GCCF GNLB_PATH_O "test1.out "GNLB_C" "GNLUB_C" -D BUFFER_SIZE=%d ", buff);
 	system(cmd);
 	free(cmd);

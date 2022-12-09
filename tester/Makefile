@@ -3,9 +3,9 @@ SRC = \
 		main_utils.c\
 		anboisve_ft.c\
 		wdelaros_ft.c\
+		main/PRINTF/printf_main.c\
 		main/GNL/get_next_line_main.c\
-		main/PRINTF/printf_main.c
-# 		main/GNL/get_next_line_main_bonus.c
+		main/GNL/get_next_line_main_bonus.c
 
 
 CC = clang

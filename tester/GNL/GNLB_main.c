@@ -284,7 +284,7 @@ int	main(int ac, char **av)
 	float	num, to = 0;
 	clock_t	start, end, duration, start1, end1, duration1;
 
-	num = ac - 1;
+	num = 3;
 	if (system("touch tester/GNL/GNL_dif.txt"))
 		printf(RED"can't make file"WHT);
 	system("echo '\nStart of Test - - -'$(date '+ %A %d %B %Y%n %T')'\n' >> tester/GNL/GNL_dif.txt");
@@ -343,7 +343,12 @@ int	main(int ac, char **av)
 		tmp2 = combine("echo %s >> tester/GNL/GNL_dif.txt", av[ac]);
 		system(tmp2);
 		free(tmp2);
-		close(test);
+		close(test[0]);
+		close(test[1]);
+		close(test[2]);
+		close(fd[0]);
+		close(fd[1]);
+		close(fd[2]);
 		if (compare("tester/text/result.txt", ac, av))
 			to++;
 		system("rm tester/text/result.txt");

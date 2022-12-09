@@ -276,18 +276,15 @@ int sm_look_for_char_p(char *str, int start_p ,int number ,char look)
 	return(0);
 }
 
-void *sm_calloc(size_t type, size_t size)
+void *sm_calloc(size_t size, size_t count)
 {
-	char	*p;
-	size_t	i;
+	char	*new;
 
-	p = malloc(type * size);
-	if (!p)
+	new = malloc(size * count);
+	if (!new)
 		return (NULL);
-	i = type * size;
-	while (i--)
-		p[i] = 0;
-	return (p);
+	sm_bzero(new, size * count);
+	return (new);
 }
 
 int sm_look_for_word(char *str,char *word)
@@ -386,6 +383,25 @@ void	*sm_bzero(void *p, size_t size)
 	while (size--)
 		((char *)p)[size] = 0;
 	return (p);
+}
+
+void	*sm_memcpy(void	*old, void *new, size_t size)
+{
+	while(size--)
+		((char *)new)[size] = ((char *)old)[size];
+	return (new);
+}
+
+void	*sm_realloc(void *p, size_t size, size_t count)
+{
+	char	*new;
+
+	new = sm_calloc(size + 1, count);
+	if (!new)
+		return (NULL);
+	sm_memcpy(p, new, size * count);
+	free(p);
+	return (new);
 }
 
 //-----------------------------------------------------------------------------
@@ -567,3 +583,23 @@ char	*combine(char *s, ...)
 	va_end(list);
 	return(new);
 }
+
+/*
+int	*size_arry(char **list)
+{
+	int	x;
+	int	y;
+	int	*size;
+
+	size = sm_calloc(1, sizeof(int));
+	y = 0;
+	while (list[y])
+	{
+		x = 0;
+		while (list[y][x])
+			x++;
+		y++;
+
+	}
+}
+*/
