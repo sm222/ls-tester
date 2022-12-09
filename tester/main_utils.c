@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:46:54 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/12/04 16:26:36 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/12/09 18:55:39 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	logo(void)
 	printf("				Made by "GRN" wdelaros, "BLU"anboisve,"GRN" brheaume"WHT"\n");
 }
 
-void	*xfree(void *p)
+void	*ft_sfree(void *p)
 {
 	if (p)
 		free(p);

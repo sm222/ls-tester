@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/12/04 09:11:58 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/12/09 18:55:39 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@
 # define PIK	"\x1b[38;5;176m"
 # define CLE 	"\e[1;1H\e[2J"
 
-void	*xfree(void *p);
+void	*ft_sfree(void *p);
 void	logo(void);
 char	*menu_loop(int *loop, char *call_back);
 

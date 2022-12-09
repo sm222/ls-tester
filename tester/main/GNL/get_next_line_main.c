@@ -37,7 +37,7 @@ int	check(int norm)
 		if (verif[2] < 0)
 			printf(RED"get_next_line.h"WHT);
 		printf("\n");
-		exit(0);
+		return (-100);
 	}
 	printf(GRN"\nNo files missing, ready to go!\n"WHT);
 	if (system("norminette " GNL_C " " GNL_H " " GNLU_C) > 0)
@@ -59,7 +59,9 @@ void	gnl_partial_tester(int buff, char *test)
 
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
-	norm = check(norm);
+	norm = check(0);
+	if (norm < 0)
+		return ;
 	cmd = combine(GCCF GNL_PATH_O "test1.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d ", buff);
 	system(cmd);
 	free(cmd);
@@ -99,15 +101,16 @@ void	gnl_tester(int buff)
 	i = 0;
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
-	norm = check(norm);
+	norm = check(0);
+	if (norm < 0)
+		return ;
 	cmd = combine(GCCF GNL_PATH_O "test1.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d ", buff);
 	system(cmd);
 	free(cmd);
 	txt = f_strjoin("./test1.out", " tester/text/peepy.ans");
 	while (i < 9)
 		txt = ft_str_ff_join(txt, combine(" tester/text/text%d.txt", i++));
-	//txt = ft_str_fback_join(txt, " > out_test.txt");
-	system(txt);//call ./test1.out
+	system(txt);
 	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)
 	{
 		if (system(VALL" ./val_test.out tester/text/peepy.ans") != 0)
