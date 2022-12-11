@@ -8,6 +8,13 @@ int sm_while_space_tab(int start,char *str)
 	return(i);
 }
 
+void	*xfree(void *p)
+{
+	if (p)
+		free(p);
+	return (p);
+}
+
 int	sm_while_space(char *str, int i)
 {
 	if (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
