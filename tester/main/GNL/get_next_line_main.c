@@ -62,15 +62,18 @@ void	gnl_partial_tester(int buff, char *test)
 	norm = check(0);
 	if (norm < 0)
 		return ;
+	//
 	cmd = combine(GCCF GNL_PATH_O "test1.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d ", buff);
 	system(cmd);
 	free(cmd);
+	//
 	if (!strcmp(test, "pp"))
 		txt = f_strjoin("./test1.out", " tester/text/peepy.ans");
 	else
 		txt = ft_str_ffront_join("./test1.out", combine(" tester/text/%s.txt", test));
 	system(txt);
 	free(txt);
+	//
 	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)
 	{
 		txt = combine(VALL " ./val_test.out tester/text/%s.txt", test);
@@ -81,8 +84,8 @@ void	gnl_partial_tester(int buff, char *test)
 			txt = combine("leaks -atExit -- ./val_test.out tester/text/%s.txt", test);
 			system("leaks -atExit -- ./val_test.out");
 		}
-		free(txt);
 	}
+	free(txt);
 	system("rm -rf val_test.out val_test.out.dSYM test1.out");
 	if (norm != 0)
 		printf(YEL "NORM ERROR !\n"WHT);

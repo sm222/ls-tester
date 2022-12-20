@@ -319,35 +319,38 @@ int	main(int ac, char **av)
 			{
 				printf(RED"Never return NULL!❗️\n"WHT);
 				system("echo break\n >> tester/GNL/GNL_dif.txt");
+				to--;
 				break ;
 			}
 		}
 		end = clock();
 		duration = (end - start);
-		//sleep(2);
+		//
 		tmp2 = combine("diff -a tester/text/result.txt %s >> tester/GNL/GNL_dif.txt", av[ac]);
 		printf("\n %s", ac[av]);
 		system(tmp2);
 		free(tmp2);
+		//
 		tmp2 = combine("echo %s >> tester/GNL/GNL_dif.txt", av[ac]);
 		system(tmp2);
 		free(tmp2);
+		//
 		close(test);
 		if (compare("tester/text/result.txt", ac, av))
 			to++;
 		system("rm tester/text/result.txt");
 		printf(RESET WHT"\ntime call -- %d\n", i);
 		printf(WHT"total line read -- %d\n", --i);
-		printf(YEL"test time taken : %.2f seconds\n"WHT, (double)duration/CLOCKS_PER_SEC  * 100);
+		printf(YEL"test time taken : %.2f seconds\n"WHT, (double)duration/CLOCKS_PER_SEC * 100);
 	}
 	end1 = clock();
 	duration1 = (end1 - start1);
 	to = (to / num) * 100;
 	if (to == 100)
-		printf(GRN);
+		printf(GRN "🎉");
 	else
-		printf(RED);
-	printf("\nyou got %.0f%%\n"WHT, to);
+		printf(RED"❌");
+	printf("you got %.0f%%\n"WHT, to);
 	system("echo '\nEnd of Test - - - ⏰'$(date '+ %A %d %B %Y%n %T')'\n' >> tester/GNL/GNL_dif.txt");
 	printf(RED"\ntotal time taken : %.2f seconds\n"WHT, (double)duration1/CLOCKS_PER_SEC  * 100);
 	printf(MAG"[error log: %s]\n", "tester/GNL/GNL_dif.txt"WHT);

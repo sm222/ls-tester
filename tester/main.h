@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/12/09 18:55:39 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/12/19 20:22:40 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 
 //--			Color			--//
 //https://talyian.github.io/ansicolors/
+//	https://ansi.gabebanks.net/
 # define RED	"\x1B[31m"
 # define GRN	"\x1B[32m"
 # define YEL	"\x1B[33m"
@@ -82,6 +83,8 @@ void	sm_signature(void);
 int		sm_look_for_char_p(char *str, int start_p, int number, char look);
 int		sm_ls(char *path);
 int		sm_print_file(char *name);
+void	sm_make_file_name(char *name);
+void	sm_log(int fd, char *from, char *log);
 
 //other
 int		sm_r_num(int lower, int upper);

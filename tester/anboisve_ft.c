@@ -591,6 +591,41 @@ char	*combine(char *s, ...)
 	return(new);
 }
 
+void	sm_make_file_name(char *name)
+{
+	char	*cmd;
+
+	cmd = NULL;
+	cmd = combine("touch %s", name);
+	if (!cmd)
+		return ;
+	if (system(cmd))
+		printf(RED"can't make file"WHT);
+	free(cmd);
+}
+
+void	sm_log(int fd, char *from, char *log)
+{
+	char	*cmd;
+	time_t rawtime;
+	struct tm * timeinfo;
+	char	*time_s;
+
+	time(&rawtime);
+	timeinfo = localtime(&rawtime);
+	time_s = asctime(timeinfo);
+	while(*time_s <= '0' || *time_s >= '9')
+		time_s++;
+	while(*time_s != '\n')
+		write(fd, time_s++, 1);
+	cmd = NULL;
+	cmd = combine("[%s]: %s\n", from, log);
+	if (!cmd)
+		return ;
+	write(fd, cmd, strlen(cmd));
+	free(cmd);
+}
+
 /*
 int	*size_arry(char **list)
 {

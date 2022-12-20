@@ -10,38 +10,38 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../get_next_line.h"
-#include <fcntl.h>
-#include <stdio.h>
+#include	"../../../get_next_line.h"
+#include	<fcntl.h>
+#include	<stdio.h>
 
-#define RED    "\x1B[31m"
-#define GRN    "\x1B[32m"
-#define YEL    "\x1B[33m"
-#define BLU    "\x1B[34m"
-#define MAG    "\x1B[35m"
-#define CYN    "\x1B[36m"
-#define WHT    "\x1B[37m"
-#define RESET  "\x1B[0m"
-#define CLE    "\e[1;1H\e[2J"
+#define RED		"\x1B[31m"
+#define GRN		"\x1B[32m"
+#define YEL		"\x1B[33m"
+#define BLU		"\x1B[34m"
+#define MAG		"\x1B[35m"
+#define CYN		"\x1B[36m"
+#define WHT		"\x1B[37m"
+#define RESET	"\x1B[0m"
+#define CLE		"\e[1;1H\e[2J"
 
 int	main(int ac, char **av)
 {
 	int		fd;
 	char	*s;
-	char	o;
 
 	(void)ac;
 	printf("file test :%s\n", av[1]);
 	system("echo " WHT);
-	s = &o;
+	s = "ls-tester";
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		return (printf(RED "[KO] : can't open file %s\n"WHT, av[1]));
-	while (s != NULL)
+	while (s)
 	{
 		s = get_next_line(fd);
 		if (s)
 			free(s);
 	}
 	close(fd);
+	return (0);
 }
