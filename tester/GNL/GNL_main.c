@@ -213,8 +213,7 @@ char	*combine(char *s, ...)
 
 int	compare(char *f1, int argc, char *argv[])
 {
-	FILE	*fp1;
-	FILE	*fp2;
+	FILE	*fp1, *fp2;
 	int		cnt1 = 0;
 	int		cnt2 = 0;
 	int		flg = 0;
@@ -352,7 +351,7 @@ int	main(int ac, char **av)
 		printf(RED"❌");
 	printf("you got %.0f%%\n"WHT, to);
 	system("echo '\nEnd of Test - - - ⏰'$(date '+ %A %d %B %Y%n %T')'\n' >> tester/GNL/GNL_dif.txt");
-	printf(RED"\ntotal time taken : %.2f seconds\n"WHT, (double)duration1/CLOCKS_PER_SEC  * 100);
+	printf(RED"\ntotal time taken : %.2f seconds\n"WHT, (double)duration1/CLOCKS_PER_SEC * 100);
 	printf(MAG"[error log: %s]\n", "tester/GNL/GNL_dif.txt"WHT);
 }
 

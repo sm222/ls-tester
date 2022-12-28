@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/12/19 23:27:49 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/12/27 22:43:57 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,34 @@ char	*menu_loop(int *loop, char *call_back)
 		}
 		return (sm_str_dup(u_input));
 	}
+	//							GNL_B								//
+	else if (sm_func_looking(u_input, "gnlb", &str_p) == 0)
+	{
+		if (sm_func_looking(u_input, "-help", &str_p) == 0)
+		{
+			printf(RED"\n- - - - GNLB Help List - - - -\n"WHT);
+			printf("buff - set buffer size (ex: gnl -buff 42)\n");
+			printf("test - run one test (ex: gnl -test 5)\n");
+			printf("pp - run peepy test\n");
+			printf("dif - show GNL trace file\n");
+			printf("rm - RM GNL trace file\n");
+			printf("exit or q - exit the program\n");
+			printf("\n");
+			sm_log(log_fd,"ls-tester", "call gnlb -help");
+		}
+		else if (sm_func_looking(u_input, "-buff", &str_p) == 0)
+		{
+			sm_log(log_fd,"ls-tester", "call gnlb -buff");
+			sm_copy_str_to(u_input, copy, str_p + 1, -1);
+			gnlb_tester(peepy_atoi(copy));
+		}
+		else
+		{
+			sm_log(log_fd,"ls-tester", "call gnlb");
+			gnlb_tester(1);
+		}
+		return (sm_str_dup(u_input));
+	}
 	//							NORMINETTE							//
 	else if (sm_func_looking(u_input, "norm", &str_p) == 0)
 	{
@@ -203,7 +231,8 @@ char	*menu_loop(int *loop, char *call_back)
 		return (call_back);
 	}
 	//							exit								//
-	else if (sm_func_looking(u_input, ("exit"), &str_p) == 0 || sm_func_looking(u_input, "q", &str_p) == 0)
+	else if (sm_func_looking(u_input, ("exit"), &str_p) == 0 
+			|| sm_func_looking(u_input, "q", &str_p) == 0)
 	{
 		if (call_back)
 			free(call_back);
