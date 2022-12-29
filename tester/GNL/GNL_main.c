@@ -310,7 +310,7 @@ int	main(int ac, char **av)
 		{
 			tmp = get_next_line(fd);
 			write(test, tmp, peepy_strlen(tmp));
-			printf(GRN"%4d "YEL"%4zu"WHT" = %s", i + 1, peepy_strlen(tmp), tmp);
+			printf(LINE"%4d "NB_CHAR"%4zu"WHT" = %s", i + 1, peepy_strlen(tmp), tmp);
 			peepyfree(tmp);
 			i++;
 			usleep(2000);

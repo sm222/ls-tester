@@ -242,8 +242,8 @@ int	compare(char *f1, int argc, char *argv[])
 	// check for the total number of bytes
 	if (cnt1 != cnt2)
 	{
-		printf(RED"\n[KO]\n"WHT);
-		system("echo '[KO]\n' >> tester/GNL/GNL_dif.txt");
+		printf(RED"\n❌[KO]\n"WHT);
+		system("echo '	❌[KO]' >> tester/GNL/GNL_dif.txt");
 	}
 	else
 	{
@@ -257,13 +257,13 @@ int	compare(char *f1, int argc, char *argv[])
 		}
 		if (flg)
 		{
-			printf(RED"\n[KO]\n"WHT);
-			system("echo '[KO]\n' >> tester/GNL/GNL_dif.txt");
+			printf(RED"\n❌[KO]\n"WHT);
+			system("echo '	❌[KO]' >> tester/GNL/GNL_dif.txt");
 		}
 		else
 		{
-			printf(GRN"\n[OK]\n"WHT);
-			system("echo '[OK]\n' >> tester/GNL/GNL_dif.txt");
+			printf(GRN"\n✅[OK]\n"WHT);
+			system("echo '	✅[OK]' >> tester/GNL/GNL_dif.txt");
 			fclose(fp1);
 			fclose(fp2);
 			return(1);
@@ -278,7 +278,12 @@ int	multy_test(void)
 {
 	int		fd[3];
 	char	*tmp[3];
+	int		i[3];
 
+	printf("\nmulty_test\n\n");
+	i[0] = 1;
+	i[1] = 1;
+	i[2] = 1;
 	fd[0] = open("tester/text/peepy1.ans",O_RDONLY);
 	fd[1] = open("tester/text/peepy2.ans",O_RDONLY);
 	fd[2] = open("tester/text/peepy3.ans",O_RDONLY);
@@ -289,12 +294,19 @@ int	multy_test(void)
 	tmp[2] = "test";
 	while (tmp[0] && tmp[1] && tmp[2])
 	{
+		usleep(2000);
 		tmp[0] = get_next_line(fd[0]);
 		tmp[1] = get_next_line(fd[1]);
 		tmp[2] = get_next_line(fd[2]);
-		printf(GRN"[fd 1] "WHT": %s"RESET,tmp[0]);
-		printf(BLU"[fd 2] "WHT": %s"RESET,tmp[1]);
-		printf(MAG"[fd 3] "WHT": %s"RESET,tmp[2]);
+		printf(LINE"%4d "NB_CHAR"%4zu"GRN"[fd 1]"WHT": %s"RESET, i[0], peepy_strlen(tmp[0]),tmp[0]);
+		printf(LINE"%4d "NB_CHAR"%4zu"BLU"[fd 2]"WHT": %s"RESET, i[1], peepy_strlen(tmp[1]),tmp[1]);
+		printf(LINE"%4d "NB_CHAR"%4zu"MAG"[fd 3]"WHT": %s"RESET, i[2], peepy_strlen(tmp[2]),tmp[2]);
+		if (tmp[0])
+			i[0]++;
+		if (tmp[1])
+			i[1]++;
+		if (tmp[2])
+			i[2]++;
 		peepyfree(tmp[0]);
 		peepyfree(tmp[1]);
 		peepyfree(tmp[2]);
@@ -340,7 +352,7 @@ int	main(int ac, char **av)
 		{
 			tmp = get_next_line(fd);
 			write(test, tmp, peepy_strlen(tmp));
-			printf(GRN"%4d "YEL"%4zu"WHT" = %s", i + 1, peepy_strlen(tmp), tmp);
+			printf(LINE"%4d "NB_CHAR"%4zu"WHT" = %s", i + 1, peepy_strlen(tmp), tmp);
 			peepyfree(tmp);
 			i++;
 			usleep(2000);
@@ -383,7 +395,7 @@ int	main(int ac, char **av)
 	system("echo '\nEnd of Test - - - ⏰'$(date '+ %A %d %B %Y%n %T')'\n' >> tester/GNL/GNL_dif.txt");
 	printf(RED"\ntotal time taken : %.2f seconds\n"WHT, (double)duration1/CLOCKS_PER_SEC * 100);
 	printf(MAG"[error log: tester/GNL/GNL_dif.txt]\n"WHT);
-	printf("\nmulty_test\n");
 	multy_test();
+	return (0);
 }
 //system("gcc -Wall -Werror -Wextra get_next_line.c get_next_line_utils.c main_utils.c get_next_line_main.c -D ");

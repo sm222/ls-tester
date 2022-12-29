@@ -31,16 +31,16 @@ int	gnlb_check(int norm)
 	{
 		printf(RED"\nMissing file: ");
 		if (verif[0] < 0)
-			printf(RED"get_next_line.c "WHT);
+			printf(RED GNLB_C" "WHT);
 		if (verif[1] < 0)
-			printf(RED"get_next_line_utils.c "WHT);
+			printf(RED GNLUB_C" "WHT);
 		if (verif[2] < 0)
-			printf(RED"get_next_line.h"WHT);
+			printf(RED GNLB_H WHT);
 		printf("\n");
 		return (-1);
 	}
 	printf(GRN"\nNo files missing, ready to go!\n"WHT);
-	if (system("norminette " GNL_C " " GNL_H " " GNLU_C) > 0)
+	if (system("norminette " GNLB_C " " GNLB_H " " GNLUB_C) > 0)
 	{
 		norm = 1;
 		printf(YEL "NORM ERROR !\n"WHT);
@@ -107,13 +107,14 @@ void	gnlb_tester(int buff)
 	norm = gnlb_check(0);
 	if (norm < 0)
 		return ;
-	cmd = combine(GCCF GNLB_PATH_O "test1.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d ", buff);
+	cmd = combine(GCCF GNLB_PATH_O "test1.out "GNLB_C" "GNLUB_C" -D BUFFER_SIZE=%d ", buff);
 	printf("\n\n-	-	-\n"YEL"Normal test"WHT"\n-	-	-\n\n");
 	system(cmd);
 	free(cmd);
 	//
-	txt = f_strjoin("./test1.out", " tester/text/peepy.ans");
-	while (i < 9)
+	//txt = f_strjoin("./test1.out", " tester/text/peepy.ans");
+	txt = f_strjoin("./test1.out", " ");
+	while (i < 9) // 9
 		txt = ft_str_ff_join(txt, combine(" tester/text/text%d.txt", i++));
 	//combine 
 	system(txt);
