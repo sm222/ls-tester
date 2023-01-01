@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/12/19 20:22:40 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/01/01 03:50:38 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,7 @@
 
 // system("ls | tee -a output.txt");
 
-# ifndef INDEX
-#  define INDEX 0
-# endif
-
 //				GNL				//
-
 # define GNL_PATH_O " tester/GNL/GNL_main.c -o "
 # define GNL_C "get_next_line.c"
 # define GNLU_C "get_next_line_utils.c"
@@ -46,6 +41,7 @@
 # define GNLB_C "get_next_line_bonus.c"
 # define GNLUB_C "get_next_line_utils_bonus.c"
 # define GNLB_H "get_next_line_bonus.h"
+# define VAL_GNLB "get_next_line_utils_bonus.c get_next_line_bonus.c tester/main/GNL/val_gnl_main.c"
 
 
 //--			Color			--//
@@ -62,12 +58,26 @@
 # define ORG	"\x1b[38;5;202m"
 # define PIK	"\x1b[38;5;176m"
 # define CLE 	"\e[1;1H\e[2J"
-
+/*
+	text art
+http://www.patorjk.com/software/taag/#p=display&f=Slant%20Relief&t=
+*/
 void	*ft_sfree(void *p);
 void	logo(void);
 char	*menu_loop(int *loop, char *call_back);
+void	put_time_file(char type, char *file);
+int		test_take_time(void);
+void	gnl_buffer_tester(void);
 
 //--------- anboisve ft
+
+//gnl
+int		gnl_mem(int test);
+void	gnl_tester(int buff);
+void	gnlb_tester(int buff);
+void	gnl_partial_tester(int buff, char *test);
+int		gnl_mem_info(void);
+void	val_install(void);
 
 //text
 int		sm_while_space_tab(int start, char *str);
@@ -109,9 +119,7 @@ int		peepy_atoi(const char *str);
 int		intlen(long int n, int base);
 
 //tester INT32_MAX / 50
-void	gnl_tester(int buff);
-void	gnlb_tester(int buff);
-void	gnl_partial_tester(int buff, char *test);
+
 void	printf_tester(void);
 
 #endif

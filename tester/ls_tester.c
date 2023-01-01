@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2022/12/27 22:43:57 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/01/01 04:14:50 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ char	*menu_loop(int *loop, char *call_back)
 			printf(RED"\n- - - - GNL Help List - - - -\n"WHT);
 			printf("buff - set buffer size (ex: gnl -buff 42)\n");
 			printf("test - run one test (ex: gnl -test 5)\n");
+			printf("mem - run %s test to chek memory\n", VAL);
+			printf("mem+ - test multiple BUFFER_SIZE\n");
 			printf("pp - run peepy test\n");
 			printf("dif - show GNL trace file\n");
 			printf("rm - RM GNL trace file\n");
@@ -98,8 +100,11 @@ char	*menu_loop(int *loop, char *call_back)
 		else if (sm_func_looking(u_input, "-buff", &str_p) == 0)
 		{
 			sm_log(log_fd,"ls-tester", "call gnl -buff");
+			put_time_file('s',"tester/GNL/GNL_dif.txt");
 			sm_copy_str_to(u_input, copy, str_p + 1, -1);
+			gnl_mem(1);
 			gnl_tester(peepy_atoi(copy));
+			put_time_file('e',"tester/GNL/GNL_dif.txt");
 		}
 		else if (sm_func_looking(u_input, "-rm", &str_p) == 0)
 		{
@@ -117,9 +122,10 @@ char	*menu_loop(int *loop, char *call_back)
 		}
 		else if (sm_func_looking(u_input, "-pp", &str_p) == 0)
 		{
+			put_time_file('s',"tester/GNL/GNL_dif.txt");
 			if (sm_func_looking(u_input, "-buff", &str_p) == 0)
 			{
-			sm_log(log_fd,"ls-tester", "call gnl -pp -buff");
+				sm_log(log_fd,"ls-tester", "call gnl -pp -buff");
 				sm_copy_str_to(u_input, copy, str_p + 1, -1);
 				gnl_partial_tester(peepy_atoi(copy), "pp");
 			}
@@ -128,9 +134,33 @@ char	*menu_loop(int *loop, char *call_back)
 				sm_log(log_fd,"ls-tester", "call gnl -pp");
 				gnl_partial_tester(1, "pp");
 			}
+			put_time_file('e',"tester/GNL/GNL_dif.txt");
+		}
+		else if (sm_func_looking(u_input, "-mem", &str_p) == 0)
+		{
+			if(!gnl_mem_info())
+			{
+				put_time_file('s',"tester/GNL/GNL_dif.txt");
+				sm_log(log_fd,"ls-tester", "gnl_mem");
+				gnl_mem(0);
+				put_time_file('e',"tester/GNL/GNL_dif.txt");
+			}
+		}
+		else if (sm_func_looking(u_input, "-mem+", &str_p) == 0)
+		{
+			gnl_buffer_tester();
+			if (!test_take_time())
+			{
+				put_time_file('s',"tester/GNL/GNL_dif.txt");
+				sm_log(log_fd,"ls-tester", "gnl_mem");
+				gnl_mem(1);
+				gnl_mem(2);
+				put_time_file('e',"tester/GNL/GNL_dif.txt");
+			}
 		}
 		else if (sm_func_looking(u_input, "-test", &str_p) == 0)
 		{
+			put_time_file('s',"tester/GNL/GNL_dif.txt");
 			str_p += sm_copy_str_to(u_input, temp, str_p + 1, -1) + 1;
 			if (sm_func_looking(u_input, "-buff", &str_p) == 0)
 			{
@@ -143,11 +173,15 @@ char	*menu_loop(int *loop, char *call_back)
 				sm_log(log_fd,"ls-tester", "call gnl -test");
 				gnl_partial_tester(1, combine("text%s", temp));
 			}
+			put_time_file('e',"tester/GNL/GNL_dif.txt");
 		}
 		else if (sm_func_looking(u_input, "", &str_p) == 0)
 		{
+			put_time_file('s',"tester/GNL/GNL_dif.txt");
 			sm_log(log_fd,"ls-tester", "call gnl");
+			gnl_mem(1);
 			gnl_tester(1);
+			put_time_file('e',"tester/GNL/GNL_dif.txt");
 		}
 		else
 		{
@@ -174,25 +208,44 @@ char	*menu_loop(int *loop, char *call_back)
 		}
 		else if (sm_func_looking(u_input, "-buff", &str_p) == 0)
 		{
+			put_time_file('s',"tester/GNL/GNL_dif.txt");
 			sm_log(log_fd,"ls-tester", "call gnlb -buff");
 			sm_copy_str_to(u_input, copy, str_p + 1, -1);
 			gnlb_tester(peepy_atoi(copy));
+			put_time_file('e',"tester/GNL/GNL_dif.txt");
+		}
+		else if (sm_func_looking(u_input, "", &str_p) == 0)
+		{
+			put_time_file('s',"tester/GNL/GNL_dif.txt");
+			sm_log(log_fd,"ls-tester", "call gnlb");
+			gnlb_tester(1);
+			put_time_file('e',"tester/GNL/GNL_dif.txt");
 		}
 		else
 		{
-			sm_log(log_fd,"ls-tester", "call gnlb");
-			gnlb_tester(1);
+			sm_log(log_fd,"ls-tester", "call gnlb 'whit mix argument'");
+			sm_copy_str_to(u_input, copy, str_p + 1, -1);
+			printf(YEL "gnlb "RED"%s " WHT "is not a valid argumant\n", copy);
 		}
 		return (sm_str_dup(u_input));
 	}
 	//							NORMINETTE							//
 	else if (sm_func_looking(u_input, "norm", &str_p) == 0)
 	{
-		printf(BLU"\n-	"GRN"-	"RED"-	\n");
-		system("echo " WHT);
-		system("norminette *.c *.h");
-		printf(RED"\n-	"GRN"-	"BLU"-	\n"WHT);
-		sm_log(log_fd,"ls-tester", "call norminette");
+		if (sm_func_looking(u_input, "", &str_p) == 0)
+		{
+			sm_log(log_fd,"ls-tester", "call norminette");
+			printf(BLU"\n-	"GRN"-	"RED"-	\n");
+			system("echo " WHT);
+			system("norminette *.c *.h");
+			printf(RED"\n-	"GRN"-	"BLU"-	\n"WHT);
+		}
+		else
+		{
+			sm_log(log_fd,"ls-tester", "call norm 'whit mix argument'");
+			sm_copy_str_to(u_input, copy, str_p + 1, -1);
+			printf(YEL "norm "RED"%s " WHT "is not a valid argumant\n", copy);
+		}
 		return (sm_str_dup(u_input));
 	}
 	//							RM									//
@@ -208,6 +261,13 @@ char	*menu_loop(int *loop, char *call_back)
 	{
 		system("echo "MAG"\x1b[4m.log.txt\x1b[0m"WHT);
 		sm_log(log_fd,"ls-tester", "call log link");
+		return (sm_str_dup(u_input));
+	}
+	//							VAL TUTO							//
+	else if (sm_func_looking(u_input, "val", &str_p) == 0)
+	{
+		if (sm_func_looking(u_input, "-tuto", &str_p) == 0)
+			val_install();
 		return (sm_str_dup(u_input));
 	}
 	//							example								//
@@ -260,7 +320,7 @@ int	main(void)
 	sm_make_file_name(".log.txt");
 	logo();
 	printf("this is not a finish product⚠️\n");
-	printf("type \"help\" to start ❓\n");
+	printf("type \"help\" to start\n");
 	last_call = NULL;
 	log_fd = open(".log.txt", O_RDWR);
 	sm_log(log_fd, "ls-tester", "hi here");

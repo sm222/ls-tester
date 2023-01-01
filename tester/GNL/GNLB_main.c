@@ -211,7 +211,7 @@ char	*combine(char *s, ...)
 	return (new);
 }
 
-int	compare(char *f1, int argc, char *argv[])
+int	compare(char *f1, int argc, char **argv)
 {
 	FILE	*fp1;
 	FILE	*fp2;
@@ -243,7 +243,7 @@ int	compare(char *f1, int argc, char *argv[])
 	if (cnt1 != cnt2)
 	{
 		printf(RED"\n❌[KO]\n"WHT);
-		system("echo '	❌[KO]' >> tester/GNL/GNL_dif.txt");
+		system("echo '>❌[KO]' >> tester/GNL/GNL_dif.txt");
 	}
 	else
 	{
@@ -258,7 +258,7 @@ int	compare(char *f1, int argc, char *argv[])
 		if (flg)
 		{
 			printf(RED"\n❌[KO]\n"WHT);
-			system("echo '	❌[KO]' >> tester/GNL/GNL_dif.txt");
+			system("echo '>❌[KO]' >> tester/GNL/GNL_dif.txt");
 		}
 		else
 		{
@@ -274,44 +274,122 @@ int	compare(char *f1, int argc, char *argv[])
 	return (0);
 }
 
-int	multy_test(void)
+int	multy_test(char *f1, char *f2, char *f3)
 {
-	int		fd[3];
-	char	*tmp[3];
-	int		i[3];
+	int		index;
+	int		fd[3], fd_r[3], i[3];
+	char	*tmp[3], *cmd, *av[3];
 
-	printf("\nmulty_test\n\n");
-	i[0] = 1;
-	i[1] = 1;
-	i[2] = 1;
-	fd[0] = open("tester/text/peepy1.ans",O_RDONLY);
-	fd[1] = open("tester/text/peepy2.ans",O_RDONLY);
-	fd[2] = open("tester/text/peepy3.ans",O_RDONLY);
+	av[0] = f1;
+	av[1] = f2;
+	av[2] = f3;
+
+	index = 0;
+	while (index < 3)
+		i[index++] = 1;
+	fd[0] = open(f1,O_RDONLY);
+	fd[1] = open(f2,O_RDONLY);
+	fd[2] = open(f3,O_RDONLY);
 	if (fd[0] < 0 || fd[1] < 0 || fd[2] < 0)
 		return (-1);
-	tmp[0] = "test";
-	tmp[1] = "test";
-	tmp[2] = "test";
-	while (tmp[0] && tmp[1] && tmp[2])
+	index = 0;
+	while (index < 3)
+		tmp[index++] = "ls-tester";
+	//rm files
+	index = 0;
+	while (index < 3)
+	{
+		cmd = combine("rm tester/text/mul%d.txt",index++);
+		system(cmd);
+		free(cmd);
+	}
+	//make files
+	index = 0;
+	while (index < 3)
+	{
+		cmd = combine("touch tester/text/mul%d.txt",index++);
+		system(cmd);
+		free(cmd);
+	}
+	index = 0;
+	while (index < 3)
+	{
+		cmd = combine("tester/text/mul%d.txt",index);
+		fd_r[index++] = open(cmd,O_RDWR);
+		free(cmd);
+	}
+	//
+	while (1)
 	{
 		usleep(2000);
+		//
 		tmp[0] = get_next_line(fd[0]);
 		tmp[1] = get_next_line(fd[1]);
 		tmp[2] = get_next_line(fd[2]);
-		printf(LINE"%4d "NB_CHAR"%4zu"GRN"[fd 1]"WHT": %s"RESET, i[0], peepy_strlen(tmp[0]),tmp[0]);
-		printf(LINE"%4d "NB_CHAR"%4zu"BLU"[fd 2]"WHT": %s"RESET, i[1], peepy_strlen(tmp[1]),tmp[1]);
-		printf(LINE"%4d "NB_CHAR"%4zu"MAG"[fd 3]"WHT": %s"RESET, i[2], peepy_strlen(tmp[2]),tmp[2]);
+		//
+		printf(LINE"%4d "NB_CHAR"%4zu"GRN" [fd 1]"WHT" : %s"RESET, i[0], peepy_strlen(tmp[0]),tmp[0]);
+		printf(LINE"%4d "NB_CHAR"%4zu"BLU" [fd 2]"WHT" : %s"RESET, i[1], peepy_strlen(tmp[1]),tmp[1]);
+		printf(LINE"%4d "NB_CHAR"%4zu"MAG" [fd 3]"WHT" : %s"RESET, i[2], peepy_strlen(tmp[2]),tmp[2]);
+		//
 		if (tmp[0])
+		{
+			write(fd_r[0], tmp[0], peepy_strlen(tmp[0]));
 			i[0]++;
+			peepyfree(tmp[0]);
+		}
 		if (tmp[1])
+		{
+			write(fd_r[1], tmp[1], peepy_strlen(tmp[1]));
 			i[1]++;
+			peepyfree(tmp[1]);
+		}
 		if (tmp[2])
+		{
+			write(fd_r[2], tmp[2], peepy_strlen(tmp[2]));
 			i[2]++;
-		peepyfree(tmp[0]);
-		peepyfree(tmp[1]);
-		peepyfree(tmp[2]);
+			peepyfree(tmp[2]);
+		}
+		//
+		if (i[0] > 13000 || i[1] > 13000 || i[2] > 13000)
+		{
+			printf(WHT"\n Never return "RED"NULL"WHT"!");
+			break ;
+		}
+		if (tmp[0] == NULL && tmp[1] == NULL && tmp[2] == NULL)
+			break ;
 	}
-	printf("\n");
+	// 0
+	cmd = combine("diff -a tester/text/mul0.txt %s >> tester/GNL/GNL_dif.txt", f1);
+	system(cmd);
+	free(cmd);
+	// 1
+	cmd = combine("diff -a tester/text/mul1.txt %s >> tester/GNL/GNL_dif.txt", f2);
+	system(cmd);
+	free(cmd);
+	// 2
+	cmd = combine("diff -a tester/text/mul2.txt %s >> tester/GNL/GNL_dif.txt", f3);
+	system(cmd);
+	free(cmd);
+	// --- // --- //
+	index = 0;
+	while (index < 3)
+	{
+		cmd = combine("tester/text/mul%d.txt", index);
+		compare(cmd, index++, av);
+		free(cmd);
+	}
+	index = 0;
+	while (index < 3)
+	{
+		close(fd[index]);
+		close(fd_r[index]);
+		cmd = combine("rm tester/text/mul%d.txt", index);
+		system(cmd);
+		free(cmd);
+		index++;
+	}
+	printf("\n"YEL"%d "WHT"total read \n\n", i[0] + i[1] + i[2]);
+	system("echo 'finish test\n' >> tester/GNL/GNL_dif.txt");
 	return (0);
 }
 
@@ -327,7 +405,6 @@ int	main(int ac, char **av)
 	num = ac - 1;
 	if (system("touch tester/GNL/GNL_dif.txt"))
 		printf(RED"can't make file"WHT);
-	system("echo '\nStart of Test - - -⏱'$(date '+ %A %d %B %Y%n %T')'\n' >> tester/GNL/GNL_dif.txt");
 	start1 = clock();
 	printf("BUFFER_SIZE = %d\n", BUFFER_SIZE);
 	while (--ac)
@@ -358,7 +435,7 @@ int	main(int ac, char **av)
 			usleep(2000);
 			if (i > 13000)
 			{
-				printf(RED"Never return NULL!❗️\n"WHT);
+				printf(RED"Never return NULL❗️\n"WHT);
 				system("echo break\n >> tester/GNL/GNL_dif.txt");
 				to--;
 				break ;
@@ -391,11 +468,15 @@ int	main(int ac, char **av)
 		printf(GRN "🎉");
 	else
 		printf(RED"❌");
-	printf("you got %.0f%%\n"WHT, to);
-	system("echo '\nEnd of Test - - - ⏰'$(date '+ %A %d %B %Y%n %T')'\n' >> tester/GNL/GNL_dif.txt");
+	printf("you got %.0f%% - - - - - - - - - - - - - - - - -\n"WHT, to);
+	sleep(5);
+	system("echo '\n🔀start of multy test\n' >> tester/GNL/GNL_dif.txt");
+	multy_test("tester/text/m_fd1.txt","tester/text/m_fd2.txt","tester/text/m_fd3.txt");
+	multy_test("tester/text/m_fd4.txt","tester/text/m_fd5.txt","tester/text/m_fd6.txt");
+	multy_test("tester/text/peepy1.ans","tester/text/peepy2.ans","tester/text/peepy2.ans");
+	system("echo '🔚end of multy test\n' >> tester/GNL/GNL_dif.txt");
 	printf(RED"\ntotal time taken : %.2f seconds\n"WHT, (double)duration1/CLOCKS_PER_SEC * 100);
 	printf(MAG"[error log: tester/GNL/GNL_dif.txt]\n"WHT);
-	multy_test();
 	return (0);
 }
 //system("gcc -Wall -Werror -Wextra get_next_line.c get_next_line_utils.c main_utils.c get_next_line_main.c -D ");

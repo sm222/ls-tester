@@ -28,20 +28,34 @@ int	main(int ac, char **av)
 {
 	int		fd;
 	char	*s;
+	int		i;
 
+	i = 0;
 	(void)ac;
-	printf("file test :%s\n", av[1]);
+	printf("file test : "MAG"%s\n"WHT, av[1]);
 	system("echo " WHT);
 	s = "ls-tester";
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
-		return (printf(RED "[KO] : can't open file %s\n"WHT, av[1]));
+		return (printf(RED "❌Can't open file %s\n"WHT, av[1]));
 	while (s)
 	{
 		s = get_next_line(fd);
 		if (s)
 			free(s);
+		i++;
+		if (i > 13000)
+		{
+			printf(WHT"\nNever return "RED"NULL"WHT"❗️\n");
+			break ;
+		}
+		if (i % 100 == 0)
+			printf(YEL"."WHT);
 	}
+	printf("\n gnl run "YEL"%d"WHT" time\n\n", i + 1);
 	close(fd);
 	return (0);
 }
+
+
+// work on reachable byte 

@@ -12,7 +12,7 @@ void	*xfree(void *p)
 {
 	if (p)
 		free(p);
-	return (p);
+	return (NULL);
 }
 
 int	sm_while_space(char *str, int i)

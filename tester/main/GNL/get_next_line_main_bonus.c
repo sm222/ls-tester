@@ -101,7 +101,7 @@ void	gnlb_tester(int buff)
 	int		norm;
 	int		i;
 
-	i = 1;
+	i = 2;
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
 	norm = gnlb_check(0);
@@ -118,7 +118,7 @@ void	gnlb_tester(int buff)
 		txt = ft_str_ff_join(txt, combine(" tester/text/text%d.txt", i++));
 	//combine 
 	system(txt);
-	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)
+	if (system(GCCF" -o val_test.out -g "VAL_GNLB) == 0)
 	{
 		if (system(VALL" ./val_test.out tester/text/peepy.ans") != 0)
 		{

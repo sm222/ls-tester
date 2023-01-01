@@ -80,8 +80,8 @@ void	gnl_partial_tester(int buff, char *test)
 		txt = combine(VALL " ./val_test.out tester/text/%s.txt", test);
 		if (system(txt) != 0)
 		{
-			free(txt);
 			printf(RED"valgrind could not run\n"WHT);
+			free(txt);
 			txt = combine("leaks -atExit -- ./val_test.out tester/text/%s.txt", test);
 			system("leaks -atExit -- ./val_test.out");
 		}
@@ -110,7 +110,6 @@ void	gnl_tester(int buff)
 		return ;
 	cmd = combine(GCCF GNL_PATH_O "test1.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d ", buff);
 	system(cmd);
-	// compile the bonus
 	free(cmd);
 	txt = f_strjoin("./test1.out", " tester/text/peepy.ans");
 	while (i < 9)
@@ -133,4 +132,60 @@ void	gnl_tester(int buff)
 	return ;
 }
 
+int		gnl_mem(int test)
+{
+	int		BS = 1;
+	char	*cmd, *info;
+	int 	loop = 1;
+
+	system("echo " WHT);
+	if (test == 0)
+	{
+		
+		//test 0
+		system("echo 'start mem verif\n' >> tester/GNL/GNL_dif.txt");
+		cmd = combine(GCCF " tester/main/GNL/val_gnl_mem.c -o mem_test.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d  -D TEST_NB=%d ", BS, 0);
+		system(cmd);
+		system(VALL" ./mem_test.out");
+		free(cmd);
+		//test 1
+		cmd = combine(GCCF " tester/main/GNL/val_gnl_mem.c -o mem_test.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d  -D TEST_NB=%d ", BS, 2);
+		system(cmd);
+		system(VALL" ./mem_test.out");
+		free(cmd);
+		system("rm ./mem_test.out");
+	}
+	else if (test == 1)
+	{
+		system("echo 'invalid fd test' >> tester/GNL/GNL_dif.txt");
+		cmd = combine(GCCF " tester/main/GNL/val_gnl_mem.c -o mem_test.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d  -D TEST_NB=%d ", 1, 1);
+		system(cmd);
+		system("./mem_test.out");
+		free(cmd);
+		system("rm ./mem_test.out");
+	}
+	else
+	{
+		system("echo 'start loop test' >> tester/GNL/GNL_dif.txt");
+		while (loop < 10000000)
+		{
+			printf("test whit buffer: %d\n", loop);
+			info = combine("echo 'BUFFER_SIZE %d' >> tester/GNL/GNL_dif.txt", loop);
+			system(info);
+			free(info);
+			gnl_partial_tester(loop,"text4");
+			loop *= 2;
+		}
+		info = combine("echo 'BUFFER_SIZE %d' >> tester/GNL/GNL_dif.txt", 10000000);
+		system(info);
+		free(info);
+		gnl_partial_tester(10000000,"text4");
+	}
+	return (0);
+}
+
+
+
 //gccf get_next_line_main.c main_utils.c -D LEAK=1
+
+//work on timer ft
