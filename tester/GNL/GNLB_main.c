@@ -12,6 +12,9 @@
 
 #include "GNL.h"
 
+/*
+normale str len
+*/
 static size_t	peepy_strlen(const char *s)
 {
 	size_t	i;
@@ -24,6 +27,9 @@ static size_t	peepy_strlen(const char *s)
 	return (i - 1);
 }
 
+/*
+free p if not NULL, and return NULL
+*/
 void	*peepyfree(void *p)
 {
 	if (p)
@@ -63,6 +69,9 @@ static void	ft_set_str(char *s, int i, int long n)
 		s[i] = n % 10 + '0';
 }
 
+/*
+int to *str
+*/
 char	*ft_itoa(int n)
 {
 	char		*r;
@@ -80,6 +89,9 @@ char	*ft_itoa(int n)
 	return (r);
 }
 
+/*
+dup the 's' str
+*/
 char	*sm_str_dup(char	*s)
 {
 	size_t	i;
@@ -94,6 +106,9 @@ char	*sm_str_dup(char	*s)
 	return (new);
 }
 
+/*
+str join but free *sfree
+*/
 char	*ft_str_fback_join(char *sfree, char *s2)
 {
 	size_t	s1_i;
@@ -112,6 +127,9 @@ char	*ft_str_fback_join(char *sfree, char *s2)
 	return (peepyfree(sfree), new);
 }
 
+/*
+str join but free *sfree
+*/
 char	*ft_str_ffront_join(char *s1, char *sfree)
 {
 	size_t	s1_i;
@@ -130,6 +148,9 @@ char	*ft_str_ffront_join(char *s1, char *sfree)
 	return (peepyfree(sfree), new);
 }
 
+/*
+normale str join
+*/
 char	*f_strjoin(char *s1, char *s2)
 {
 	size_t	s1_i;
@@ -148,6 +169,9 @@ char	*f_strjoin(char *s1, char *s2)
 	return (new);
 }
 
+/*
+str join, but free the 2 old str
+*/
 char	*ft_str_ff_join(char *s1f, char *s2f)
 {
 	size_t	s1_i;
@@ -175,6 +199,10 @@ char	*ft_join_select(va_list list, char c)
 	return (NULL);
 }
 
+/*
+add one char at the end of *str
+(like a realloc)
+*/
 char	*str_join_char(char *s, char c)
 {
 	size_t	size;
@@ -188,6 +216,10 @@ char	*str_join_char(char *s, char c)
 	return (new);
 }
 
+/*
+make a new str from str and va_arg;
+use like a printf
+*/
 char	*combine(char *s, ...)
 {
 	va_list	list;
@@ -211,6 +243,11 @@ char	*combine(char *s, ...)
 	return (new);
 }
 
+/*
+	f1 is the first file 
+	argv is the array the file.
+	argc is the file you want in the argv
+*/
 int	compare(char *f1, int argc, char **argv)
 {
 	FILE	*fp1;
@@ -274,6 +311,9 @@ int	compare(char *f1, int argc, char **argv)
 	return (0);
 }
 
+/*
+take 3 files as the test
+*/
 int	multy_test(char *f1, char *f2, char *f3)
 {
 	int		index;

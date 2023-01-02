@@ -43,6 +43,8 @@
 *.idb
 *.pdb
 .DS_S*
+#ls-tester dev folder
+ft_printf
 
 # Kernel Module Compile Results
 *.mod*

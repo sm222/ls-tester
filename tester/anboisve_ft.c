@@ -1,5 +1,8 @@
 #include "main.h"
 
+/*
+skip space and tab
+*/
 int sm_while_space_tab(int start,char *str)
 {
 	int i = start;
@@ -8,6 +11,10 @@ int sm_while_space_tab(int start,char *str)
 	return(i);
 }
 
+/*
+if p not NULL free p
+return NULL
+*/
 void	*xfree(void *p)
 {
 	if (p)
@@ -15,6 +22,10 @@ void	*xfree(void *p)
 	return (NULL);
 }
 
+/*
+if space return 1
+else -1
+*/
 int	sm_while_space(char *str, int i)
 {
 	if (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
@@ -23,6 +34,10 @@ int	sm_while_space(char *str, int i)
 	return(-1);
 }
 
+/*
+get keybord input and put it in *return_txt
+size the amount of char
+*/
 int	sm_get_keybord_input(char *return_txt,int size)
 {
 	if(fgets(return_txt,size + 1,stdin))
@@ -41,6 +56,10 @@ int	sm_get_keybord_input(char *return_txt,int size)
 	return(strlen(return_txt));
 }
 
+/*
+rm all space and tab
+put a '\0' at the end
+*/
 void sm_clear_str(char *str)
 {
 	int i = 0;
@@ -52,6 +71,9 @@ void sm_clear_str(char *str)
 	str[i + 1] = '\0';
 }
 
+/*
+give a rendom number betwens lower and upper
+*/
 int	sm_r_num(int lower ,int upper)
 {
 	int	swap;
@@ -66,6 +88,9 @@ int	sm_r_num(int lower ,int upper)
 	return(numb);
 }
 
+/*
+*str to int
+*/
 int	sm_atoi(char *str)
 {
 	int	i = 0;
@@ -88,6 +113,9 @@ int	sm_atoi(char *str)
 	return (num * min);
 }
 
+/*
+
+*/
 void	sm_inspect_arr(void *p, char type ,int size, int color)
 {
 	int i = 0;

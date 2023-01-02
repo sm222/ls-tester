@@ -6,12 +6,15 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:46:54 by wdelaros          #+#    #+#             */
-/*   Updated: 2023/01/01 03:50:11 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/01/01 17:03:59 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
+/*
+print the lego 'ls-tester'
+*/
 void	logo(void)
 {
 	printf("\x1b[40m");
@@ -34,6 +37,9 @@ void	*ft_sfree(void *p)
 
 //https://brew.sh/
 
+/*
+give info about mem test
+*/
 int		gnl_mem_info(void)
 {
 	char	txt[1];
@@ -55,6 +61,9 @@ int		gnl_mem_info(void)
 	return (0);
 }
 
+/*
+info how to install valgrind
+*/
 void	val_install(void)
 {
 	printf("\n	Info\n\n");
@@ -67,6 +76,14 @@ void	val_install(void)
 }
 //	system("echo '\nStart of Test - - -⏱'$(date '+ %A %d %B %Y%n %T')'\n' >> tester/GNL/GNL_dif.txt");
 
+/*
+use before test and and of test
+type
+	s = start
+	e = end
+file
+	path and name of file
+*/
 void	put_time_file(char type, char *file)
 {
 	char	*cmd;
@@ -93,6 +110,9 @@ void	put_time_file(char type, char *file)
 
 //tester/GNL/GNL_dif.txt
 
+/*
+info about buffer test
+*/
 void	gnl_buffer_tester(void)
 {
 	printf("\n	Info\n\n");
@@ -100,6 +120,9 @@ void	gnl_buffer_tester(void)
 	printf("(BUFFER_SIZE * 2 every time)\n");
 }
 
+/*
+give info about a test that take time
+*/
 int		test_take_time(void)
 {
 	char	txt[2];

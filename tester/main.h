@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2023/01/01 03:50:38 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/01/01 19:12:05 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@
 # define GNLUB_C "get_next_line_utils_bonus.c"
 # define GNLB_H "get_next_line_bonus.h"
 # define VAL_GNLB "get_next_line_utils_bonus.c get_next_line_bonus.c tester/main/GNL/val_gnl_main.c"
-
+//				FT_PRINTF		//
+# define FT_PRINTF "ft_printf"
 
 //--			Color			--//
 //https://talyian.github.io/ansicolors/
