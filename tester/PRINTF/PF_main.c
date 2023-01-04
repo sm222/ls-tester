@@ -12,8 +12,22 @@
 
 #include "PRINTF.h"
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	ft_printf("sup 42");
+	(void)ac;
+	(void)av;
+	char	a;
+	int		p;
+	int		char_nb;
+
+	p = 42;
+	a = 'a';
+	if (av[1][0] == 'r')
+		char_nb = printf IN_TEST;
+	else if (av[1][0] == 'f')
+		char_nb = ft_printf IN_TEST;
+	else
+		printf("%p %p ", &a, &p);
+	printf("\n	[printf output=%d]", char_nb);
 	return (0);
 }

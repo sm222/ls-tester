@@ -172,6 +172,8 @@ char	*ft_join_select(va_list list, char c)
 		return (ft_itoa(va_arg(list, int)));
 	else if (c == 's')
 		return (sm_str_dup(va_arg(list, char *)));
+	else if (c == '%')
+		return (sm_str_dup("%"));
 	return (NULL);
 }
 

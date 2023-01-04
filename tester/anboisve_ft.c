@@ -502,14 +502,24 @@ char	*sm_str_dup(char	*s)
 	return (new);
 }
 
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s && s[i])
+		i++;
+	return (i);
+}
+
 char	*ft_str_fback_join(char *sfree, char *s2)
 {
 	size_t	s1_i;
 	size_t	s2_i;
 	char	*new;
 
-	s1_i = strlen(sfree);
-	s2_i = strlen(s2);
+	s1_i = ft_strlen(sfree);
+	s2_i = ft_strlen(s2);
 	new = calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
 		return (new = xfree(new));
@@ -562,8 +572,8 @@ char	*ft_str_ff_join(char *s1f, char *s2f)
 	size_t	s2_i;
 	char	*new;
 
-	s1_i = strlen(s1f);
-	s2_i = strlen(s2f);
+	s1_i = ft_strlen(s1f);
+	s2_i = ft_strlen(s2f);
 	new = calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
 		return (new = xfree(new));
@@ -571,7 +581,7 @@ char	*ft_str_ff_join(char *s1f, char *s2f)
 		new[s1_i + s2_i] = s2f[s2_i];
 	while (s1_i--)
 		new[s1_i] = s1f[s1_i];
-	return (xfree(s1f), xfree(s2f), new);
+	return (s1f = xfree(s1f),s2f = xfree(s2f), new);
 }
 
 char	*ft_join_select(va_list list, char c)
@@ -580,6 +590,8 @@ char	*ft_join_select(va_list list, char c)
 		return (ft_itoa(va_arg(list, int)));
 	else if (c == 's')
 		return (sm_str_dup(va_arg(list, char *)));
+	else if (c == '%')
+		return (sm_str_dup("%"));
 	return (NULL);
 }
 
@@ -652,6 +664,177 @@ void	sm_log(int fd, char *from, char *log)
 		return ;
 	write(fd, cmd, strlen(cmd));
 	free(cmd);
+}
+
+static void	ft_allfree(char **p)
+{
+	int	i;
+
+	i = 0;
+	while (p[i])
+		free(p[i++]);
+	free(p);
+}
+
+static int	nb_word(const char *str, char c)
+{
+	int	i;
+	int	size;
+
+	i = 0;
+	size = 0;
+	while (str[i])
+	{
+		while (str[i] && str[i] == c)
+			i++;
+		if (str[i])
+			size++;
+		while (str[i] && str[i] != c)
+			i++;
+	}
+	return (size);
+}
+
+static char	*ft_strdup_c(const char *str, char c)
+{
+	size_t	i;
+	char	*new;
+
+	i = 0;
+	while (str[i] && str[i] != c)
+		i++;
+	new = ft_calloc(i + 1, sizeof(char));
+	if (!new)
+		return (NULL);
+	while (i--)
+		new[i] = str[i];
+	return (new);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**new;
+	size_t	i;
+	size_t	index;
+
+	i = 0;
+	index = 0;
+	if (!s)
+		return (NULL);
+	new = (char **)ft_calloc(nb_word(s, c) + 1, sizeof(char *));
+	if (!new)
+		return (NULL);
+	while (nb_word(s + i, c))
+	{
+		while (s[i] && s[i] == c)
+			i++;
+		new[index] = ft_strdup_c(s + i, c);
+		if (!new[index++])
+			return (ft_allfree(new), NULL);
+		while (s[i] && s[i] != c)
+			i++;
+	}
+	return (new);
+}
+
+void	*ft_calloc(size_t coun, size_t size)
+{
+	char	*new;
+
+	new = malloc(coun * size);
+	if (!new)
+		return (NULL);
+	ft_bzero(new, coun * size);
+	return (new);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	if (!s)
+		return ;
+	while (n--)
+		((char *)s)[n] = 0;
+}
+
+//
+char	*ft_tiny_split(char *s, size_t *cut)
+{
+	char	*new;
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		if (s[i++] == '\n')
+			break ;
+	new = ft_calloc(i + 1, sizeof(char));
+	if (!new)
+		return (new = ft_sfree(new));
+	*cut = i;
+	while (i--)
+		new[i] = s[i];
+	return (new);
+}
+
+char	ft_find(char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '\n')
+			return ('\n');
+		i++;
+	}
+	return ('0');
+}
+
+char	*sm_get_next_line(int fd)
+{
+	static char	*book;
+	t_info		t_val;
+
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 100000)
+		return (book = ft_sfree(book));
+	if (!book)
+		book = ft_calloc(1, sizeof(char));
+	t_val.rv = 1;
+	t_val.tmp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	while (ft_find(book) == '0')
+	{
+		ft_bzero(t_val.tmp, BUFFER_SIZE + 1);
+		t_val.rv = read(fd, t_val.tmp, BUFFER_SIZE);
+		if (t_val.rv <= 0)
+			break ;
+		book = sm_ft_strjoin(book, t_val.tmp);
+	}
+	t_val.tmp = ft_sfree(t_val.tmp);
+	if (t_val.rv == -1 || (t_val.rv <= 0 && *book == 0))
+		return (book = ft_sfree(book), NULL);
+	t_val.tmp = ft_tiny_split(book, &t_val.cut);
+	t_val.tmp2 = book;
+	book = sm_ft_strjoin(NULL, book + t_val.cut);
+	return (ft_sfree(t_val.tmp2), t_val.tmp);
+}
+
+char	*sm_ft_strjoin(char *sfree, char *s2)
+{
+	size_t	s1_i;
+	size_t	s2_i;
+	char	*new;
+
+	s1_i = ft_strlen(sfree);
+	s2_i = ft_strlen(s2);
+	new = ft_calloc(s1_i + s2_i + 1, sizeof(char));
+	if (!new)
+		return (new = ft_sfree(new));
+	while (s1_i + s2_i-- > s1_i)
+		new[s1_i + s2_i] = s2[s2_i];
+	while (s1_i--)
+		new[s1_i] = sfree[s1_i];
+	if (*new == 0)
+		new = ft_sfree(new);
+	return (ft_sfree(sfree), new);
 }
 
 /*

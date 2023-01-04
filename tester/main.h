@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2023/01/01 19:12:05 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:15:11 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 //			System			//
 
+# define  GCC "gcc"
 # define  GCCF "gcc -Wall -Werror -Wextra"
 # define VAL "valgrind"
 # define VALL "valgrind --leak-check=full"
@@ -87,6 +88,8 @@ void	sm_clear_str(char *str);
 int		sm_atoi(char *str);
 int		sm_copy_str_to(char *input, char *return_v, int start_p, int end_p);
 int		sm_look_for_word(char *str, char *word);
+char	**ft_split(char const *s, char c);
+
 //menu
 int		sm_func_looking(char *str, char *word, int *path);
 int		sm_find_mix_str(char *str, char *word, int *path);
@@ -112,6 +115,25 @@ char	*ft_str_ff_join(char *s1f, char *s2f);
 char	*ft_itoa(int n);
 char	*combine(char *s, ...);
 char	*f_strjoin(char *s1, char *s2);
+void	*ft_calloc(size_t coun, size_t size);
+void	ft_bzero(void *s, size_t n);
+size_t	ft_strlen(const char *s);
+char	*sm_get_next_line(int fd);
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 100
+# endif
+
+typedef struct s_info
+{
+	char	*tmp;
+	char	*tmp2;
+	int		rv;
+	size_t	cut;
+}	t_info;
+
+char	*get_next_line(int fd);
+char	*sm_ft_strjoin(char *s1, char *s2);
 
 //-----------------------------------------------
 

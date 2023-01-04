@@ -65,4 +65,5 @@ get_next_line_bonus.h
 
 # .txt not wanted
 tester/GNL/GNL_dif.txt
+tester/PRINTF/PRINTF_dif.txt
 .log.txt

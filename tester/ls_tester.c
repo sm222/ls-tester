@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2023/01/01 19:00:01 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/01/03 17:32:57 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,12 @@ char	*menu_loop(int *loop, char *call_back)
 			printf("\n");
 		}
 		else if (sm_func_looking(u_input, "", &str_p) == 0)
+		{
+			sm_log(log_fd,"ls-tester", "call pf");
+			put_time_file('s',"tester/PRINTF/PRINTF_dif.txt");
 			printf_tester();
+			put_time_file('e',"tester/PRINTF/PRINTF_dif.txt");
+		}
 		else
 		{
 			sm_copy_str_to(u_input, copy, str_p + 1, -1);
@@ -314,6 +319,11 @@ int	main(void)
 	int		loop;
 	char	*last_call;
 
+	// make dif file
+	system("touch tester/GNL/GNL_dif.txt");
+	system("touch tester/PRINTF/PRINTF_dif.txt");
+	
+	//
 	loop = 0;
 	printf(GRN"compile"WHT"				welcome in ...\n");
 	system("rm .log.txt");
