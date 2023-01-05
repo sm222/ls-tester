@@ -136,18 +136,18 @@ void	run_one_test_pf(char *test)
 	char	*cmd;
 
 	printf("input %s\n", test);
-	cmd = combine(GCCF" tester/PRINTF/PF_main.c -D IN_TEST='%s' ft_printf/libftprintf.a -o pf.out", test);
+	cmd = combine(GCCF" tester/PRINTF/PF_main.c ft_printf/libftprintf.a -o pf.out -D IN_TEST='%s'", test);
 	system(cmd);
 	free(cmd);
-	write(1, "real printf: ", 13);
+	write(1, "real printf: ", 14);
 	system("./pf.out r");
 	system("./pf.out r > rp.txt");
-	write(1, "\n42 printf  : ", 14);
+	write(1, "\n42 printf  : ", 15);
 	system("./pf.out f");
 	system("./pf.out f > fp.txt");
 	system("rm pf.out");
 	system("diff -a rp.txt fp.txt >> tester/PRINTF/PRINTF_dif.txt");
-	cmd = combine("echo 'input  %s'>> tester/PRINTF/PRINTF_dif.txt", test);
+	cmd = combine("echo 'input  %s' >> tester/PRINTF/PRINTF_dif.txt", test);
 	system(cmd);
 	free(cmd);
 	compare("rp.txt", "fp.txt");
@@ -160,23 +160,23 @@ void	run_test_pf(char **test_in)
 	char	*cmd;
 	int		i = 0;
 
-
 	while (test_in[i])
 	{
 		printf(YEL"test %d"WHT", input %s\n", i, test_in[i]);
-		cmd = combine(GCCF" tester/PRINTF/PF_main.c -D IN_TEST=%s ft_printf/libftprintf.a -o pf.out", test_in[i]);
+		cmd = combine("     "GCCF" tester/PRINTF/PF_main.c ft_printf/libftprintf.a -o pf.out -D IN_TEST='%s'", test_in[i]);
+		puts(cmd);
 		system(cmd);
 		free(cmd);
-		write(1, "real printf: ", 13);
+		write(1, "real printf: ", 14);
 		system("./pf.out r");
 		system("./pf.out r > rp.txt");
-		write(1, "\n42 printf  : ", 14);
+		write(1, "\n42 printf  : ", 15);
 		system("./pf.out f");
 		system("./pf.out f > fp.txt");
 		system("rm pf.out");
 		printf("\n\n");
 		system("diff -a rp.txt fp.txt >> tester/PRINTF/PRINTF_dif.txt");
-		cmd = combine("echo 'input  %s'>> tester/PRINTF/PRINTF_dif.txt", test_in[i]);
+		cmd = combine("echo 'input  %s' >> tester/PRINTF/PRINTF_dif.txt", test_in[i]);
 		system(cmd);
 		free(cmd);
 		compare("rp.txt", "fp.txt");
@@ -209,6 +209,7 @@ void	printf_tester(void)
 	fd_file = open ("tester/text/pf_0.txt",O_RDONLY);
 	test = get_test_pf(fd_file);
 	close(fd_file);
+	sm_inspect_arr(test[0], 'c', ft_strlen(test[0]), 0);
 	run_test_pf(test);
 	i = 0;
 	while (test[i])
