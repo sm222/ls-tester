@@ -123,7 +123,7 @@ char	**get_test_pf(int fd)
 	while (s)
 	{
 		s = sm_get_next_line(fd);
-		j = ft_str_ff_join(j , s);
+		j = ft_str_ff_join(j, s);
 	}
 	new = ft_split(j, '\n');
 	if (j)
@@ -139,10 +139,10 @@ void	run_one_test_pf(char *test)
 	cmd = combine(GCCF" tester/PRINTF/PF_main.c -D IN_TEST='%s' ft_printf/libftprintf.a -o pf.out", test);
 	system(cmd);
 	free(cmd);
-	write(1, "real printf: ",13);
+	write(1, "real printf: ", 13);
 	system("./pf.out r");
 	system("./pf.out r > rp.txt");
-	write(1, "\n42 printf  : ",14);
+	write(1, "\n42 printf  : ", 14);
 	system("./pf.out f");
 	system("./pf.out f > fp.txt");
 	system("rm pf.out");
@@ -164,13 +164,13 @@ void	run_test_pf(char **test_in)
 	while (test_in[i])
 	{
 		printf(YEL"test %d"WHT", input %s\n", i, test_in[i]);
-		cmd = combine(GCCF" tester/PRINTF/PF_main.c -D IN_TEST='%s' ft_printf/libftprintf.a -o pf.out", test_in[i]);
+		cmd = combine(GCCF" tester/PRINTF/PF_main.c -D IN_TEST=%s ft_printf/libftprintf.a -o pf.out", test_in[i]);
 		system(cmd);
 		free(cmd);
-		write(1, "real printf: ",13);
+		write(1, "real printf: ", 13);
 		system("./pf.out r");
 		system("./pf.out r > rp.txt");
-		write(1, "\n42 printf  : ",14);
+		write(1, "\n42 printf  : ", 14);
 		system("./pf.out f");
 		system("./pf.out f > fp.txt");
 		system("rm pf.out");

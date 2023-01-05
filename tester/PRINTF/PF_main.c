@@ -14,12 +14,12 @@
 
 int	main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
 	char	a;
 	int		p;
 	int		char_nb;
 
+	(void)ac;
+	char_nb = 0;
 	p = 42;
 	a = 'a';
 	if (av[1][0] == 'r')
