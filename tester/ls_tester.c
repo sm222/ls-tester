@@ -6,7 +6,7 @@
 /*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2023/01/05 18:26:22 by wdelaros         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:51:36 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*menu_loop(int *loop, char *call_back)
 	char	up[4] = {27, 91, 65, 0};
 
 	if (call_back != NULL)
-		printf("lc : "YEL "%s\n" WHT, call_back);
+		printf("last command : "YEL "%s\n" WHT, call_back);
 	printf("ls-tester: ");
 	//						look for recall input					//
 	if (call_back && *loop == 1)
@@ -46,6 +46,7 @@ char	*menu_loop(int *loop, char *call_back)
 		{
 			printf(RED"\n- - - - Help List - - - -\n"WHT);
 			printf("gnl - GNL tester\n");
+			printf("gnlb - GNL tester with BONUS\n");
 			printf("pf - PRINTF tester\n");
 			printf("norm - norminette all the files\n");
 			printf("rm - RM all trace files\n");
@@ -158,7 +159,6 @@ char	*menu_loop(int *loop, char *call_back)
 			{
 				put_time_file('s',"tester/GNL/GNL_dif.txt");
 				sm_log(log_fd,"ls-tester", "gnl_mem");
-				gnl_mem(1);
 				gnl_mem(2);
 				put_time_file('e',"tester/GNL/GNL_dif.txt");
 			}
@@ -184,7 +184,6 @@ char	*menu_loop(int *loop, char *call_back)
 		{
 			put_time_file('s',"tester/GNL/GNL_dif.txt");
 			sm_log(log_fd,"ls-tester", "call gnl");
-			gnl_mem(1);
 			gnl_tester(1);
 			put_time_file('e',"tester/GNL/GNL_dif.txt");
 		}
@@ -205,26 +204,40 @@ char	*menu_loop(int *loop, char *call_back)
 			printf("buff - set buffer size (ex: gnl -buff 42)\n");
 			printf("test - run one test (ex: gnl -test 5)\n");
 			printf("pp - run peepy test\n");
-			printf("dif - show GNL trace file\n");
-			printf("rm - RM GNL trace file\n");
+			printf("dif - show GNLB trace file\n");
+			printf("rm - RM GNLB trace file\n");
 			printf("exit or q - exit the program\n");
 			printf("\n");
 			sm_log(log_fd,"ls-tester", "call gnlb -help");
 		}
 		else if (sm_func_looking(u_input, "-buff", &str_p) == 0)
 		{
-			put_time_file('s',"tester/GNL/GNL_dif.txt");
+			put_time_file('s',"tester/GNL/GNLB_dif.txt");
 			sm_log(log_fd,"ls-tester", "call gnlb -buff");
 			sm_copy_str_to(u_input, copy, str_p + 1, -1);
 			gnlb_tester(peepy_atoi(copy));
-			put_time_file('e',"tester/GNL/GNL_dif.txt");
+			put_time_file('e',"tester/GNL/GNLB_dif.txt");
+		}
+		else if (sm_func_looking(u_input, "-rm", &str_p) == 0)
+		{
+			sm_log(log_fd,"ls-tester", "call gnl -rm");
+			if (!system("rm tester/GNL/GNLB_dif.txt"))
+				printf(RED"GNLB_dif.txt, was remove\n"WHT);
+			return (sm_str_dup(u_input));
+		}
+		else if (sm_func_looking(u_input, "-dif", &str_p) == 0)
+		{
+			sm_log(log_fd,"ls-tester", "call gnl -dif");
+			if (system("cat tester/GNL/GNLB_dif.txt"))
+				printf(RED"GNLB_dif.txt, don't exist\n"WHT);
+			return (sm_str_dup(u_input));
 		}
 		else if (sm_func_looking(u_input, "", &str_p) == 0)
 		{
-			put_time_file('s',"tester/GNL/GNL_dif.txt");
+			put_time_file('s',"tester/GNL/GNLB_dif.txt");
 			sm_log(log_fd,"ls-tester", "call gnlb");
 			gnlb_tester(1);
-			put_time_file('e',"tester/GNL/GNL_dif.txt");
+			put_time_file('e',"tester/GNL/GNLB_dif.txt");
 		}
 		else
 		{
@@ -242,7 +255,23 @@ char	*menu_loop(int *loop, char *call_back)
 			sm_log(log_fd,"ls-tester", "call norminette");
 			printf(BLU"\n-	"GRN"-	"RED"-	\n");
 			system("echo " WHT);
-			system("norminette *.c *.h");
+			system("norminette get_next_line ft_printf");
+			printf(RED"\n-	"GRN"-	"BLU"-	\n"WHT);
+		}
+		else if (sm_func_looking(u_input, "-gnl", &str_p) == 0)
+		{
+			sm_log(log_fd,"ls-tester", "call norminette -gnl");
+			printf(BLU"\n-	"GRN"-	"RED"-	\n");
+			system("echo " WHT);
+			system("norminette get_next_line");
+			printf(RED"\n-	"GRN"-	"BLU"-	\n"WHT);
+		}
+		else if (sm_func_looking(u_input, "-pf", &str_p) == 0)
+		{
+			sm_log(log_fd,"ls-tester", "call norminette -pf");
+			printf(BLU"\n-	"GRN"-	"RED"-	\n");
+			system("echo " WHT);
+			system("norminette ft_printf");
 			printf(RED"\n-	"GRN"-	"BLU"-	\n"WHT);
 		}
 		else
@@ -257,8 +286,8 @@ char	*menu_loop(int *loop, char *call_back)
 	else if (sm_func_looking(u_input, "rm", &str_p) == 0)
 	{
 		sm_log(log_fd,"ls-tester", "rm all test file");
-		if (!system("rm tester/GNL/GNL_dif.txt"))
-			printf(RED"GNL_dif.txt, was remove\n"WHT);
+		if (!system("rm tester/GNL/GNL_dif.txt tester/GNL/GNLB_dif.txt"))
+			printf(RED"GNL_dif.txt, GNLB_dif.txt, was remove\n"WHT);
 		return (sm_str_dup(u_input));
 	}
 	//								log								//
@@ -306,6 +335,10 @@ char	*menu_loop(int *loop, char *call_back)
 		exit(0);
 	}
 	//							default								//
+	else if (sm_func_looking(u_input, "ls-tester", &str_p) == 0)
+	{
+		system("curl parrot.live");
+	}
 	else
 	{
 		sm_log(log_fd, "ls-tester", "bad input");

@@ -36,7 +36,7 @@
 # include <stdarg.h>
 # include <time.h>
 
-# include "../../get_next_line.h"
+# include "../../get_next_line/get_next_line.h"
 
 void	*peepyfree(void *p);
 

@@ -280,7 +280,7 @@ int	compare(char *f1, int argc, char **argv)
 	if (cnt1 != cnt2)
 	{
 		printf(RED"\n❌[KO]\n"WHT);
-		system("echo '>❌[KO]' >> tester/GNL/GNL_dif.txt");
+		system("echo '>❌[KO]' >> tester/GNL/GNLB_dif.txt");
 	}
 	else
 	{
@@ -295,12 +295,12 @@ int	compare(char *f1, int argc, char **argv)
 		if (flg)
 		{
 			printf(RED"\n❌[KO]\n"WHT);
-			system("echo '>❌[KO]' >> tester/GNL/GNL_dif.txt");
+			system("echo '>❌[KO]' >> tester/GNL/GNLB_dif.txt");
 		}
 		else
 		{
 			printf(GRN"\n✅[OK]\n"WHT);
-			system("echo '	✅[OK]' >> tester/GNL/GNL_dif.txt");
+			system("echo '	✅[OK]' >> tester/GNL/GNLB_dif.txt");
 			fclose(fp1);
 			fclose(fp2);
 			return(1);
@@ -339,7 +339,7 @@ int	multy_test(char *f1, char *f2, char *f3)
 	index = 0;
 	while (index < 3)
 	{
-		cmd = combine("rm tester/text/mul%d.txt",index++);
+		cmd = combine("rm tester/text/mul%d.txt 2> /dev/null",index++);
 		system(cmd);
 		free(cmd);
 	}
@@ -399,15 +399,15 @@ int	multy_test(char *f1, char *f2, char *f3)
 			break ;
 	}
 	// 0
-	cmd = combine("diff -a tester/text/mul0.txt %s >> tester/GNL/GNL_dif.txt", f1);
+	cmd = combine("diff -a tester/text/mul0.txt %s >> tester/GNL/GNLB_dif.txt", f1);
 	system(cmd);
 	free(cmd);
 	// 1
-	cmd = combine("diff -a tester/text/mul1.txt %s >> tester/GNL/GNL_dif.txt", f2);
+	cmd = combine("diff -a tester/text/mul1.txt %s >> tester/GNL/GNLB_dif.txt", f2);
 	system(cmd);
 	free(cmd);
 	// 2
-	cmd = combine("diff -a tester/text/mul2.txt %s >> tester/GNL/GNL_dif.txt", f3);
+	cmd = combine("diff -a tester/text/mul2.txt %s >> tester/GNL/GNLB_dif.txt", f3);
 	system(cmd);
 	free(cmd);
 	// --- // --- //
@@ -429,7 +429,7 @@ int	multy_test(char *f1, char *f2, char *f3)
 		index++;
 	}
 	printf("\n"YEL"%d "WHT"total read \n\n", i[0] + i[1] + i[2]);
-	system("echo 'finish test\n' >> tester/GNL/GNL_dif.txt");
+	system("echo 'finish test\n' >> tester/GNL/GNLB_dif.txt");
 	return (0);
 }
 
@@ -443,7 +443,7 @@ int	main(int ac, char **av)
 	clock_t	start, end, duration, start1, end1, duration1;
 
 	num = ac - 1;
-	if (system("touch tester/GNL/GNL_dif.txt"))
+	if (system("touch tester/GNL/GNLB_dif.txt"))
 		printf(RED"can't make file"WHT);
 	start1 = clock();
 	printf("BUFFER_SIZE = %d\n", BUFFER_SIZE);
@@ -476,7 +476,7 @@ int	main(int ac, char **av)
 			if (i > 13000)
 			{
 				printf(RED"Never return NULL❗️\n"WHT);
-				system("echo break\n >> tester/GNL/GNL_dif.txt");
+				system("echo break\n >> tester/GNL/GNLB_dif.txt");
 				to--;
 				break ;
 			}
@@ -484,12 +484,12 @@ int	main(int ac, char **av)
 		end = clock();
 		duration = (end - start);
 		//
-		tmp2 = combine("diff -a tester/text/result.txt %s >> tester/GNL/GNL_dif.txt", av[ac]);
+		tmp2 = combine("diff -a tester/text/result.txt %s >> tester/GNL/GNLB_dif.txt", av[ac]);
 		printf("\n %s", ac[av]);
 		system(tmp2);
 		free(tmp2);
 		//
-		tmp2 = combine("echo %s >> tester/GNL/GNL_dif.txt", av[ac]);
+		tmp2 = combine("echo %s >> tester/GNL/GNLB_dif.txt", av[ac]);
 		system(tmp2);
 		free(tmp2);
 		//
@@ -510,13 +510,13 @@ int	main(int ac, char **av)
 		printf(RED"❌");
 	printf("you got %.0f%% - - - - - - - - - - - - - - - - -\n"WHT, to);
 	sleep(5);
-	system("echo '\n🔀start of multy test\n' >> tester/GNL/GNL_dif.txt");
+	system("echo '\n🔀start of multy test\n' >> tester/GNL/GNLB_dif.txt");
 	multy_test("tester/text/m_fd1.txt","tester/text/m_fd2.txt","tester/text/m_fd3.txt");
 	multy_test("tester/text/m_fd4.txt","tester/text/m_fd5.txt","tester/text/m_fd6.txt");
 	multy_test("tester/text/peepy1.ans","tester/text/peepy2.ans","tester/text/peepy2.ans");
-	system("echo '🔚end of multy test\n' >> tester/GNL/GNL_dif.txt");
+	system("echo '🔚end of multy test\n' >> tester/GNL/GNLB_dif.txt");
 	printf(RED"\ntotal time taken : %.2f seconds\n"WHT, (double)duration1/CLOCKS_PER_SEC * 100);
-	printf(MAG"[error log: tester/GNL/GNL_dif.txt]\n"WHT);
+	printf(MAG"[error log: tester/GNL/GNLB_dif.txt]\n"WHT);
 	return (0);
 }
 //system("gcc -Wall -Werror -Wextra get_next_line.c get_next_line_utils.c main_utils.c get_next_line_main.c -D ");

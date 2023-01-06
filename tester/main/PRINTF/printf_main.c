@@ -114,35 +114,18 @@ int	check_ft_printf(int norm)
 	return (norm);
 }
 
-char	**get_test_pf(int fd)
-{
-	char	**new;
-	char 	*s, *j = NULL;
-
-	s = "ls";
-	while (s)
-	{
-		s = sm_get_next_line(fd);
-		j = ft_str_ff_join(j, s);
-	}
-	new = ft_split(j, '\n');
-	if (j)
-		free(j);
-	return (new);
-}
-
 void	run_one_test_pf(char *test)
 {
 	char	*cmd;
 
-	printf("input %s\n", test);
+	printf("\ninput %s\n", test);
 	cmd = combine(GCCF" tester/PRINTF/PF_main.c ft_printf/libftprintf.a -o pf.out -D IN_TEST='%s'", test);
 	system(cmd);
 	free(cmd);
 	write(1, "real printf: ", 14);
 	system("./pf.out r");
 	system("./pf.out r > rp.txt");
-	write(1, "\n42 printf  : ", 15);
+	write(1, "\n42 printf  : ", 14);
 	system("./pf.out f");
 	system("./pf.out f > fp.txt");
 	system("rm pf.out");
@@ -155,44 +138,33 @@ void	run_one_test_pf(char *test)
 	system("rm rp.txt");
 }
 
-void	run_test_pf(char **test_in)
+void	*run_and_free(char *s)
 {
-	char	*cmd;
-	int		i = 0;
+	system(s);
+	free (s);
+	return (NULL);
+}
 
-	while (test_in[i])
-	{
-		printf(YEL"test %d"WHT", input %s\n", i, test_in[i]);
-		cmd = combine("     "GCCF" tester/PRINTF/PF_main.c ft_printf/libftprintf.a -o pf.out -D IN_TEST='%s'", test_in[i]);
-		puts(cmd);
-		system(cmd);
-		free(cmd);
-		write(1, "real printf: ", 14);
-		system("./pf.out r");
-		system("./pf.out r > rp.txt");
-		write(1, "\n42 printf  : ", 15);
-		system("./pf.out f");
-		system("./pf.out f > fp.txt");
-		system("rm pf.out");
-		printf("\n\n");
-		system("diff -a rp.txt fp.txt >> tester/PRINTF/PRINTF_dif.txt");
-		cmd = combine("echo 'input  %s' >> tester/PRINTF/PRINTF_dif.txt", test_in[i]);
-		system(cmd);
-		free(cmd);
-		compare("rp.txt", "fp.txt");
-		i++;
-		sleep(1);
-	}
-	system("rm fp.txt");
-	system("rm rp.txt");
-	printf("\n\n");
-	return ;
+void	pf_str_test(void)
+{
+	char	*s;
+
+	run_one_test_pf("(\"ls_test\")");
+	run_one_test_pf("(\"0123456789test9876543210\")");
+	run_one_test_pf("(STR_TEST)");
+	run_one_test_pf("(\"test%s\",STR_TEST)");
+	run_one_test_pf("(\"          \")");
+	run_one_test_pf("(\"this is a test for ls-tester, you like it ?\")");
+	s = combine("(\"%%s %%s %%s\", \" \" , \"yo\" , \"you work\")");
+	run_one_test_pf(s);
+	free(s);
+	run_one_test_pf("(\" \" \" \")");
+
 }
 
 void	printf_tester(void)
 {
-	int		fd, fd_file, i = 0;
-	char	**test;
+	int		fd, i = 0;
 	char	*cmd;
 
 	if (check_ft_printf(0) == -1)
@@ -206,15 +178,8 @@ void	printf_tester(void)
 	}
 	close(fd);
 	// normal str
-	fd_file = open ("tester/text/pf_0.txt",O_RDONLY);
-	test = get_test_pf(fd_file);
-	close(fd_file);
-	sm_inspect_arr(test[0], 'c', ft_strlen(test[0]), 0);
-	run_test_pf(test);
-	i = 0;
-	while (test[i])
-		free(test[i++]);
-	free(test);
+	pf_str_test();
+	//run_one_test_pf("(\"ls_test\")");
 	//
 	i = 0;
 	while (i < 128)

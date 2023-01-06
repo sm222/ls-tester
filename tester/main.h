@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2023/01/03 15:15:11 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/01/06 09:17:59 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@
 
 //				GNL				//
 # define GNL_PATH_O " tester/GNL/GNL_main.c -o "
-# define GNL_C "get_next_line.c"
-# define GNLU_C "get_next_line_utils.c"
-# define GNL_H "get_next_line.h"
-# define VAL_GNL "get_next_line_utils.c get_next_line.c tester/main/GNL/val_gnl_main.c"
+# define GNL_C "get_next_line/get_next_line.c"
+# define GNLU_C "get_next_line/get_next_line_utils.c"
+# define GNL_H "get_next_line/get_next_line.h"
+# define VAL_GNL "get_next_line/get_next_line_utils.c get_next_line/get_next_line.c tester/main/GNL/val_gnl_main.c"
 //				GNLB			//
 # define GNLB_PATH_O " tester/GNL/GNLB_main.c -o "
-# define GNLB_C "get_next_line_bonus.c"
-# define GNLUB_C "get_next_line_utils_bonus.c"
-# define GNLB_H "get_next_line_bonus.h"
-# define VAL_GNLB "get_next_line_utils_bonus.c get_next_line_bonus.c tester/main/GNL/val_gnl_main.c"
+# define GNLB_C "get_next_line/get_next_line_bonus.c"
+# define GNLUB_C "get_next_line/get_next_line_utils_bonus.c"
+# define GNLB_H "get_next_line/get_next_line_bonus.h"
+# define VAL_GNLB "get_next_line/get_next_line_utils_bonus.c get_next_line/get_next_line_bonus.c tester/main/GNL/val_gnl_main.c"
 //				FT_PRINTF		//
 # define FT_PRINTF "ft_printf"
 

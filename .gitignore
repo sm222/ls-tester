@@ -44,7 +44,8 @@
 *.pdb
 .DS_S*
 #ls-tester dev folder
-ft_printf
+ft_printf/*
+get_next_line/*
 
 # Kernel Module Compile Results
 *.mod*
@@ -56,14 +57,9 @@ Mkfile.old
 dkms.conf
 
 # .c not wanted
-get_next_line_utils.c
-get_next_line_utils_bonus.c
-get_next_line.c
-get_next_line_bonus.c
-get_next_line.h
-get_next_line_bonus.h
 
 # .txt not wanted
 tester/GNL/GNL_dif.txt
+tester/GNL/GNLB_dif.txt
 tester/PRINTF/PRINTF_dif.txt
 .log.txt

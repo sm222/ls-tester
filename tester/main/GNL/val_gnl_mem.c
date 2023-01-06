@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../../../get_next_line.h"
+#include	"../../../get_next_line/get_next_line.h"
 #include	"val_gnl_mem.h"
 #include	<fcntl.h>
 #include	<stdio.h>
@@ -34,7 +34,7 @@ int	main(void)
 	int		fd;
 
 	system("echo " WHT);
-	system("rm tester/text/void.txt");
+	system("rm tester/text/void.txt 2> /dev/null");
 	system("touch tester/text/void.txt");
 	if (TEST_NB == 0)
 	{
