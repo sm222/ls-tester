@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ls_tester.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2023/01/03 17:32:57 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/01/05 18:26:22 by wdelaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

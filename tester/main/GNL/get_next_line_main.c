@@ -75,14 +75,20 @@ void	gnl_partial_tester(int buff, char *test)
 	system(txt);
 	free(txt);
 	//
-	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0) 
+	if (system(GCCF" -o val_test.out -g "VAL_GNL) == 0)
 	{
-		txt = combine(VALL " ./val_test.out tester/text/%s.txt", test);
+		if (!strcmp(test, "pp"))
+			txt = combine(VALL " ./val_test.out tester/text/%s.ans", "peepy");
+		else
+			txt = combine(VALL " ./val_test.out tester/text/%s.txt", test);
 		if (system(txt) != 0)
 		{
 			printf(RED"valgrind could not run\n"WHT);
 			free(txt);
-			txt = combine("leaks -atExit -- ./val_test.out tester/text/%s.txt", test);
+			if (!strcmp(test, "pp"))
+				txt = combine("leaks -atExit -- ./val_test.out tester/text/%s.ans", "peepy");
+			else
+				txt = combine("leaks -atExit -- ./val_test.out tester/text/%s.txt", test);
 			system("leaks -atExit -- ./val_test.out");
 		}
 	}
@@ -169,7 +175,7 @@ int		gnl_mem(int test)
 		system("echo 'start loop test' >> tester/GNL/GNL_dif.txt");
 		while (loop < 10000000)
 		{
-			printf("test whit buffer: %d\n", loop);
+			printf("test with buffer: %d\n", loop);
 			info = combine("echo 'BUFFER_SIZE %d' >> tester/GNL/GNL_dif.txt", loop);
 			system(info);
 			free(info);
