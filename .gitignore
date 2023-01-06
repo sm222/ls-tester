@@ -63,3 +63,8 @@ tester/GNL/GNL_dif.txt
 tester/GNL/GNLB_dif.txt
 tester/PRINTF/PRINTF_dif.txt
 .log.txt
+
+# exception
+
+!ft_printf/.void(null).txt
+!get_next_line/.void(null).txt
