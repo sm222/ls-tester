@@ -74,6 +74,23 @@ int		compare(char *f1, char *f2)
 	return (0);
 }
 
+char	**get_test_pf(int fd)
+{
+	char	**new;
+	char 	*s, *j = NULL;
+
+	s = "ls";
+	while (s)
+	{
+		s = sm_get_next_line(fd);
+		j = ft_str_ff_join(j, s);
+	}
+	new = ft_split(j, '\n');
+	if (j)
+		free(j);
+	return (new);
+}
+
 int	check_ft_printf(int norm)
 {
 	int	verif[3];
@@ -117,7 +134,6 @@ int	check_ft_printf(int norm)
 void	run_one_test_pf(char *test)
 {
 	char	*cmd;
-
 	printf("\ninput %s\n", test);
 	cmd = combine(GCCF" tester/PRINTF/PF_main.c ft_printf/libftprintf.a -o pf.out -D IN_TEST='%s'", test);
 	system(cmd);
@@ -136,6 +152,7 @@ void	run_one_test_pf(char *test)
 	compare("rp.txt", "fp.txt");
 	system("rm fp.txt");
 	system("rm rp.txt");
+	//sleep(1);
 }
 
 void	*run_and_free(char *s)
@@ -147,25 +164,32 @@ void	*run_and_free(char *s)
 
 void	pf_str_test(void)
 {
-	char	*s;
-
 	run_one_test_pf("\"ls_test\"");
 	run_one_test_pf("\"0123456789test9876543210\"");
 	run_one_test_pf("STR_TEST");
 	run_one_test_pf("\"test%s\",STR_TEST");
 	run_one_test_pf("\"          \"");
 	run_one_test_pf("\"this is a test for ls-tester, you like it ?\"");
-	s = combine("\"%%s %%s %%s\", \" \" , \"yo\" , \"you work\"");
-	run_one_test_pf(s);
-	free(s);
+	run_one_test_pf("\"%s %s %s\", \" \" , \"yo\" , \"you work\"");
 	run_one_test_pf("\" \" \" \"");
+	run_one_test_pf("\"\"");
+}
 
+void	free_double(char **s)
+{
+	int	i = 0;
+
+	while (s[i])
+		free(s[i++]);
+	free(s);
 }
 
 void	printf_tester(void)
 {
 	int		fd, i = 0;
 	char	*cmd;
+	char	**test;
+	int		fd_test;
 
 	if (check_ft_printf(0) == -1)
 		return ;
@@ -189,5 +213,30 @@ void	printf_tester(void)
 		free(cmd);
 		i += 6;
 	}
-	return ;
+	cmd = combine(GCCF "  -o pf_p.out tester/PRINTF/PF_main_p.c ft_printf/libftprintf.a");
+	cmd = run_and_free(cmd);
+	printf(YEL"\npointer test\n"WHT);
+	i = 0;
+	while (i < 10)
+	{
+		printf("test number "YEL"%d\n"WHT, 1 + i++);
+		system("./pf_p.out > res_pf_p.txt");
+		fd_test = open("res_pf_p.txt", O_RDONLY);
+		if (!fd_test)
+		{
+			printf("can't open res_pf_p.txt❌\n");
+			return ;
+		}
+		test = get_test_pf(fd_test);
+		printf("real :%s\nft   :%s\n",test[0],test[1]);
+		if (strcmp(test[0],test[1]) == 0 && strstr(test[2], "❌") == NULL)
+			printf("✅"GRN"[OK]"WHT"\n");
+		else
+			printf("%s\n",test[2]);
+		free_double(test);
+		close(fd_test);
+		system("rm res_pf_p.txt");
+		sleep(1);
+	}
+	system("rm pf_p.out");
 }
