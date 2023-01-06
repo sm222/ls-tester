@@ -14,7 +14,7 @@
 # define PRINTF_H
 
 # ifndef IN_TEST
-#  define IN_TEST ("ls-tester %d", 42)
+#  define IN_TEST "ls-tester %d", 42
 # endif
 
 # ifndef INT_TEST

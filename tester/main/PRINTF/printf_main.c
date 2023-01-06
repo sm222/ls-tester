@@ -149,16 +149,16 @@ void	pf_str_test(void)
 {
 	char	*s;
 
-	run_one_test_pf("(\"ls_test\")");
-	run_one_test_pf("(\"0123456789test9876543210\")");
-	run_one_test_pf("(STR_TEST)");
-	run_one_test_pf("(\"test%s\",STR_TEST)");
-	run_one_test_pf("(\"          \")");
-	run_one_test_pf("(\"this is a test for ls-tester, you like it ?\")");
-	s = combine("(\"%%s %%s %%s\", \" \" , \"yo\" , \"you work\")");
+	run_one_test_pf("\"ls_test\"");
+	run_one_test_pf("\"0123456789test9876543210\"");
+	run_one_test_pf("STR_TEST");
+	run_one_test_pf("\"test%s\",STR_TEST");
+	run_one_test_pf("\"          \"");
+	run_one_test_pf("\"this is a test for ls-tester, you like it ?\"");
+	s = combine("\"%%s %%s %%s\", \" \" , \"yo\" , \"you work\"");
 	run_one_test_pf(s);
 	free(s);
-	run_one_test_pf("(\" \" \" \")");
+	run_one_test_pf("\" \" \" \"");
 
 }
 
@@ -184,7 +184,7 @@ void	printf_tester(void)
 	i = 0;
 	while (i < 128)
 	{
-		cmd = combine("(\"%%c %%c %%c %%c %%c %%c\", %d, %d, %d , %d, %d, %d)", i, i + 1, i + 2, i + 3, i + 4, i + 5);
+		cmd = combine("\"%%c %%c %%c %%c %%c %%c\", %d, %d, %d , %d, %d, %d", i, i + 1, i + 2, i + 3, i + 4, i + 5);
 		run_one_test_pf(cmd);
 		free(cmd);
 		i += 6;

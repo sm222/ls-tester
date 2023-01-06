@@ -23,9 +23,9 @@ int	main(int ac, char **av)
 	p = 42;
 	a = 'a';
 	if (av[1][0] == 'r')
-		char_nb = printf IN_TEST;
+		char_nb = printf(IN_TEST);
 	else if (av[1][0] == 'f')
-		char_nb = ft_printf IN_TEST;
+		char_nb = ft_printf(IN_TEST);
 	else
 		printf("%p %p ", &a, &p);
 	printf("\n	[printf output=%d]", char_nb);
