@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ls_tester.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2023/01/06 12:56:34 by wdelaros         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:22:32 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	*menu_loop(int *loop, char *call_back)
 			sm_log(log_fd,"ls-tester", "call gnl -buff");
 			put_time_file('s',"tester/GNL/GNL_dif.txt");
 			sm_copy_str_to(u_input, copy, str_p + 1, -1);
-			gnl_mem(1);
+			gnl_mem(1, 100);
 			gnl_tester(peepy_atoi(copy));
 			put_time_file('e',"tester/GNL/GNL_dif.txt");
 		}
@@ -148,7 +148,7 @@ char	*menu_loop(int *loop, char *call_back)
 			{
 				put_time_file('s',"tester/GNL/GNL_dif.txt");
 				sm_log(log_fd,"ls-tester", "gnl_mem");
-				gnl_mem(0);
+				gnl_mem(0, 100);
 				put_time_file('e',"tester/GNL/GNL_dif.txt");
 			}
 		}
@@ -158,8 +158,8 @@ char	*menu_loop(int *loop, char *call_back)
 			if (!test_take_time())
 			{
 				put_time_file('s',"tester/GNL/GNL_dif.txt");
-				sm_log(log_fd,"ls-tester", "gnl_mem");
-				gnl_mem(2);
+				sm_log(log_fd,"ls-tester", "gnl_mem+");
+				gnl_mem(2, 100);
 				put_time_file('e',"tester/GNL/GNL_dif.txt");
 			}
 		}
@@ -172,6 +172,7 @@ char	*menu_loop(int *loop, char *call_back)
 				sm_log(log_fd,"ls-tester", "call gnl -test -buff");
 				sm_copy_str_to(u_input, copy, str_p + 1, -1);
 				gnl_partial_tester(peepy_atoi(copy), combine("text%s", temp));
+				gnl_mem(1, 100);
 			}
 			else
 			{

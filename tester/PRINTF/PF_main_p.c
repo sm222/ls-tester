@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:02:29 by anboisve          #+#    #+#             */
-/*   Updated: 2023/01/06 18:32:32 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/01/08 10:18:54 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	main(int ac, char **av)
 	if (nb[0] != nb[1])
 		printf(RED"❌[KO]"WHT"ft_printf return %d and printf return %d\n",nb[1] , nb[0]);
 	else
-		printf("✅\n");
+		printf("✅[OK]\n");
+	printf("\n");
 	return (0);
 }

@@ -35,20 +35,26 @@ int	main(void)
 
 	system("echo " WHT);
 	system("rm tester/text/void.txt 2> /dev/null");
+	sleep(1);
 	system("touch tester/text/void.txt");
 	if (TEST_NB == 0)
 	{
 		printf(YEL"\n\ntest empty file\n"WHT);
 		fd = open("tester/text/void.txt", O_RDONLY);
-		s = get_next_line(fd);
-		if (s)
+		if (fd >= 0)
 		{
-			printf(RED"did't work !\n\n"WHT);
-			free(s);
+			s = get_next_line(fd);
+			if (s)
+			{
+				printf(RED"did't work !\n\n"WHT);
+				free(s);
+			}
+			else
+				printf(GRN"work !\n\n"WHT);
+			close(fd);
 		}
 		else
-			printf(GRN"work !\n\n"WHT);
-		close(fd);
+			printf(RED"can't open file : tester/text/void.txt\n"WHT);
 	}
 	else if (TEST_NB == 1)
 	{

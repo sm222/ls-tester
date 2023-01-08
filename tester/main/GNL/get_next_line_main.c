@@ -62,7 +62,6 @@ void	gnl_partial_tester(int buff, char *test)
 	norm = check_gnl(0);
 	if (norm < 0)
 		return ;
-	gnl_mem(1);
 	//
 	cmd = combine(GCCF GNL_PATH_O "test1.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d ", buff);
 	printf("\n\n-	-	-\n"YEL"Start test"WHT"\n-	-	-\n\n");
@@ -115,7 +114,7 @@ void	gnl_tester(int buff)
 	norm = check_gnl(0);
 	if (norm < 0)
 		return ;
-	gnl_mem(1);
+	gnl_mem(1, 100);
 	cmd = combine(GCCF GNL_PATH_O "test1.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d ", buff);
 	system(cmd);
 	free(cmd);
@@ -140,9 +139,8 @@ void	gnl_tester(int buff)
 	return ;
 }
 
-int		gnl_mem(int test)
+int		gnl_mem(int test,int BS)
 {
-	int		BS = 1;
 	char	*cmd, *info;
 	int 	loop = 1;
 
@@ -189,11 +187,10 @@ int		gnl_mem(int test)
 		free(info);
 		gnl_partial_tester(10000000,"text4");
 	}
+	system("rm -fr mem_test.out.dSYM");
+	//ici
 	return (0);
 }
 
-
-
 //gccf get_next_line_main.c main_utils.c -D LEAK=1
-
 //work on timer ft

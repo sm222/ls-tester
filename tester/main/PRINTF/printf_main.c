@@ -134,7 +134,8 @@ int	check_ft_printf(int norm)
 void	run_one_test_pf(char *test)
 {
 	char	*cmd;
-	printf("\ninput %s\n", test);
+	printf(PIK"\ninput %s\n\n", test);
+	system("echo "WHT);
 	cmd = combine(GCCF" tester/PRINTF/PF_main.c ft_printf/libftprintf.a -o pf.out -D IN_TEST='%s'", test);
 	system(cmd);
 	free(cmd);
@@ -152,7 +153,7 @@ void	run_one_test_pf(char *test)
 	compare("rp.txt", "fp.txt");
 	system("rm fp.txt");
 	system("rm rp.txt");
-	//sleep(1);
+	sleep(1);
 }
 
 void	*run_and_free(char *s)
@@ -168,11 +169,14 @@ void	pf_str_test(void)
 	run_one_test_pf("\"0123456789test9876543210\"");
 	run_one_test_pf("STR_TEST");
 	run_one_test_pf("\"test%s\",STR_TEST");
+	run_one_test_pf("\"test%s\",NULL");
 	run_one_test_pf("\"          \"");
 	run_one_test_pf("\"this is a test for ls-tester, you like it ?\"");
 	run_one_test_pf("\"%s %s %s\", \" \" , \"yo\" , \"you work\"");
 	run_one_test_pf("\" \" \" \"");
 	run_one_test_pf("\"\"");
+	run_one_test_pf("\"%s\",s");
+	run_one_test_pf("\"%p\",p");
 }
 
 void	free_double(char **s)
@@ -203,7 +207,6 @@ void	printf_tester(void)
 	close(fd);
 	// normal str
 	pf_str_test();
-	//run_one_test_pf("(\"ls_test\")");
 	//
 	i = 0;
 	while (i < 128)
@@ -213,6 +216,7 @@ void	printf_tester(void)
 		free(cmd);
 		i += 6;
 	}
+	//								pointer							//
 	cmd = combine(GCCF "  -o pf_p.out tester/PRINTF/PF_main_p.c ft_printf/libftprintf.a");
 	cmd = run_and_free(cmd);
 	printf(YEL"\npointer test\n"WHT);
@@ -221,22 +225,34 @@ void	printf_tester(void)
 	{
 		printf("test number "YEL"%d\n"WHT, 1 + i++);
 		system("./pf_p.out > res_pf_p.txt");
+		system("./pf_p.out >> tester/PRINTF/PRINTF_dif.txt");
 		fd_test = open("res_pf_p.txt", O_RDONLY);
 		if (!fd_test)
 		{
-			printf("can't open res_pf_p.txt❌\n");
-			return ;
+			printf("can't open res_pf_p.txt❌\n\n");
+			break ;
 		}
 		test = get_test_pf(fd_test);
 		printf("real :%s\nft   :%s\n",test[0],test[1]);
 		if (strcmp(test[0],test[1]) == 0 && strstr(test[2], "❌") == NULL)
-			printf("✅"GRN"[OK]"WHT"\n");
+			printf(GRN"✅[OK]\n\n"WHT);
 		else
 			printf("%s\n",test[2]);
 		free_double(test);
 		close(fd_test);
 		system("rm res_pf_p.txt");
-		sleep(1);
+		//sleep(1);
 	}
+	//
+	printf(YEL"\n test\n"WHT);
+	i = 0;
+	while (i++ < 50)
+	{
+		cmd = combine("\"small %%x	big %%X\", %d , %d", i * 123, i * 123);
+		run_one_test_pf(cmd);
+		free(cmd);
+		usleep(5000);
+	}
+
 	system("rm pf_p.out");
 }

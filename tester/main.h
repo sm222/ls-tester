@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdelaros <wdelaros@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2023/01/06 09:17:59 by wdelaros         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:42:58 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,41 +64,42 @@
 	text art
 http://www.patorjk.com/software/taag/#p=display&f=Slant%20Relief&t=
 */
-void	*ft_sfree(void *p);
 void	logo(void);
-char	*menu_loop(int *loop, char *call_back);
-void	put_time_file(char type, char *file);
+void	*ft_sfree(void *p);
 int		test_take_time(void);
 void	gnl_buffer_tester(void);
+void	put_time_file(char type, char *file);
+char	*menu_loop(int *loop, char *call_back);
 
 //--------- anboisve ft
 
 //gnl
-int		gnl_mem(int test);
+int		gnl_mem_info(void);
 void	gnl_tester(int buff);
 void	gnlb_tester(int buff);
+int		gnl_mem(int test,int BS);
 void	gnl_partial_tester(int buff, char *test);
-int		gnl_mem_info(void);
-void	val_install(void);
 
 //text
+int		sm_atoi(char *str);
+char	*combine(char *s, ...);
+void	sm_clear_str(char *str);
+char	**ft_split(char const *s, char c);
+int		sm_look_for_word(char *str, char *word);
 int		sm_while_space_tab(int start, char *str);
 int		sm_get_keybord_input(char *return_txt, int size);
-void	sm_clear_str(char *str);
-int		sm_atoi(char *str);
 int		sm_copy_str_to(char *input, char *return_v, int start_p, int end_p);
-int		sm_look_for_word(char *str, char *word);
-char	**ft_split(char const *s, char c);
 
 //menu
-int		sm_func_looking(char *str, char *word, int *path);
-int		sm_find_mix_str(char *str, char *word, int *path);
-void	sm_signature(void);
-int		sm_look_for_char_p(char *str, int start_p, int number, char look);
 int		sm_ls(char *path);
+void	val_install(void);
+void	sm_signature(void);
 int		sm_print_file(char *name);
 void	sm_make_file_name(char *name);
 void	sm_log(int fd, char *from, char *log);
+int		sm_func_looking(char *str, char *word, int *path);
+int		sm_find_mix_str(char *str, char *word, int *path);
+int		sm_look_for_char_p(char *str, int start_p, int number, char look);
 
 //other
 int		sm_r_num(int lower, int upper);
@@ -113,7 +114,6 @@ char	*ft_str_fback_join(char *sfree, char *s2);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_str_ff_join(char *s1f, char *s2f);
 char	*ft_itoa(int n);
-char	*combine(char *s, ...);
 char	*f_strjoin(char *s1, char *s2);
 void	*ft_calloc(size_t coun, size_t size);
 void	ft_bzero(void *s, size_t n);
@@ -132,7 +132,7 @@ typedef struct s_info
 	size_t	cut;
 }	t_info;
 
-char	*get_next_line(int fd);
+//char	*get_next_line(int fd);
 char	*sm_ft_strjoin(char *s1, char *s2);
 
 //-----------------------------------------------
