@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2023/01/08 16:22:32 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/01/23 16:32:49 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,14 @@ char	*menu_loop(int *loop, char *call_back)
 		if (sm_func_looking(u_input, "", &str_p) == 0)
 		{
 			printf(RED"\n- - - - Help List - - - -\n"WHT);
+			printf("val -tuto - shows how to install valgrind")
 			printf("gnl - GNL tester\n");
 			printf("gnlb - GNL tester with BONUS\n");
 			printf("pf - PRINTF tester\n");
 			printf("norm - norminette all the files\n");
 			printf("rm - RM all trace files\n");
-			printf("help of (tester name) -help - show help list\n");
-			printf("exit or q - exit the program\n");
+			printf("help of (tester name) -help - shows help list\n");
+			printf("exit or q - exits the program\n");
 			printf("\n");
 			sm_log(log_fd,"ls-tester", "call help");
 		}
