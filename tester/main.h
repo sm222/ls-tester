@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:45:26 by wdelaros          #+#    #+#             */
-/*   Updated: 2023/01/08 16:42:58 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/01/18 12:04:30 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*menu_loop(int *loop, char *call_back);
 int		gnl_mem_info(void);
 void	gnl_tester(int buff);
 void	gnlb_tester(int buff);
-int		gnl_mem(int test,int BS);
+int		gnl_mem(int test, int BS);
 void	gnl_partial_tester(int buff, char *test);
 
 //text

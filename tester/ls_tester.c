@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 08:56:56 by anboisve          #+#    #+#             */
-/*   Updated: 2023/01/23 16:32:49 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:48:14 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*menu_loop(int *loop, char *call_back)
 		if (sm_func_looking(u_input, "", &str_p) == 0)
 		{
 			printf(RED"\n- - - - Help List - - - -\n"WHT);
-			printf("val -tuto - shows how to install valgrind")
+			printf("val -tuto - shows how to install valgrind");
 			printf("gnl - GNL tester\n");
 			printf("gnlb - GNL tester with BONUS\n");
 			printf("pf - PRINTF tester\n");

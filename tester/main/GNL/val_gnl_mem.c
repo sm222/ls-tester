@@ -106,6 +106,17 @@ int	main(void)
 		free(s);
 		close(fd);
 	}
+	else if (TEST_NB == 3)
+	{
+		s = get_next_line(0);
+		write(0, "ls-tester",9);
+		if (!s)
+		{
+			free(s);
+			s = NULL;
+		}
+	}
+
 	system("rm tester/text/void.txt");
 	return (0);
 }

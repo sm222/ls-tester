@@ -52,7 +52,7 @@ int	main(int ac, char **av)
 		if (i % 100 == 0)
 			printf(YEL"."WHT);
 	}
-	printf("\n gnl run "YEL"%d"WHT" time\n\n", i + 1);
+	printf("\n gnl run "YEL"%d"WHT" time\n\n", i);
 	close(fd);
 	return (0);
 }

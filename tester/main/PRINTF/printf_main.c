@@ -153,7 +153,7 @@ void	run_one_test_pf(char *test)
 	compare("rp.txt", "fp.txt");
 	system("rm fp.txt");
 	system("rm rp.txt");
-	sleep(1);
+	usleep(30000);
 }
 
 void	*run_and_free(char *s)
@@ -251,7 +251,7 @@ void	printf_tester(void)
 		cmd = combine("\"small %%x	big %%X\", %d , %d", i * 123, i * 123);
 		run_one_test_pf(cmd);
 		free(cmd);
-		usleep(5000);
+		usleep(1000);
 	}
 
 	system("rm pf_p.out");
