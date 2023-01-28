@@ -314,7 +314,7 @@ char	*menu_loop(int *loop, char *call_back)
 	}
 	else if (sm_func_looking(u_input, ("git"), &str_p) == 0)
 	{
-		printf("system = %d\n", system("git pull"));
+		printf("system = %d\n", system("git fetch --dry-run"));
 	}
 	//							void								//
 	else if (sm_func_looking(u_input, (""), &str_p) == 0)
