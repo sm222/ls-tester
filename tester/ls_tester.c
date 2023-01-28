@@ -312,6 +312,10 @@ char	*menu_loop(int *loop, char *call_back)
 		if (sm_find_mix_str(u_input, ("itwork"), &str_p) == 0)
 			printf("yes\n");
 	}
+	else if (sm_func_looking(u_input, ("git"), &str_p) == 0)
+	{
+		printf("system = %d\n", system("git pull"));
+	}
 	//							void								//
 	else if (sm_func_looking(u_input, (""), &str_p) == 0)
 	{
