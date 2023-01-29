@@ -44,15 +44,15 @@ char	*menu_loop(int *loop, char *call_back)
 	{
 		if (sm_func_looking(u_input, "", &str_p) == 0)
 		{
-			printf(RED"\n- - - - Help List - - - -\n"WHT);
-			printf("val -tuto - shows how to install valgrind");
-			printf("gnl - GNL tester\n");
-			printf("gnlb - GNL tester with BONUS\n");
-			printf("pf - PRINTF tester\n");
-			printf("norm - norminette all the files\n");
-			printf("rm - RM all trace files\n");
-			printf("help of (tester name) -help - shows help list\n");
-			printf("exit or q - exits the program\n");
+			printf(ORG"\n- - - - Help List - - - -\n"WHT);
+			printf("val -tuto	shows how to install valgrind\n");
+			printf("gnl		GNL tester\n");
+			printf("gnlb		GNL tester with BONUS\n");
+			printf("pf		PRINTF tester\n");
+			printf("norm		norminette all the files\n");
+			printf("rm		RM all trace files\n");
+			printf("help of (tester name or command) -help - shows help list\n");
+			printf("exit or q	exits the program\n");
 			printf("\n");
 			sm_log(log_fd,"ls-tester", "call help");
 		}
@@ -69,7 +69,7 @@ char	*menu_loop(int *loop, char *call_back)
 	{
 		if (sm_func_looking(u_input, "-help", &str_p) == 0)
 		{
-			printf(RED"\n- - - - Printf Help List - - - -\n"WHT);
+			printf(ORG"\n- - - - Printf Help List - - - -\n"WHT);
 			printf("exit or q - exit the program\n");
 			printf("\n");
 		}
@@ -92,14 +92,14 @@ char	*menu_loop(int *loop, char *call_back)
 	{
 		if (sm_func_looking(u_input, "-help", &str_p) == 0)
 		{
-			printf(RED"\n- - - - GNL Help List - - - -\n"WHT);
-			printf("buff - set buffer size (ex: gnl -buff 42)\n");
-			printf("test - run one test (ex: gnl -test 5)\n");
-			printf("mem - run %s test to chek memory\n", VAL);
-			printf("mem+ - test multiple BUFFER_SIZE\n");
-			printf("pp - run peepy test\n");
-			printf("dif - show GNL trace file\n");
-			printf("rm - RM GNL trace file\n");
+			printf(ORG"\n- - - - GNL Help List - - - -\n"WHT);
+			printf("-buff	set buffer size (ex: gnl -buff 42)\n");
+			printf("-test	run one test (ex: gnl -test 5)\n");
+			printf("-mem	run %s test to chek memory\n", VAL);
+			printf("-mem+	test multiple BUFFER_SIZE\n");
+			printf("-pp	run peepy test\n");
+			printf("-dif	show GNL trace file\n");
+			printf("-rm	RM GNL trace file\n");
 			printf("exit or q - exit the program\n");
 			printf("\n");
 			sm_log(log_fd,"ls-tester", "call gnl -help");
@@ -202,12 +202,11 @@ char	*menu_loop(int *loop, char *call_back)
 	{
 		if (sm_func_looking(u_input, "-help", &str_p) == 0)
 		{
-			printf(RED"\n- - - - GNLB Help List - - - -\n"WHT);
-			printf("buff - set buffer size (ex: gnl -buff 42)\n");
-			printf("test - run one test (ex: gnl -test 5)\n");
-			printf("pp - run peepy test\n");
-			printf("dif - show GNLB trace file\n");
-			printf("rm - RM GNLB trace file\n");
+			printf(ORG"\n- - - - GNLB Help List - - - -\n"WHT);
+			printf("-buff	set buffer size (ex: gnl -buff 42)\n");
+			printf("-test	run one test (ex: gnl -test 5)\n");
+			printf("-dif	show GNLB trace file\n");
+			printf("-rm	RM GNLB trace file\n");
 			printf("exit or q - exit the program\n");
 			printf("\n");
 			sm_log(log_fd,"ls-tester", "call gnlb -help");
@@ -287,16 +286,34 @@ char	*menu_loop(int *loop, char *call_back)
 	//							RM									//
 	else if (sm_func_looking(u_input, "rm", &str_p) == 0)
 	{
-		sm_log(log_fd,"ls-tester", "rm all test file");
-		if (!system("rm tester/GNL/GNL_dif.txt tester/GNL/GNLB_dif.txt"))
-			printf(RED"GNL_dif.txt, GNLB_dif.txt, was remove\n"WHT);
+		if (sm_func_looking(u_input, "rm", &str_p) == 0)
+		{
+			sm_log(log_fd,"ls-tester", "rm all test file");
+			if (!system("rm tester/GNL/GNL_dif.txt tester/GNL/GNLB_dif.txt"))
+				printf(RED"GNL_dif.txt, GNLB_dif.txt, was remove\n"WHT);
+		}
+		else
+		{
+			sm_log(log_fd,"ls-tester", "call rm 'whit mix argument'");
+			sm_copy_str_to(u_input, copy, str_p + 1, -1);
+			printf(YEL "rm "RED"%s " WHT "is not a valid argumant\n", copy);
+		}
 		return (sm_str_dup(u_input));
 	}
 	//								log								//
 	else if (sm_func_looking(u_input, "log", &str_p) == 0)
 	{
-		system("echo "MAG"\x1b[4m.log.txt\x1b[0m"WHT);
-		sm_log(log_fd,"ls-tester", "call log link");
+		if (sm_func_looking(u_input, "", &str_p) == 0)
+		{
+			system("echo "MAG"\x1b[4m.log.txt\x1b[0m"WHT);
+			sm_log(log_fd,"ls-tester", "call log link");
+		}
+		else
+		{
+			sm_log(log_fd,"ls-tester", "call log 'whit mix argument'");
+			sm_copy_str_to(u_input, copy, str_p + 1, -1);
+			printf(YEL "log "RED"%s " WHT "is not a valid argumant\n", copy);
+		}
 		return (sm_str_dup(u_input));
 	}
 	//							VAL TUTO							//
@@ -304,6 +321,14 @@ char	*menu_loop(int *loop, char *call_back)
 	{
 		if (sm_func_looking(u_input, "-tuto", &str_p) == 0)
 			val_install();
+		else if (sm_func_looking(u_input, "", &str_p) == 0)
+			printf("did you mean \"val -tuto\" ?\n");
+		else
+		{
+			sm_log(log_fd,"ls-tester", "call val 'whit mix argument'");
+			sm_copy_str_to(u_input, copy, str_p + 1, -1);
+			printf(YEL "val "RED"%s " WHT "is not a valid argumant, use val -tuto for more info\n", copy);
+		}
 		return (sm_str_dup(u_input));
 	}
 	//							example								//
@@ -312,9 +337,29 @@ char	*menu_loop(int *loop, char *call_back)
 		if (sm_find_mix_str(u_input, ("itwork"), &str_p) == 0)
 			printf("yes\n");
 	}
-	else if (sm_func_looking(u_input, ("git"), &str_p) == 0)
+	//							git									//
+	else if (sm_func_looking(u_input, ("update"), &str_p) == 0)
 	{
-		printf("system = %d\n", system("git fetch --dry-run"));
+		if (sm_func_looking(u_input, ("-i"), &str_p) == 0)
+			system("git pull");
+		else if (sm_func_looking(u_input, (""), &str_p) == 0)
+		{
+			printf("looking for update ...\n");
+			system("git fetch --dry-run");
+		}
+		else if (sm_func_looking(u_input, ("-h"), &str_p) == 0)
+		{
+			printf("\n		"ORG"update"WHT"		\n\n");
+			printf("update		git fetch --dry-run\n");
+			printf("update -i	git pull\n");
+			printf("update -h	show help\n");
+		}
+		else
+		{
+			sm_log(log_fd,"ls-tester", "call update 'whit mix argument'");
+			sm_copy_str_to(u_input, copy, str_p + 1, -1);
+			printf(YEL "update "RED"%s " WHT "is not a valid argumant, type update -h for help\n", copy);
+		}
 	}
 	//							void								//
 	else if (sm_func_looking(u_input, (""), &str_p) == 0)
@@ -361,15 +406,16 @@ int	main(void)
 	// make dif file
 	system("touch tester/GNL/GNL_dif.txt");
 	system("touch tester/PRINTF/PRINTF_dif.txt");
-	
+	system("git fetch --dry-run");
 	//
 	loop = 0;
 	printf(GRN"compile"WHT"				welcome in ...\n");
 	system("rm .log.txt");
 	sm_make_file_name(".log.txt");
 	logo();
-	printf("this is not a finish product⚠️\n");
-	printf("type \"help\" to start\n");
+	printf(RED "DON'T use this for correction ❗\n"WHT);
+	printf("this is not a finish product ⚠️\n");
+	printf("type \"" YEL "help" WHT "\" to start\n\n");
 	last_call = NULL;
 	log_fd = open(".log.txt", O_RDWR);
 	sm_log(log_fd, "ls-tester", "hi here");
