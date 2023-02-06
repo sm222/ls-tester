@@ -120,6 +120,10 @@ char	*menu_loop(int *loop, char *call_back)
 				printf(RED"GNL_dif.txt, was remove\n"WHT);
 			return (sm_str_dup(u_input));
 		}
+		else if (sm_func_looking(u_input, "-tt", &str_p) == 0)
+		{
+			new_gnl_test();
+		}
 		else if (sm_func_looking(u_input, "-dif", &str_p) == 0)
 		{
 			sm_log(log_fd,"ls-tester", "call gnl -dif");
@@ -346,6 +350,7 @@ char	*menu_loop(int *loop, char *call_back)
 		{
 			printf("looking for update ...\n");
 			system("git fetch --dry-run");
+			system("git fetch --dry-run");
 		}
 		else if (sm_func_looking(u_input, ("-h"), &str_p) == 0)
 		{
@@ -406,7 +411,6 @@ int	main(void)
 	// make dif file
 	system("touch tester/GNL/GNL_dif.txt");
 	system("touch tester/PRINTF/PRINTF_dif.txt");
-	system("git fetch --dry-run");
 	//
 	loop = 0;
 	printf(GRN"compile"WHT"				welcome in ...\n");

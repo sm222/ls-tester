@@ -29,13 +29,13 @@ int	gnlb_check(int norm)
 	}
 	if (verif[0] < 0 || verif[1] < 0 || verif[2] < 0)
 	{
-		printf(RED"\nMissing file: ");
+		printf(RED"\nMissing file:	\n");
 		if (verif[0] < 0)
-			printf(RED GNLB_C" "WHT);
+			printf("	"RED GNLB_C"\n"WHT);
 		if (verif[1] < 0)
-			printf(RED GNLUB_C" "WHT);
+			printf("	"RED GNLUB_C"\n"WHT);
 		if (verif[2] < 0)
-			printf(RED GNLB_H WHT);
+			printf("	"RED GNLB_H"\n"WHT);
 		printf("\n");
 		return (-1);
 	}

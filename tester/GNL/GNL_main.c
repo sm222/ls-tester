@@ -12,7 +12,7 @@
 
 #include "GNL.h"
 
-static size_t	peepy_strlen(const char *s)
+size_t	peepy_strlen(const char *s)
 {
 	size_t	i;
 
@@ -31,7 +31,6 @@ void	*peepyfree(void *p)
 	return (NULL);
 }
 
-//
 static int	ft_num_s(int n)
 {
 	int	i;
@@ -166,7 +165,7 @@ char	*ft_str_ff_join(char *s1f, char *s2f)
 	return (peepyfree(s1f), peepyfree(s2f), new);
 }
 
-char	*ft_join_select(va_list list, char c)
+static char	*ft_join_select(va_list list, char c)
 {
 	if (c == 'i' || c == 'd')
 		return (ft_itoa(va_arg(list, int)));
@@ -177,7 +176,7 @@ char	*ft_join_select(va_list list, char c)
 	return (NULL);
 }
 
-char	*str_join_char(char *s, char c)
+static char	*str_join_char(char *s, char c)
 {
 	size_t	size;
 	char	*new;
@@ -199,7 +198,7 @@ char	*combine(char *s, ...)
 	va_start(list, s);
 	new = calloc(1, sizeof(char));
 	i = 0;
-	while (s[i])
+	while (s && s[i])
 	{
 		if(s[i] != '%')
 			new = str_join_char(new, s[i++]);
@@ -275,7 +274,6 @@ int	compare(char *f1, int argc, char *argv[])
 	return (0);
 }
 
-//
 int	main(int ac, char **av)
 {
 	int		fd, i, test;

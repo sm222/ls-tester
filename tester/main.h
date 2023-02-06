@@ -20,6 +20,7 @@
 # include <string.h>
 # include <stdarg.h>
 # include <time.h>
+# include "ls_gnl.h"
 
 //			System			//
 
@@ -33,6 +34,7 @@
 
 //				GNL				//
 # define GNL_PATH_O " tester/GNL/GNL_main.c -o "
+# define GNL_FT " tester/GNL/GNL_FT.c "
 # define GNL_C "get_next_line/get_next_line.c"
 # define GNLU_C "get_next_line/get_next_line_utils.c"
 # define GNL_H "get_next_line/get_next_line.h"
@@ -118,22 +120,11 @@ char	*f_strjoin(char *s1, char *s2);
 void	*ft_calloc(size_t coun, size_t size);
 void	ft_bzero(void *s, size_t n);
 size_t	ft_strlen(const char *s);
-char	*sm_get_next_line(int fd);
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
-# endif
-
-typedef struct s_info
-{
-	char	*tmp;
-	char	*tmp2;
-	int		rv;
-	size_t	cut;
-}	t_info;
 
 //char	*get_next_line(int fd);
 char	*sm_ft_strjoin(char *s1, char *s2);
+
+void	new_gnl_test(void);
 
 //-----------------------------------------------
 

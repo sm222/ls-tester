@@ -29,13 +29,13 @@ int	check_gnl(int norm)
 	}
 	if (verif[0] < 0 || verif[1] < 0 || verif[2] < 0)
 	{
-		printf(RED"\nMissing file: ");
+		printf(RED"\nMissing file:	\n");
 		if (verif[0] < 0)
-			printf(RED GNL_C" "WHT);
+			printf("	"RED GNL_C"\n"WHT);
 		if (verif[1] < 0)
-			printf(RED GNLU_C" "WHT);
+			printf("	"RED GNLU_C"\n"WHT);
 		if (verif[2] < 0)
-			printf(RED GNL_H WHT);
+			printf("	"RED GNL_H"\n"WHT);
 		printf("\n");
 		return (-1);
 	}
@@ -63,7 +63,7 @@ void	gnl_partial_tester(int buff, char *test)
 	if (norm < 0)
 		return ;
 	//
-	cmd = combine(GCCF GNL_PATH_O "test1.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d ", buff);
+	cmd = combine(GCCF GNL_PATH_O "test1.out "GNL_C" "GNLU_C " -D BUFFER_SIZE=%d ", buff);
 	printf("\n\n-	-	-\n"YEL"Start test"WHT"\n-	-	-\n\n");
 	system(cmd);
 	free(cmd);
@@ -194,3 +194,10 @@ int		gnl_mem(int test,int BS)
 
 //gccf get_next_line_main.c main_utils.c -D LEAK=1
 //work on timer ft
+
+void	new_gnl_test(void)
+{
+	system(GCCF" tester/ls_gnl.c "GNL_C" "GNLU_C" tester/GNL/GNL_mainV2.c");
+}
+
+//D:\C_code\ls-tester\tester\GNL\GNL_mainV2.c
