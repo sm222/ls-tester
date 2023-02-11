@@ -1,6 +1,6 @@
 # ls-tester #
 
-A wonderfull tester to make sure your get_next_line & printf!
+A wonderfull tester to make sure your get_next_line & printf work! 
 
 ---
 ## How to use ##
