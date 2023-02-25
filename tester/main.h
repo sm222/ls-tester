@@ -13,6 +13,7 @@
 #ifndef MAIN_H
 # define MAIN_H
 
+//			System			//
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
@@ -22,8 +23,8 @@
 # include <time.h>
 # include "ls_gnl.h"
 
-//			System			//
-
+//			ls-tester		//
+# include "color.h"
 # define  GCC "gcc"
 # define  GCCF "gcc -Wall -Werror -Wextra"
 # define VAL "valgrind"
@@ -48,24 +49,7 @@
 //				FT_PRINTF		//
 # define FT_PRINTF "ft_printf"
 
-//--			Color			--//
-//https://talyian.github.io/ansicolors/
-//	https://ansi.gabebanks.net/
-# define RED	"\x1B[31m"
-# define GRN	"\x1B[32m"
-# define YEL	"\x1B[33m"
-# define BLU	"\x1B[34m"
-# define MAG	"\x1B[35m"
-# define CYN	"\x1B[36m"
-# define WHT	"\x1B[37m"
-# define RESET	"\x1B[0m"
-# define ORG	"\x1b[38;5;202m"
-# define PIK	"\x1b[38;5;176m"
-# define CLE 	"\e[1;1H\e[2J"
-/*
-	text art
-http://www.patorjk.com/software/taag/#p=display&f=Slant%20Relief&t=
-*/
+
 void	logo(void);
 void	*ft_sfree(void *p);
 int		test_take_time(void);
@@ -73,53 +57,8 @@ void	gnl_buffer_tester(void);
 void	put_time_file(char type, char *file);
 char	*menu_loop(int *loop, char *call_back);
 
-//--------- anboisve ft
+# include "sm_ft.h"
 
-//gnl
-int		gnl_mem_info(void);
-void	gnl_tester(int buff);
-void	gnlb_tester(int buff);
-int		gnl_mem(int test, int BS);
-void	gnl_partial_tester(int buff, char *test);
-
-//text
-int		sm_atoi(char *str);
-char	*combine(char *s, ...);
-void	sm_clear_str(char *str);
-char	**ft_split(char const *s, char c);
-int		sm_look_for_word(char *str, char *word);
-int		sm_while_space_tab(int start, char *str);
-int		sm_get_keybord_input(char *return_txt, int size);
-int		sm_copy_str_to(char *input, char *return_v, int start_p, int end_p);
-
-//menu
-int		sm_ls(char *path);
-void	val_install(void);
-void	sm_signature(void);
-int		sm_print_file(char *name);
-void	sm_make_file_name(char *name);
-void	sm_log(int fd, char *from, char *log);
-int		sm_func_looking(char *str, char *word, int *path);
-int		sm_find_mix_str(char *str, char *word, int *path);
-int		sm_look_for_char_p(char *str, int start_p, int number, char look);
-
-//other
-int		sm_r_num(int lower, int upper);
-void	sm_inspect_arr(void *p, char type, int size, int color);
-void	noise(int loop, int size);
-void	*sm_calloc(size_t type, size_t size);
-void	show_color(void);
-void	*sm_bzero(void *p, size_t size);
-char	*sm_str_dup(char	*s);
-char	*ft_str_ffront_join(char *s1, char *sfree);
-char	*ft_str_fback_join(char *sfree, char *s2);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_str_ff_join(char *s1f, char *s2f);
-char	*ft_itoa(int n);
-char	*f_strjoin(char *s1, char *s2);
-void	*ft_calloc(size_t coun, size_t size);
-void	ft_bzero(void *s, size_t n);
-size_t	ft_strlen(const char *s);
 
 //char	*get_next_line(int fd);
 char	*sm_ft_strjoin(char *s1, char *s2);

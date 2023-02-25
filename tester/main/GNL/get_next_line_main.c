@@ -197,7 +197,9 @@ int		gnl_mem(int test,int BS)
 
 void	new_gnl_test(void)
 {
-	system(GCCF" tester/ls_gnl.c "GNL_C" "GNLU_C" tester/GNL/GNL_mainV2.c");
+	system(GCCF" tester/ls_gnl.c "GNL_C" "GNLU_C" tester/GNL/GNL_mainV2.c "SM_FT" -o gnl.out");
+	system("./gnl.out tester/text/text4.txt");
+	system("rm -f gnl.out");
 }
 
 //D:\C_code\ls-tester\tester\GNL\GNL_mainV2.c

@@ -1,4 +1,5 @@
-#include "main.h"
+# include "sm_ft.h"
+# include "color.h"
 
 /*
 skip space and tab
@@ -43,7 +44,7 @@ int	sm_get_keybord_input(char *return_txt,int size)
 	if(fgets(return_txt,size + 1,stdin))
 	{
 		char *p;
-		if((p = strchr(return_txt, '\n')))
+		if((p = ft_strchr(return_txt, '\n')))
 		{//check exist newline
 			*p = 0;
 		}
@@ -53,7 +54,7 @@ int	sm_get_keybord_input(char *return_txt,int size)
 			scanf("%*c");
 		}
 	}
-	return(strlen(return_txt));
+	return(sm_strlen(return_txt));
 }
 
 /*
@@ -311,17 +312,6 @@ int sm_look_for_char_p(char *str, int start_p ,int number ,char look)
 	return(0);
 }
 
-void *sm_calloc(size_t size, size_t count)
-{
-	char	*new;
-
-	new = malloc(size * count);
-	if (!new)
-		return (NULL);
-	sm_bzero(new, size * count);
-	return (new);
-}
-
 int sm_look_for_word(char *str,char *word)
 {
 	int i = 0;
@@ -502,7 +492,7 @@ char	*sm_str_dup(char	*s)
 	return (new);
 }
 
-size_t	ft_strlen(const char *s)
+size_t	sm_strlen(const char *s)
 {
 	size_t	i;
 
@@ -518,8 +508,8 @@ char	*ft_str_fback_join(char *sfree, char *s2)
 	size_t	s2_i;
 	char	*new;
 
-	s1_i = ft_strlen(sfree);
-	s2_i = ft_strlen(s2);
+	s1_i = sm_strlen(sfree);
+	s2_i = sm_strlen(s2);
 	new = calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
 		return (new = xfree(new));
@@ -536,8 +526,8 @@ char	*ft_str_ffront_join(char *s1, char *sfree)
 	size_t	s2_i;
 	char	*new;
 
-	s1_i = strlen(s1);
-	s2_i = strlen(sfree);
+	s1_i = sm_strlen(s1);
+	s2_i = sm_strlen(sfree);
 	new = calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
 		return (new = xfree(new));
@@ -554,8 +544,8 @@ char	*f_strjoin(char *s1, char *s2)
 	size_t	s2_i;
 	char	*new;
 
-	s1_i = strlen(s1);
-	s2_i = strlen(s2);
+	s1_i = sm_strlen(s1);
+	s2_i = sm_strlen(s2);
 	new = calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
 		return (new = xfree(new));
@@ -572,8 +562,8 @@ char	*ft_str_ff_join(char *s1f, char *s2f)
 	size_t	s2_i;
 	char	*new;
 
-	s1_i = ft_strlen(s1f);
-	s2_i = ft_strlen(s2f);
+	s1_i = sm_strlen(s1f);
+	s2_i = sm_strlen(s2f);
 	new = calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
 		return (new = xfree(new));
@@ -600,9 +590,9 @@ char	*str_join_char(char *s, char c)
 	size_t	size;
 	char	*new;
 
-	size = strlen(s) + 1;
+	size = sm_strlen(s) + 1;
 	new = calloc(size + 1, sizeof(char));
-	new = strcpy(new, s);
+	ft_memcpy(new, s, sm_strlen(s));
 	new[size - 1] = c;
 	free(s);
 	return (new);
@@ -662,7 +652,7 @@ void	sm_log(int fd, char *from, char *log)
 	cmd = combine("[%s]: %s\n", from, log);
 	if (!cmd)
 		return ;
-	write(fd, cmd, strlen(cmd));
+	write(fd, cmd, sm_strlen(cmd));
 	free(cmd);
 }
 
@@ -703,7 +693,7 @@ static char	*ft_strdup_c(const char *str, char c)
 	i = 0;
 	while (str[i] && str[i] != c)
 		i++;
-	new = ft_calloc(i + 1, sizeof(char));
+	new = sm_calloc(i + 1, sizeof(char));
 	if (!new)
 		return (NULL);
 	while (i--)
@@ -721,7 +711,7 @@ char	**ft_split(char const *s, char c)
 	index = 0;
 	if (!s)
 		return (NULL);
-	new = (char **)ft_calloc(nb_word(s, c) + 1, sizeof(char *));
+	new = (char **)sm_calloc(nb_word(s, c) + 1, sizeof(char *));
 	if (!new)
 		return (NULL);
 	while (nb_word(s + i, c))
@@ -737,23 +727,57 @@ char	**ft_split(char const *s, char c)
 	return (new);
 }
 
-void	*ft_calloc(size_t coun, size_t size)
+void	*sm_calloc(size_t coun, size_t size)
 {
 	char	*new;
 
 	new = malloc(coun * size);
 	if (!new)
 		return (NULL);
-	ft_bzero(new, coun * size);
+	sm_bzero(new, coun * size);
 	return (new);
 }
 
-void	ft_bzero(void *s, size_t n)
+
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
+	size_t	i;
+
+	i = 0;
+	if (!s1 || !s2 || n == 0)
+		return (0);
+	while (i < n -1 && (((unsigned char *)s1)[i] == ((unsigned char *)s2)[i]))
+		i++;
+	return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
+}
+//
+
+char	*ft_strchr(const char *s, int c)
+{
+	int		i;
+	int		n;
+
 	if (!s)
-		return ;
-	while (n--)
-		((char *)s)[n] = 0;
+		return (NULL);
+	i = 0;
+	n = sm_strlen(s);
+	while (i <= n)
+	{
+		if (((char *)s)[i] == (unsigned char)c)
+			return (((char *)s) + i);
+		i++;
+	}
+	return (NULL);
 }
 
-//
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t	i;
+
+	if (dst == NULL || src == NULL)
+		return (dst);
+	i = -1;
+	while (++i < n)
+		((char *)dst)[i] = ((char *)src)[i];
+	return (dst);
+}

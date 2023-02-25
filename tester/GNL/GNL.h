@@ -26,6 +26,7 @@
 # define	NB_CHAR	"\x1b[38;5;6m"
 # define	LINE	"\x1b[38;5;28m"
 
+# include "../../get_next_line/get_next_line.h"
 // Standard Library headers
 # include <string.h>
 # include <stdio.h>
@@ -35,7 +36,6 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <time.h>
-# include "../../get_next_line/get_next_line.h"
 
 // Function declarations
 
