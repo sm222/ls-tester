@@ -12,7 +12,9 @@
 
 #include "main.h"
 
-int	log_fd;
+int		log_fd;
+char	*path;
+char	*name;
 
 char	*menu_loop(int *loop, char *call_back)
 {
@@ -25,7 +27,7 @@ char	*menu_loop(int *loop, char *call_back)
 
 	if (call_back != NULL)
 		printf("last command : "YEL "%s\n" WHT, call_back);
-	printf("ls-tester: ");
+	printf("%s/ls-tester: ", name);
 	//						look for recall input					//
 	if (call_back && *loop == 1)
 	{
@@ -122,6 +124,7 @@ char	*menu_loop(int *loop, char *call_back)
 		}
 		else if (sm_func_looking(u_input, "-tt", &str_p) == 0)
 		{
+			printf(WHT);
 			new_gnl_test();
 		}
 		else if (sm_func_looking(u_input, "-dif", &str_p) == 0)
@@ -390,6 +393,10 @@ char	*menu_loop(int *loop, char *call_back)
 		close(log_fd);
 		exit(0);
 	}
+	else if (sm_func_looking(u_input, "pwd", &str_p) == 0)
+	{
+		printf("%s\n", path);
+	}
 	//							default								//
 	else if (sm_func_looking(u_input, "ls-tester", &str_p) == 0)
 	{
@@ -403,26 +410,37 @@ char	*menu_loop(int *loop, char *call_back)
 	return (sm_str_dup(u_input));
 }
 
-int	main(void)
+int	main(int ac, char **av, char **en)
 {
 	int		loop;
 	char	*last_call;
-
+	int	i = 0;
+	(void)ac;
+	(void)av;
+	loop = 0;
+	last_call = NULL;
+	system("rm .log.txt");
+	sm_make_file_name(".log.txt");
+	log_fd = open(".log.txt", O_RDWR);
 	// make dif file
 	system("touch tester/GNL/GNL_dif.txt");
 	system("touch tester/PRINTF/PRINTF_dif.txt");
 	//
-	loop = 0;
 	printf(GRN"compile"WHT"				welcome in ...\n");
-	system("rm .log.txt");
-	sm_make_file_name(".log.txt");
 	logo();
 	printf(RED "DON'T use this for correction ❗\n"WHT);
 	printf("this is not a finish product ⚠️\n");
 	printf("type \"" YEL "help" WHT "\" to start\n\n");
-	last_call = NULL;
-	log_fd = open(".log.txt", O_RDWR);
 	sm_log(log_fd, "ls-tester", "hi here");
+	while (en[i])
+	{
+		sm_log(log_fd, "system", en[i]);
+		if(strncmp("PWD=", en[i], 4) == 0)
+			path = en[i] + 4;
+		if(strncmp("LOGNAME=", en[i], 8) == 0)
+			name = en[i] + 8;
+		i++;
+	}
 	while (1)
 		last_call = menu_loop(&loop, last_call);
 	close(log_fd);

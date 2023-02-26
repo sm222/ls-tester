@@ -22,34 +22,51 @@ int	main(int ac, char **av)
 	int		fd[2];
 	int		loop;
 
-	s_ls = NULL;
-	s_gnl = NULL;
-	loop = 1;
+	setvbuf(stdout, NULL, _IONBF, 0);
 	printf("welcome to gnl tester\n");
-	printf("BUFFER_SIZE = %d\n", BUFFER_SIZE);
+	printf("BUFFER_SIZE = %d\n\n", BUFFER_SIZE);
 	while (--ac)
 	{
-		printf("file use for test :"YEL"%s\n"WHT, av[ac]);
+		loop = 1;
+		printf("file use for test : "YEL"%s\n"WHT, av[ac]);
 		fd[0] = open(av[ac], O_RDONLY);
 		fd[1] = open(av[ac], O_RDONLY);
-		printf("open fd /%d/%d\n", fd[0], fd[1]);
+		printf("open fd /%d|%d\\\n", fd[0], fd[1]);
 		s_ls = NULL;
 		s_gnl = NULL;
+		sm_make_file_name("ls_out");
+		sm_make_file_name("gnl_out");
 		while (loop)
 		{
-			printf("here\n");
+			usleep(70000);
 			s_ls = sm_get_next_line(fd[0]);
 			s_gnl  = get_next_line(fd[1]);
-			printf("test = %s", s_gnl);
-			printf("ls   = %s", s_ls);
-			if (s_ls == NULL && s_gnl == NULL)
+			if (ft_memcmp(s_gnl, s_ls, sm_strlen(s_ls) + 1) == 0)
+			{
+				s_ls = sm_free(s_ls);
+				s_gnl = sm_free(s_gnl);
+				printf(GRN"[OK]"WHT);
+				if (s_gnl == NULL && s_ls == NULL)
+				{
+					printf("\n✅ OK\n");
+					break ;
+				}
+			}
+			else
+			{
+				printf("\n❌ KO\n");
+				printf("\nwas expecting :\n %s", s_ls);
+				printf("\ngot :\n %s", s_gnl);
+				printf("\n- - -\n");
+				s_ls = sm_free(s_ls);
+				s_gnl = sm_free(s_gnl);
 				break ;
-			else if (ft_memcmp(s_gnl, s_ls, sm_strlen(s_ls) + 1) == 0)
-				continue;
-			//if (s_ls == NULL || s_gnl == NULL)
-			//	break ;
+			}
 		}
 		close(fd[0]);
 		close(fd[1]);
+		system("rm -f gnl_out");
+		system("rm -f ls_out");
+		printf("\n");
 	}
 }

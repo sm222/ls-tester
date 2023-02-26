@@ -649,7 +649,7 @@ void	sm_log(int fd, char *from, char *log)
 	while(*time_s != '\n')
 		write(fd, time_s++, 1);
 	cmd = NULL;
-	cmd = combine("[%s]: %s\n", from, log);
+	cmd = combine(" [%s] : %s\n", from, log);
 	if (!cmd)
 		return ;
 	write(fd, cmd, sm_strlen(cmd));
@@ -780,4 +780,11 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	while (++i < n)
 		((char *)dst)[i] = ((char *)src)[i];
 	return (dst);
+}
+
+void	*sm_free(void *ptr)
+{
+	if (ptr)
+		free(ptr);
+	return (NULL);
 }

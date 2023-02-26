@@ -72,5 +72,6 @@ char	*ft_itoa(int n);
 char	*f_strjoin(char *s1, char *s2);
 void	*sm_calloc(size_t coun, size_t size);
 size_t	sm_strlen(const char *s);
+void	*sm_free(void *ptr);
 
 #endif // SM_FT_H
