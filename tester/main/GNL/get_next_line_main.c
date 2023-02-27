@@ -198,22 +198,23 @@ int		gnl_mem(int test,int BS)
 void	new_gnl_test(void)
 {
 	int		i;
-	char	*args;
 	char	*tmp;
 
 	i = 1;
-	tmp = combine("./gnl.out ");
+	printf("\n\n\n");
+	printf("welcome in Gnl tester !\n");
+	//-D FULL_TEST=1
+	system(GCCF" tester/ls_gnl.c "GNL_C" "GNLU_C" tester/GNL/GNL_mainV2.c "SM_FT" .."C_TOOLS" -o gnl.out");
 	while (i < 9)
 	{
-		args = tmp;
-		tmp = combine("%s tester/text/text%d.txt ", tmp, i);
-		free(args);
+		sleep(3);
+		printf("\n\n\n");
+		tmp = combine("./gnl.out tester/text/text%d.txt ", i);
+		system(tmp);
+		free(tmp);
 		i++;
 	}
-	system(GCCF" tester/ls_gnl.c "GNL_C" "GNLU_C" tester/GNL/GNL_mainV2.c "SM_FT" -o gnl.out");
-	system(tmp);
-	free(tmp);
 	system("rm -f gnl.out");
 }
 
-//D:\C_code\ls-tester\tester\GNL\GNL_mainV2.c
+//ls-tester\tester\GNL\GNL_mainV2.c

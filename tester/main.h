@@ -30,6 +30,7 @@
 # define VAL "valgrind"
 # define VALL "valgrind --leak-check=full"
 # define TF "text/"
+# define C_TOOLS "/C_tools/C_tool.a"
 
 // system("ls | tee -a output.txt");
 

@@ -11,62 +11,98 @@
 /* ************************************************************************** */
 
 #include "GNL.h"
+/*___________________________________*/
 #include "../ls_gnl.h"
 #include "../sm_ft.h"
+#include "../../C_tools/C_tool.h"
 
+/*___________________________________*/
 
 int	main(int ac, char **av)
 {
-	char	*s_ls;
-	char	*s_gnl;
-	int		fd[2];
-	int		loop;
+	t_gnl	data;
 
+	data.loop = 1;
 	setvbuf(stdout, NULL, _IONBF, 0);
-	printf("welcome to gnl tester\n");
 	printf("BUFFER_SIZE = %d\n\n", BUFFER_SIZE);
 	while (--ac)
 	{
-		loop = 1;
+		data.loop = 1;
 		printf("file use for test : "YEL"%s\n"WHT, av[ac]);
-		fd[0] = open(av[ac], O_RDONLY);
-		fd[1] = open(av[ac], O_RDONLY);
-		printf("open fd /%d|%d\\\n", fd[0], fd[1]);
-		s_ls = NULL;
-		s_gnl = NULL;
+		data.fd[0] = open(av[ac], O_RDONLY);
+		data.fd[1] = open(av[ac], O_RDONLY);
+		printf("open fd /%d|%d\\\n", data.fd[0], data.fd[1]);
+		data.s_ls =  NULL;
+		data.s_gnl = NULL;
 		sm_make_file_name("ls_out");
 		sm_make_file_name("gnl_out");
-		while (loop)
+		while (data.loop)
 		{
 			usleep(70000);
-			s_ls = sm_get_next_line(fd[0]);
-			s_gnl  = get_next_line(fd[1]);
-			if (ft_memcmp(s_gnl, s_ls, sm_strlen(s_ls) + 1) == 0)
+			data.s_ls = sm_get_next_line(data.fd[0]);
+			data.s_gnl  =  get_next_line(data.fd[1]);
+			if (LS_FULL_TEST)
 			{
-				s_ls = sm_free(s_ls);
-				s_gnl = sm_free(s_gnl);
-				printf(GRN"[OK]"WHT);
-				if (s_gnl == NULL && s_ls == NULL)
+				if (ft_memcmp(data.s_gnl, data.s_ls, sm_strlen(data.s_ls) + 1) == 0)
 				{
-					printf("\n✅ OK\n");
-					break ;
+					printf(GRN"[OK]"WHT);
+					if (data.s_gnl == NULL && data.s_ls == NULL)
+					{
+						printf(GRN"\n✅ [OK]\n"WHT);
+						break ;
+					}
 				}
+				else
+					printf(RED"[KO]"WHT);
+				sm_free(data.s_ls);
+				sm_free(data.s_gnl);
+				if (data.s_ls == NULL)
+					break ;
 			}
 			else
 			{
-				printf("\n❌ KO\n");
-				printf("\nwas expecting :\n %s", s_ls);
-				printf("\ngot :\n %s", s_gnl);
-				printf("\n- - -\n");
-				s_ls = sm_free(s_ls);
-				s_gnl = sm_free(s_gnl);
-				break ;
+				printf("%d", data.loop);
+				if (ft_memcmp(data.s_gnl, data.s_ls, sm_strlen(data.s_ls) + 1) == 0)
+				{
+					sm_free(data.s_ls);
+					sm_free(data.s_gnl);
+					printf(GRN"[OK]"WHT);
+					if (data.s_gnl == NULL && data.s_ls == NULL)
+					{
+						printf(GRN"\n✅ [OK]\n"WHT);
+						system("echo '	✅[OK]\n' >> tester/GNL/GNL_dif.txt");
+						break ;
+					}
+				}
+				else
+				{
+					printf(RED"\n❌ [KO]\n"WHT);
+					system("echo '	❌ [KO]\n' >> tester/GNL/GNL_dif.txt");
+					printf("\nwas expecting :\n");
+					if (LS_INSP_TEST)
+						Ct_memcmp(data.s_ls, data.s_gnl, sm_strlen(data.s_ls) + 1, 1);
+					else
+					{
+						printf(GRN"%s\n\n"WHT, data.s_ls);
+						printf(RED"%s\n\n"WHT, data.s_gnl);
+					}
+					printf("got :\n");
+					//sm_inspect_arr(data.s_gnl, 'c', sm_strlen(data.s_ls) + 1, -1);
+					printf("\n- - -\n");
+					
+					sm_free(data.s_ls);
+					sm_free(data.s_gnl);
+					if (!LS_FULL_TEST)
+						break ;
+				}
 			}
+			data.loop++;
 		}
-		close(fd[0]);
-		close(fd[1]);
+		close(data.fd[0]);
+		close(data.fd[1]);
 		system("rm -f gnl_out");
 		system("rm -f ls_out");
 		printf("\n");
 	}
+	printf(RED"\n-"GRN"\n-"BLU"\n-"WHT"\n");
 }

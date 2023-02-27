@@ -18,13 +18,17 @@ RED		:= \033[1;31m
 
 
 all:
-	
-	$(CC) $(CFLAGS) $(SRC) 
+	$(CC) $(CFLAGS) $(SRC)
+	$(MAKE) -C ../C_tools
 	@reset
 # @afplay ./p.wav &>/dev/null &
+
 clean:
 	rm -f a.out
+
 leaks: 
 	$(CC) $(CFLAGS) $(SRC)
+
 re: clean all
+
 releaks: clean leaks

@@ -26,7 +26,30 @@
 # define	NB_CHAR	"\x1b[38;5;6m"
 # define	LINE	"\x1b[38;5;28m"
 
+# ifndef LS_FULL_TEST
+//run the test event if you fail
+#  define LS_FULL_TEST 0
+# endif
+
+
+# ifndef LS_INSP_TEST
+//be carfull hard to see with big files
+#  define LS_INSP_TEST 0
+# endif
+
+typedef struct s_gnl
+{
+	char	*s_ls;
+	char	*s_gnl;
+	int		fd[2];
+	int		loop;
+	int		nb_line;
+	int		Percent;
+}	t_gnl;
+
+
 # include "../../get_next_line/get_next_line.h"
+
 // Standard Library headers
 # include <string.h>
 # include <stdio.h>
