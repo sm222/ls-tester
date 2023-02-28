@@ -21,7 +21,9 @@
 int	main(int ac, char **av)
 {
 	t_gnl	data;
+	char	*cmd;
 
+	cmd = NULL;
 	data.loop = 1;
 	setvbuf(stdout, NULL, _IONBF, 0);
 	printf("BUFFER_SIZE = %d\n\n", BUFFER_SIZE);
@@ -36,6 +38,9 @@ int	main(int ac, char **av)
 		data.s_gnl = NULL;
 		sm_make_file_name("ls_out");
 		sm_make_file_name("gnl_out");
+		cmd = combine("echo 'file test %s\n' >> tester/GNL/GNL_dif.txt", av[ac]);
+		system(cmd);
+		sm_free(cmd);
 		while (data.loop)
 		{
 			usleep(70000);
@@ -79,14 +84,24 @@ int	main(int ac, char **av)
 					printf(RED"\n❌ [KO]\n"WHT);
 					system("echo '	❌ [KO]\n' >> tester/GNL/GNL_dif.txt");
 					printf("\nwas expecting :\n");
+					system("echo 'was expecting :\n' >> tester/GNL/GNL_dif.txt");
+					cmd = combine("echo '%s|||' >> tester/GNL/GNL_dif.txt", data.s_ls);
+					system(cmd);
+					sm_free(cmd);
+					cmd = combine("echo '%s\n|||' >> tester/GNL/GNL_dif.txt", data.s_gnl);
+					system(cmd);
+					sm_free(cmd);
 					if (LS_INSP_TEST)
+					{
 						Ct_memcmp(data.s_ls, data.s_gnl, sm_strlen(data.s_ls) + 1, 1);
+					}
 					else
 					{
 						printf(GRN"%s\n\n"WHT, data.s_ls);
 						printf(RED"%s\n\n"WHT, data.s_gnl);
 					}
 					printf("got :\n");
+					system("echo 'got :\n' >> tester/GNL/GNL_dif.txt");
 					//sm_inspect_arr(data.s_gnl, 'c', sm_strlen(data.s_ls) + 1, -1);
 					printf("\n- - -\n");
 					
