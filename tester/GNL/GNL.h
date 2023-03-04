@@ -37,11 +37,17 @@
 #  define LS_INSP_TEST 0
 # endif
 
+# ifndef LS_RMFILE
+//be carfull hard to see with big files
+#  define LS_RMFILE 0
+# endif
+
 typedef struct s_gnl
 {
 	char	*s_ls;
 	char	*s_gnl;
 	int		fd[2];
+	int		out_fd[2];
 	int		loop;
 	int		nb_line;
 	int		Percent;

@@ -38,6 +38,9 @@ int	main(int ac, char **av)
 		data.s_gnl = NULL;
 		sm_make_file_name("ls_out");
 		sm_make_file_name("gnl_out");
+		data.out_fd[0] = open("ls_out", O_RDWR);
+		data.out_fd[1] = open("gnl_out", O_RDWR);
+		printf("open fd_out /%d|%d\\\n", data.out_fd[0], data.out_fd[1]);
 		cmd = combine("echo 'file test %s\n' >> tester/GNL/GNL_dif.txt", av[ac]);
 		system(cmd);
 		sm_free(cmd);
@@ -46,6 +49,8 @@ int	main(int ac, char **av)
 			usleep(70000);
 			data.s_ls = sm_get_next_line(data.fd[0]);
 			data.s_gnl  =  get_next_line(data.fd[1]);
+			write(data.out_fd[0], data.s_ls, sm_strlen(data.s_ls));
+			write(data.out_fd[1], data.s_gnl, sm_strlen(data.s_gnl));
 			if (LS_FULL_TEST)
 			{
 				if (ft_memcmp(data.s_gnl, data.s_ls, sm_strlen(data.s_ls) + 1) == 0)
@@ -115,8 +120,13 @@ int	main(int ac, char **av)
 		}
 		close(data.fd[0]);
 		close(data.fd[1]);
-		system("rm -f gnl_out");
-		system("rm -f ls_out");
+		close(data.out_fd[0]);
+		close(data.out_fd[1]);
+		if (LS_RMFILE)
+		{
+			system("rm -f gnl_out");
+			system("rm -f ls_out");
+		}
 		printf("\n");
 	}
 	printf(RED"\n-"GRN"\n-"BLU"\n-"WHT"\n");
