@@ -45,7 +45,6 @@ char	*ft_strchr(const char *s, int c);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 
 //menu
-int		sm_ls(char *path);
 void	val_install(void);
 void	sm_signature(void);
 int		sm_print_file(char *name);
@@ -73,5 +72,6 @@ char	*f_strjoin(char *s1, char *s2);
 void	*sm_calloc(size_t coun, size_t size);
 size_t	sm_strlen(const char *s);
 void	*sm_free(void *ptr);
+void	sm_putstr(char *s, int fd);
 
 #endif // SM_FT_H

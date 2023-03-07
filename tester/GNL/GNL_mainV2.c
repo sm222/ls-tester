@@ -33,20 +33,19 @@ int	main(int ac, char **av)
 		printf("file use for test : "YEL"%s\n"WHT, av[ac]);
 		data.fd[0] = open(av[ac], O_RDONLY);
 		data.fd[1] = open(av[ac], O_RDONLY);
-		printf("open fd /%d|%d\\\n", data.fd[0], data.fd[1]);
-		data.s_ls =  NULL;
+		printf("open fd		/%d|%d\\\n", data.fd[0], data.fd[1]);
+		data.s_ls  = NULL;
 		data.s_gnl = NULL;
-		sm_make_file_name("ls_out");
-		sm_make_file_name("gnl_out");
-		data.out_fd[0] = open("ls_out", O_RDWR);
-		data.out_fd[1] = open("gnl_out", O_RDWR);
-		printf("open fd_out /%d|%d\\\n", data.out_fd[0], data.out_fd[1]);
+		data.out_fd[0] = open("ls_out",  O_RDWR | O_CREAT | O_TRUNC, 0644);
+		data.out_fd[1] = open("gnl_out", O_RDWR | O_CREAT | O_TRUNC, 0644);
+		printf("open fd_out	/%d|%d\\\n", data.out_fd[0], data.out_fd[1]);
 		cmd = combine("echo 'file test %s\n' >> tester/GNL/GNL_dif.txt", av[ac]);
 		system(cmd);
 		sm_free(cmd);
+		sleep(1);
 		while (data.loop)
 		{
-			usleep(70000);
+			usleep(LS_SPEED * 10000);
 			data.s_ls = sm_get_next_line(data.fd[0]);
 			data.s_gnl  =  get_next_line(data.fd[1]);
 			write(data.out_fd[0], data.s_ls, sm_strlen(data.s_ls));
@@ -55,7 +54,10 @@ int	main(int ac, char **av)
 			{
 				if (ft_memcmp(data.s_gnl, data.s_ls, sm_strlen(data.s_ls) + 1) == 0)
 				{
-					printf(GRN"[OK]"WHT);
+					if (LS_STYLE)
+						printf(GRN"|"WHT);
+					else
+						printf(GRN"[OK]"WHT);
 					if (data.s_gnl == NULL && data.s_ls == NULL)
 					{
 						printf(GRN"\n✅ [OK]\n"WHT);
@@ -63,7 +65,12 @@ int	main(int ac, char **av)
 					}
 				}
 				else
-					printf(RED"[KO]"WHT);
+				{
+					if (LS_STYLE)
+						printf(RED"|"WHT);
+					else
+						printf(RED"[KO]"WHT);
+				}
 				sm_free(data.s_ls);
 				sm_free(data.s_gnl);
 				if (data.s_ls == NULL)
@@ -71,12 +78,16 @@ int	main(int ac, char **av)
 			}
 			else
 			{
-				printf("%d", data.loop);
+				if (!LS_STYLE)
+					printf("%d", data.loop);
 				if (ft_memcmp(data.s_gnl, data.s_ls, sm_strlen(data.s_ls) + 1) == 0)
 				{
 					sm_free(data.s_ls);
 					sm_free(data.s_gnl);
-					printf(GRN"[OK]"WHT);
+					if (LS_STYLE)
+						printf(GRN"|"WHT);
+					else
+						printf(GRN"[OK]"WHT);
 					if (data.s_gnl == NULL && data.s_ls == NULL)
 					{
 						printf(GRN"\n✅ [OK]\n"WHT);

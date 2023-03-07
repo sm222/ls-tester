@@ -605,7 +605,7 @@ char	*combine(char *s, ...)
 	char	*new;
 
 	va_start(list, s);
-	new = calloc(1, sizeof(char));
+	new = sm_calloc(1, sizeof(char));
 	i = 0;
 	while (s[i])
 	{
@@ -787,4 +787,9 @@ void	*sm_free(void *ptr)
 	if (ptr)
 		free(ptr);
 	return (NULL);
+}
+
+void	sm_putstr(char *s, int fd)
+{
+	write(fd, s, sm_strlen(s));
 }

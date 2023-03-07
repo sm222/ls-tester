@@ -21,6 +21,7 @@
 # include <string.h>
 # include <stdarg.h>
 # include <time.h>
+# include <stdbool.h>
 # include "ls_gnl.h"
 
 //			ls-tester		//
@@ -29,10 +30,11 @@
 # define  GCCF "gcc -Wall -Werror -Wextra"
 # define VAL "valgrind"
 # define VALL "valgrind --leak-check=full"
-# define TF "text/"
+# define TF "tester/text/"
 # define C_TOOLS "/C_tools/C_tool.a"
 
 // system("ls | tee -a output.txt");
+# include "sm_ft.h"
 
 //				GNL				//
 # define GNL_PATH_O " tester/GNL/GNL_main.c -o "
@@ -50,6 +52,12 @@
 //				FT_PRINTF		//
 # define FT_PRINTF "ft_printf"
 
+typedef	struct s_gnl_in
+{
+	struct s_gnl_in	*next;
+	char			*cmd;
+	int				size;
+}	t_gnl_in;
 
 void	logo(void);
 void	*ft_sfree(void *p);
@@ -58,13 +66,12 @@ void	gnl_buffer_tester(void);
 void	put_time_file(char type, char *file);
 char	*menu_loop(int *loop, char *call_back);
 
-# include "sm_ft.h"
 
 
 //char	*get_next_line(int fd);
 char	*sm_ft_strjoin(char *s1, char *s2);
 
-void	new_gnl_test(void);
+void	new_gnl_test(t_gnl_in *data);
 
 //-----------------------------------------------
 

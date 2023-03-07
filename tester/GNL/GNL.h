@@ -26,6 +26,13 @@
 # define	NB_CHAR	"\x1b[38;5;6m"
 # define	LINE	"\x1b[38;5;28m"
 
+/*
+LS_FULL_TEST
+LS_INSP_TEST
+LS_RMFILE
+LS_SPEED
+*/
+
 # ifndef LS_FULL_TEST
 //run the test event if you fail
 #  define LS_FULL_TEST 0
@@ -38,8 +45,19 @@
 # endif
 
 # ifndef LS_RMFILE
-//be carfull hard to see with big files
-#  define LS_RMFILE 0
+//be carfull hard to see with big files/line
+#  define LS_RMFILE 1
+# endif
+
+# ifndef LS_STYLE
+//type of style on scren 
+#  define LS_STYLE 0
+# endif
+
+
+# ifndef LS_SPEED
+//sleep speed betwen the test in ulseep, LS_SPEED * 10000
+#  define LS_SPEED 1
 # endif
 
 typedef struct s_gnl

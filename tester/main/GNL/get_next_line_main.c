@@ -12,42 +12,45 @@
 
 #include "../../main.h"
 
-int	check_gnl(int norm)
+int	check_gnl(void)
 {
 	int	verif[3];
 	int	i;
+	int	norm;
 
 	i = 0;
-	verif[0] = open(GNL_C, O_RDONLY);
+	norm = 0;
+	verif[0] = open(GNL_C,  O_RDONLY);
 	verif[1] = open(GNLU_C, O_RDONLY);
-	verif[2] = open(GNL_H, O_RDONLY);
-	printf("looking for files  ");
+	verif[2] = open(GNL_H,  O_RDONLY);
+	sm_putstr("looking for files", 2);
 	while (i++ < 3)
 	{
 		usleep(200000);
-		printf(YEL"."WHT);
+		sm_putstr(YEL"."WHT, 2);
 	}
 	if (verif[0] < 0 || verif[1] < 0 || verif[2] < 0)
 	{
-		printf(RED"\nMissing file:	\n");
+		sm_putstr(RED"\nMissing file:	\n", 2);
 		if (verif[0] < 0)
-			printf("	"RED GNL_C"\n"WHT);
+			sm_putstr("	"RED GNL_C"\n"WHT, 2);
 		if (verif[1] < 0)
-			printf("	"RED GNLU_C"\n"WHT);
+			sm_putstr("	"RED GNLU_C"\n"WHT, 2);
 		if (verif[2] < 0)
-			printf("	"RED GNL_H"\n"WHT);
-		printf("\n");
+			sm_putstr("	"RED GNL_H"\n"WHT, 2);
+		sm_putstr(WHT"\n", 2);
 		return (-1);
 	}
-	printf(GRN"\nNo files missing, ready to go!\n"WHT);
+	sm_putstr(GRN"\nNo files missing, ready to go!\n"WHT, 2);
 	if (system("norminette " GNL_C " " GNL_H " " GNLU_C) > 0)
 	{
 		norm = 1;
-		printf(YEL "NORM ERROR !\n"WHT);
+		sm_putstr(YEL "NORM ERROR !\n"WHT, 2);
 	}
 	close(verif[0]);
 	close(verif[1]);
 	close(verif[2]);
+	sm_putstr(WHT, 2);
 	return (norm);
 }
 
@@ -59,7 +62,7 @@ void	gnl_partial_tester(int buff, char *test)
 
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
-	norm = check_gnl(0);
+	norm = check_gnl();
 	if (norm < 0)
 		return ;
 	//
@@ -111,7 +114,7 @@ void	gnl_tester(int buff)
 	i = 0;
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
-	norm = check_gnl(0);
+	norm = check_gnl();
 	if (norm < 0)
 		return ;
 	gnl_mem(1, 100);
@@ -195,23 +198,52 @@ int		gnl_mem(int test,int BS)
 //gccf get_next_line_main.c main_utils.c -D LEAK=1
 //work on timer ft
 
-void	new_gnl_test(void)
+void	new_gnl_test(t_gnl_in *data)
 {
-	int		i;
-	char	*tmp;
+	int			i;
+	char		*tmp;
+	char		*tmp2;
+	t_gnl_in	*data_tmp;
 
 	i = 1;
 	printf("\n\n\n");
 	printf("welcome in Gnl tester !\n");
-	//-D FULL_TEST=1
-	system(GCCF" tester/ls_gnl.c "GNL_C" "GNLU_C" tester/GNL/GNL_mainV2.c "SM_FT" .."C_TOOLS" -o gnl.out");
+	check_gnl();
+	tmp = combine(GCCF" tester/ls_gnl.c "GNL_C" "GNLU_C" tester/GNL/GNL_mainV2.c "SM_FT" .."C_TOOLS" ");
+	while(data)
+	{
+		data_tmp = data;
+		if (data->cmd)
+		{
+			tmp2 = combine("%s -D %s=%d", tmp, data->cmd, data->size);
+			sm_free(tmp);
+			tmp = tmp2;
+		}
+		data = data->next;
+		sm_free(data_tmp);
+	}
+	/*
+	0 = off
+	1 = on
+	//	//	//
+	LS_FULL_TEST
+	LS_INSP_TEST
+	LS_RMFILE
+	LS_SPEED= "1/10"
+	LS_STYLE
+	*/
+	//-o gnl.out
+	tmp2 = combine("%s -o gnl.out", tmp);
+	system(tmp2);
+	sm_free(tmp2);
+	sm_free(tmp);
 	while (i < 9)
 	{
-		sleep(3);
+		sleep(2);
 		printf("\n\n\n");
-		tmp = combine("./gnl.out tester/text/text%d.txt ", i);
+		tmp = combine("./gnl.out "TF"text%d.txt ", i);
 		system(tmp);
-		free(tmp);
+		sm_free(tmp);
 		i++;
 	}
 	system("rm -f gnl.out");
