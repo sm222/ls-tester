@@ -128,7 +128,7 @@ char	*menu_loop(int *loop, char *call_back)
 			t_gnl_in *in;
 			in = sm_calloc(1, sizeof(t_gnl_in));
 			in->cmd = "LS_FULL_TEST";
-			in->size = 0;
+			in->size = 1;
 			in->next = NULL;
 			new_gnl_test(in);
 		}
@@ -453,3 +453,6 @@ int	main(int ac, char **av, char **en)
 }
 
 // >> .log.txt
+/*
+
+*/
