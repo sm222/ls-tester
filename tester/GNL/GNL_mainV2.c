@@ -39,10 +39,11 @@ int	main(int ac, char **av)
 		data.out_fd[0] = open("ls_out",  O_RDWR | O_CREAT | O_TRUNC, 0644);
 		data.out_fd[1] = open("gnl_out", O_RDWR | O_CREAT | O_TRUNC, 0644);
 		printf("open fd_out	/%d|%d\\\n", data.out_fd[0], data.out_fd[1]);
-		cmd = combine("echo 'file test %s\n' >> tester/GNL/GNL_dif.txt", av[ac]);
+		cmd = combine("echo 'file test %s 🔽\n' >> tester/GNL/GNL_dif.txt", av[ac]);
 		system(cmd);
 		sm_free(cmd);
 		sleep(1);
+		system("echo 'top\\\\\\\\🔜' >> tester/GNL/GNL_dif.txt");
 		while (data.loop)
 		{
 			usleep(LS_SPEED * 10000);
@@ -58,6 +59,9 @@ int	main(int ac, char **av)
 						printf(GRN"|"WHT);
 					else
 						printf(GRN"[OK]"WHT);
+					cmd = combine("echo '✅%d' >> tester/GNL/GNL_dif.txt", data.loop);
+					system(cmd);
+					sm_free(cmd);
 					if (data.s_gnl == NULL && data.s_ls == NULL)
 					{
 						printf(GRN"\n✅ [OK]\n"WHT);
@@ -67,9 +71,24 @@ int	main(int ac, char **av)
 				else
 				{
 					if (LS_STYLE)
+					{
 						printf(RED"|"WHT);
+					}
 					else
 						printf(RED"[KO]"WHT);
+					cmd = combine("echo '✅%d' >> tester/GNL/GNL_dif.txt", data.loop);
+					system(cmd);
+					sm_free(cmd);
+					system("echo '	❌ [KO]' >> tester/GNL/GNL_dif.txt");
+					system("echo 'was expecting :' >> tester/GNL/GNL_dif.txt");
+					cmd = combine("echo '%s' >> tester/GNL/GNL_dif.txt", data.s_ls);
+					system(cmd);
+					sm_free(cmd);
+					system("echo '⬆⬇' >> tester/GNL/GNL_dif.txt");
+					system("echo 'got:' >> tester/GNL/GNL_dif.txt");
+					cmd = combine("echo '%s\n' >> tester/GNL/GNL_dif.txt", data.s_gnl);
+					system(cmd);
+					sm_free(cmd);
 				}
 				sm_free(data.s_ls);
 				sm_free(data.s_gnl);
@@ -101,10 +120,11 @@ int	main(int ac, char **av)
 					system("echo '	❌ [KO]\n' >> tester/GNL/GNL_dif.txt");
 					printf("\nwas expecting :\n");
 					system("echo 'was expecting :\n' >> tester/GNL/GNL_dif.txt");
-					cmd = combine("echo '%s|||' >> tester/GNL/GNL_dif.txt", data.s_ls);
+					cmd = combine("echo '%s' >> tester/GNL/GNL_dif.txt", data.s_ls);
 					system(cmd);
 					sm_free(cmd);
-					cmd = combine("echo '%s\n|||' >> tester/GNL/GNL_dif.txt", data.s_gnl);
+					system("echo '⬆⬇' >> tester/GNL/GNL_dif.txt");
+					cmd = combine("echo '%s' >> tester/GNL/GNL_dif.txt", data.s_gnl);
 					system(cmd);
 					sm_free(cmd);
 					if (LS_INSP_TEST)
@@ -129,6 +149,7 @@ int	main(int ac, char **av)
 			}
 			data.loop++;
 		}
+		system("echo 'bot///🔚\n' >> tester/GNL/GNL_dif.txt");
 		close(data.fd[0]);
 		close(data.fd[1]);
 		close(data.out_fd[0]);

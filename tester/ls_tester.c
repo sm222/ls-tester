@@ -125,10 +125,10 @@ char	*menu_loop(int *loop, char *call_back)
 		else if (sm_func_looking(u_input, "-tt", &str_p) == 0)
 		{
 			printf(WHT);
-			t_gnl_in *in;
-			in = sm_calloc(1, sizeof(t_gnl_in));
+			t_define_in *in;
+			in = sm_calloc(1, sizeof(t_define_in));
 			in->cmd = "LS_FULL_TEST";
-			in->size = 1;
+			in->size = 0;
 			in->next = NULL;
 			new_gnl_test(in);
 		}

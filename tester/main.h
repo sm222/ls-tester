@@ -52,12 +52,12 @@
 //				FT_PRINTF		//
 # define FT_PRINTF "ft_printf"
 
-typedef	struct s_gnl_in
+typedef	struct s_define_in
 {
-	struct s_gnl_in	*next;
+	struct s_define_in	*next;
 	char			*cmd;
 	int				size;
-}	t_gnl_in;
+}	t_define_in;
 
 void	logo(void);
 void	*ft_sfree(void *p);
@@ -71,7 +71,7 @@ char	*menu_loop(int *loop, char *call_back);
 //char	*get_next_line(int fd);
 char	*sm_ft_strjoin(char *s1, char *s2);
 
-void	new_gnl_test(t_gnl_in *data);
+void	new_gnl_test(t_define_in *data);
 
 //-----------------------------------------------
 

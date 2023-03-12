@@ -198,12 +198,12 @@ int		gnl_mem(int test,int BS)
 //gccf get_next_line_main.c main_utils.c -D LEAK=1
 //work on timer ft
 
-void	new_gnl_test(t_gnl_in *data)
+void	new_gnl_test(t_define_in *data)
 {
 	int			i;
 	char		*tmp;
 	char		*tmp2;
-	t_gnl_in	*data_tmp;
+	t_define_in	*data_tmp;
 
 	i = 1;
 	printf("\n\n\n");

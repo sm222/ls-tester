@@ -86,8 +86,8 @@ file
 */
 void	put_time_file(char type, char *file)
 {
-	char	*cmd;
-	char	*txt;
+	char	*cmd = NULL;
+	char	*txt = NULL;
 	
 	if (type == 's')
 	{
