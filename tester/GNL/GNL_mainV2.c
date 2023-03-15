@@ -46,7 +46,7 @@ int	main(int ac, char **av)
 		system("echo 'top\\\\\\\\🔜' >> tester/GNL/GNL_dif.txt");
 		while (data.loop)
 		{
-			usleep(LS_SPEED * 10000);
+			usleep(LS_SPEED * 1000);
 			data.s_ls = sm_get_next_line(data.fd[0]);
 			data.s_gnl  =  get_next_line(data.fd[1]);
 			write(data.out_fd[0], data.s_ls, sm_strlen(data.s_ls));
@@ -123,7 +123,7 @@ int	main(int ac, char **av)
 					cmd = combine("echo '%s' >> tester/GNL/GNL_dif.txt", data.s_ls);
 					system(cmd);
 					sm_free(cmd);
-					system("echo '⬆⬇' >> tester/GNL/GNL_dif.txt");
+					system("echo '⬆🆚⬇' >> tester/GNL/GNL_dif.txt");
 					cmd = combine("echo '%s' >> tester/GNL/GNL_dif.txt", data.s_gnl);
 					system(cmd);
 					sm_free(cmd);

@@ -126,10 +126,8 @@ char	*menu_loop(int *loop, char *call_back)
 		{
 			printf(WHT);
 			t_define_in *in;
-			in = sm_calloc(1, sizeof(t_define_in));
-			in->cmd = "LS_FULL_TEST";
-			in->size = 0;
-			in->next = NULL;
+			in = make_node_define(LS_STYLE_T, 1);
+			in->next =  make_node_define(LS_SPEED_T, 1);
 			new_gnl_test(in);
 		}
 		else if (sm_func_looking(u_input, "-dif", &str_p) == 0)

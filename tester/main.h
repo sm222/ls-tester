@@ -22,7 +22,9 @@
 # include <stdarg.h>
 # include <time.h>
 # include <stdbool.h>
+
 # include "ls_gnl.h"
+# include "ls_define.h"
 
 //			ls-tester		//
 # include "color.h"
@@ -82,5 +84,7 @@ int		intlen(long int n, int base);
 //tester INT32_MAX / 50
 
 void	printf_tester(void);
+
+t_define_in	*make_node_define(char *define, int size);
 
 #endif

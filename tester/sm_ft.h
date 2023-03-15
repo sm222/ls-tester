@@ -46,7 +46,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 
 //menu
 void	val_install(void);
-void	sm_signature(void);
 int		sm_print_file(char *name);
 void	sm_make_file_name(char *name);
 void	sm_log(int fd, char *from, char *log);

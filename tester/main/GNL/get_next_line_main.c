@@ -220,6 +220,7 @@ void	new_gnl_test(t_define_in *data)
 			tmp = tmp2;
 		}
 		data = data->next;
+		sm_free(data_tmp->cmd);
 		sm_free(data_tmp);
 	}
 	/*

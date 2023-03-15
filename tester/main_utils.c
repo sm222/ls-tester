@@ -134,3 +134,17 @@ int		test_take_time(void)
 		return (1);
 	return (0);
 }
+
+/*
+struct
+*/
+t_define_in	*make_node_define(char *define, int size)
+{
+	t_define_in	*tmp;
+
+	tmp = sm_calloc(sizeof(t_define_in), 1);
+	tmp->cmd = sm_str_dup(define);
+	tmp->size = size;
+	tmp->next = NULL;
+	return (tmp);
+}
