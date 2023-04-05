@@ -1,0 +1,4 @@
+
+[submodule "C_tools"]
+path = ls-tester/C_tools
+url = git@github.com:sm222/C_tools.git
