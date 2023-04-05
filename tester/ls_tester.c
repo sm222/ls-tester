@@ -125,10 +125,12 @@ char	*menu_loop(int *loop, char *call_back)
 		else if (sm_func_looking(u_input, "-tt", &str_p) == 0)
 		{
 			printf(WHT);
-			t_define_in *in;
-			in = make_node_define(LS_STYLE_T, 1);
-			in->next =  make_node_define(LS_SPEED_T, 1);
+			t_define_in *in = NULL;
+			put_time_file('s',"tester/GNL/GNL_dif.txt");
+			make_node_def_last(&in, LS_STYLE_T, 1);
+			make_node_def_last(&in, LS_FULL_TEST_T, 1);
 			new_gnl_test(in);
+			put_time_file('e',"tester/GNL/GNL_dif.txt");
 		}
 		else if (sm_func_looking(u_input, "-dif", &str_p) == 0)
 		{

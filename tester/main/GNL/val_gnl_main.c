@@ -31,7 +31,9 @@ int	main(int ac, char **av)
 	int		i;
 
 	i = 0;
-	(void)ac;
+	if (ac == 1)
+		exit(write(2, "miss input file\n", 16));
+	setvbuf(stdout, NULL, _IONBF, 0);
 	printf("file test : "MAG"%s\n"WHT, av[1]);
 	system("echo " WHT);
 	s = "ls-tester";
@@ -51,6 +53,7 @@ int	main(int ac, char **av)
 		}
 		if (i % 100 == 0)
 			printf(YEL"."WHT);
+		usleep(3000);
 	}
 	printf("\n gnl run "YEL"%d"WHT" time\n\n", i);
 	close(fd);
@@ -58,4 +61,4 @@ int	main(int ac, char **av)
 }
 
 
-// work on reachable byte 
+// work on reachable byte

@@ -208,7 +208,8 @@ void	new_gnl_test(t_define_in *data)
 	i = 1;
 	printf("\n\n\n");
 	printf("welcome in Gnl tester !\n");
-	check_gnl();
+	if (check_gnl() == -1)
+		return ;
 	tmp = combine(GCCF" tester/ls_gnl.c "GNL_C" "GNLU_C" tester/GNL/GNL_mainV2.c "SM_FT" .."C_TOOLS" ");
 	while(data)
 	{
@@ -247,6 +248,13 @@ void	new_gnl_test(t_define_in *data)
 		sm_free(tmp);
 		i++;
 	}
+	printf("\n");
+	tmp = combine(GCCF " " GNL_C " " GNLU_C " tester/main/GNL/val_gnl_main.c -D BUFFER_SIZE=1 -o gnl.out");
+	system(tmp);
+	sm_free(tmp);
+	tmp = combine("valgrind -s ./gnl.out tester/text/text5.txt");
+	system(tmp);
+	sm_free(tmp);
 	system("rm -f gnl.out");
 }
 

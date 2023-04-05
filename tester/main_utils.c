@@ -138,6 +138,31 @@ int		test_take_time(void)
 /*
 struct
 */
+
+void		make_node_def_last(t_define_in **node, char *define, int size)
+{
+	t_define_in	*tmp;
+
+	if (!*node)
+	{
+		*node = make_node_define(define, size);
+		if (!*node)
+		{
+			write(2, "fail to make note\n", 18);
+			return ;
+		}
+	}
+	else
+	{
+		tmp = (*node);
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = make_node_define(define, size);
+		if (!tmp->next)
+			write(2, "fail to make note\n", 18);
+	}
+}
+
 t_define_in	*make_node_define(char *define, int size)
 {
 	t_define_in	*tmp;

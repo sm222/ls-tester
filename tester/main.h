@@ -74,6 +74,7 @@ char	*menu_loop(int *loop, char *call_back);
 char	*sm_ft_strjoin(char *s1, char *s2);
 
 void	new_gnl_test(t_define_in *data);
+void	make_node_def_last(t_define_in **node, char *define, int size);
 
 //-----------------------------------------------
 
