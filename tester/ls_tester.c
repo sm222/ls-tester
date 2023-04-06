@@ -128,7 +128,6 @@ char	*menu_loop(int *loop, char *call_back)
 			t_define_in *in = NULL;
 			put_time_file('s',"tester/GNL/GNL_dif.txt");
 			make_node_def_last(&in, LS_STYLE_T, 1);
-			make_node_def_last(&in, LS_FULL_TEST_T, 1);
 			new_gnl_test(in);
 			put_time_file('e',"tester/GNL/GNL_dif.txt");
 		}

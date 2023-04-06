@@ -36,6 +36,7 @@ int	main(int ac, char **av)
 	setvbuf(stdout, NULL, _IONBF, 0);
 	printf("file test : "MAG"%s\n"WHT, av[1]);
 	system("echo " WHT);
+	printf("number of line read,\n");
 	s = "ls-tester";
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
@@ -52,7 +53,9 @@ int	main(int ac, char **av)
 			break ;
 		}
 		if (i % 100 == 0)
-			printf(YEL"."WHT);
+			printf(YEL"[%d]"WHT, i);
+		if (i % 1000 == 0)
+			printf("\n");
 		usleep(3000);
 	}
 	printf("\n gnl run "YEL"%d"WHT" time\n\n", i);
