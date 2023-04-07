@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "unistd.h"
+#include <unistd.h>
 #include <stdlib.h>
 
 #ifndef LS_GNL_H
@@ -23,6 +23,8 @@ typedef struct s_lsgnl
 	int		rv;
 	size_t	cut;
 }	t_lsgnl;
+
+# define OUTFILE "tester/GNL/GNL_dif.txt"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 100

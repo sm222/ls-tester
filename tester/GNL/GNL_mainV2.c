@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 	while (--ac)
 	{
 		data.loop = 1;
-		printf("file use for test : "YEL"%s\n"WHT, av[ac]);
+		printf("file use for test : "MAG"%s\n"WHT, av[ac]);
 		data.fd[0] = open(av[ac], O_RDONLY);
 		data.fd[1] = open(av[ac], O_RDONLY);
 		printf("open fd		/%d|%d\\\n", data.fd[0], data.fd[1]);
@@ -39,11 +39,11 @@ int	main(int ac, char **av)
 		data.out_fd[0] = open("ls_out",  O_RDWR | O_CREAT | O_TRUNC, 0644);
 		data.out_fd[1] = open("gnl_out", O_RDWR | O_CREAT | O_TRUNC, 0644);
 		printf("open fd_out	/%d|%d\\\n", data.out_fd[0], data.out_fd[1]);
-		cmd = combine("echo 'file test %s 🔽\n' >> tester/GNL/GNL_dif.txt", av[ac]);
+		cmd = combine("echo 'file test %s 🔽\n' >> " OUTFILE, av[ac]);
 		system(cmd);
 		sm_free(cmd);
 		sleep(1);
-		system("echo 'top\\\\\\\\🔜' >> tester/GNL/GNL_dif.txt");
+		system("echo 'top\\\\\\\\🔜' >> " OUTFILE);
 		while (data.loop)
 		{
 			usleep(LS_SPEED * 1000);
@@ -55,11 +55,13 @@ int	main(int ac, char **av)
 			{
 				if (ft_memcmp(data.s_gnl, data.s_ls, sm_strlen(data.s_ls) + 1) == 0)
 				{
-					if (LS_STYLE)
+					if (LS_STYLE == 2)
 						printf(GRN"|"WHT);
+					else if (LS_STYLE == 1)
+						printf(LINE"%.d "NB_CHAR"%.zu"RESET" %s", data.loop, sm_strlen(data.s_gnl), data.s_gnl);
 					else
 						printf(GRN"[OK]"WHT);
-					cmd = combine("echo '✅%d' >> tester/GNL/GNL_dif.txt", data.loop);
+					cmd = combine("echo '✅%d' >> " OUTFILE, data.loop);
 					system(cmd);
 					sm_free(cmd);
 					if (data.s_gnl == NULL && data.s_ls == NULL)
@@ -76,17 +78,17 @@ int	main(int ac, char **av)
 					}
 					else
 						printf(RED"[KO]"WHT);
-					cmd = combine("echo '✅%d' >> tester/GNL/GNL_dif.txt", data.loop);
+					cmd = combine("echo '✅%d' >> " OUTFILE, data.loop);
 					system(cmd);
 					sm_free(cmd);
-					system("echo '	❌ [KO]' >> tester/GNL/GNL_dif.txt");
-					system("echo 'was expecting :' >> tester/GNL/GNL_dif.txt");
-					cmd = combine("echo '%s' >> tester/GNL/GNL_dif.txt", data.s_ls);
+					system("echo '	❌ [KO]' >> " OUTFILE);
+					system("echo 'was expecting :' >> " OUTFILE);
+					cmd = combine("echo '%s' >> " OUTFILE, data.s_ls);
 					system(cmd);
 					sm_free(cmd);
-					system("echo '⬆⬇' >> tester/GNL/GNL_dif.txt");
-					system("echo 'got:' >> tester/GNL/GNL_dif.txt");
-					cmd = combine("echo '%s\n' >> tester/GNL/GNL_dif.txt", data.s_gnl);
+					system("echo '⬆⬇' >> " OUTFILE);
+					system("echo 'got:' >> " OUTFILE);
+					cmd = combine("echo '%s\n' >> " OUTFILE, data.s_gnl);
 					system(cmd);
 					sm_free(cmd);
 				}
@@ -97,34 +99,36 @@ int	main(int ac, char **av)
 			}
 			else
 			{
-				if (!LS_STYLE)
-					printf("%d", data.loop);
 				if (ft_memcmp(data.s_gnl, data.s_ls, sm_strlen(data.s_ls) + 1) == 0)
 				{
-					sm_free(data.s_ls);
-					sm_free(data.s_gnl);
-					if (LS_STYLE)
+					if (LS_STYLE == 2)
 						printf(GRN"|"WHT);
+					else if (LS_STYLE == 1)
+					{
+						fprintf(stderr ,LINE"%3d "NB_CHAR"%4zu"RESET" %s", data.loop, sm_strlen(data.s_gnl), data.s_gnl);
+					}
 					else
 						printf(GRN"[OK]"WHT);
+					sm_free(data.s_ls);
+					sm_free(data.s_gnl);
 					if (data.s_gnl == NULL && data.s_ls == NULL)
 					{
 						printf(GRN"\n✅ [OK]\n"WHT);
-						system("echo '	✅[OK]\n' >> tester/GNL/GNL_dif.txt");
+						system("echo '	✅[OK]\n' >> " OUTFILE);
 						break ;
 					}
 				}
 				else
 				{
 					printf(RED"\n❌ [KO]\n"WHT);
-					system("echo '	❌ [KO]\n' >> tester/GNL/GNL_dif.txt");
+					system("echo '	❌ [KO]\n' >> " OUTFILE);
 					printf("\nwas expecting :\n");
-					system("echo 'was expecting :\n' >> tester/GNL/GNL_dif.txt");
-					cmd = combine("echo '%s' >> tester/GNL/GNL_dif.txt", data.s_ls);
+					system("echo 'was expecting :\n' >> " OUTFILE);
+					cmd = combine("echo '%s' >> " OUTFILE, data.s_ls);
 					system(cmd);
 					sm_free(cmd);
-					system("echo '⬆🆚⬇' >> tester/GNL/GNL_dif.txt");
-					cmd = combine("echo '%s' >> tester/GNL/GNL_dif.txt", data.s_gnl);
+					system("echo '⬆🆚⬇' >> " OUTFILE);
+					cmd = combine("echo '%s' >> "OUTFILE, data.s_gnl);
 					system(cmd);
 					sm_free(cmd);
 					if (LS_INSP_TEST)
@@ -137,7 +141,7 @@ int	main(int ac, char **av)
 						printf(RED"%s\n\n"WHT, data.s_gnl);
 					}
 					printf("got :\n");
-					system("echo 'got :\n' >> tester/GNL/GNL_dif.txt");
+					system("echo 'got :\n' >> " OUTFILE);
 					//sm_inspect_arr(data.s_gnl, 'c', sm_strlen(data.s_ls) + 1, -1);
 					printf("\n- - -\n");
 					
@@ -149,7 +153,7 @@ int	main(int ac, char **av)
 			}
 			data.loop++;
 		}
-		system("echo 'bot///🔚\n' >> tester/GNL/GNL_dif.txt");
+		system("echo 'bot///🔚\n' >> " OUTFILE);
 		close(data.fd[0]);
 		close(data.fd[1]);
 		close(data.out_fd[0]);

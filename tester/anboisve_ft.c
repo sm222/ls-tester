@@ -478,7 +478,7 @@ char	*ft_itoa(int n)
 	return (r);
 }
 
-char	*sm_str_dup(char	*s)
+char	*sm_str_dup(char *s)
 {
 	size_t	i;
 	char	*new;
