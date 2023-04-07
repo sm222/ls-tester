@@ -27,7 +27,10 @@ char	*menu_loop(int *loop, char *call_back)
 
 	if (call_back != NULL)
 		printf("last command : "YEL "%s\n" WHT, call_back);
-	printf("%s/ls-tester: ", name);
+	if (ft_memcmp(name, "anboisve", 9) == 0)
+		printf(BLU"%s"WHT"/ls-tester: ", name);
+	else
+		printf("%s/ls-tester: ", name);
 	//						look for recall input					//
 	if (call_back && *loop == 1)
 	{
@@ -127,7 +130,7 @@ char	*menu_loop(int *loop, char *call_back)
 			printf(WHT);
 			t_define_in *in = NULL;
 			put_time_file('s',"tester/GNL/GNL_dif.txt");
-			make_node_def_last(&in, LS_STYLE_T, 1);
+			make_node_def_last(&in, LS_STYLE_T, 2);
 			new_gnl_test(in);
 			put_time_file('e',"tester/GNL/GNL_dif.txt");
 		}
@@ -297,7 +300,7 @@ char	*menu_loop(int *loop, char *call_back)
 	//							RM									//
 	else if (sm_func_looking(u_input, "rm", &str_p) == 0)
 	{
-		if (sm_func_looking(u_input, "rm", &str_p) == 0)
+		if (sm_func_looking(u_input, "", &str_p) == 0)
 		{
 			sm_log(log_fd,"ls-tester", "rm all test file");
 			if (!system("rm tester/GNL/GNL_dif.txt tester/GNL/GNLB_dif.txt"))

@@ -101,12 +101,12 @@ int	main(int ac, char **av)
 			{
 				if (ft_memcmp(data.s_gnl, data.s_ls, sm_strlen(data.s_ls) + 1) == 0)
 				{
-					if (LS_STYLE == 2)
-						printf(GRN"|"WHT);
-					else if (LS_STYLE == 1)
-					{
+					if (LS_STYLE == 3)
 						fprintf(stderr ,LINE"%3d "NB_CHAR"%4zu"RESET" %s", data.loop, sm_strlen(data.s_gnl), data.s_gnl);
-					}
+					if (LS_STYLE == 2)
+						Ct_mprintf(data.s_gnl, sm_strlen(data.s_gnl) + 1, 1, 'A');
+					else if (LS_STYLE == 1)
+						printf(GRN"|"WHT);
 					else
 						printf(GRN"[OK]"WHT);
 					sm_free(data.s_ls);
@@ -144,7 +144,6 @@ int	main(int ac, char **av)
 					system("echo 'got :\n' >> " OUTFILE);
 					//sm_inspect_arr(data.s_gnl, 'c', sm_strlen(data.s_ls) + 1, -1);
 					printf("\n- - -\n");
-					
 					sm_free(data.s_ls);
 					sm_free(data.s_gnl);
 					if (!LS_FULL_TEST)

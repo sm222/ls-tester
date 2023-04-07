@@ -48,7 +48,7 @@ static void	*ft_calloc(size_t coun, size_t size)
 	return (new);
 }
 
-char	*ft_tiny_split(char *s, size_t *cut)
+static char	*ft_tiny_split(char *s, size_t *cut)
 {
 	char	*new;
 	size_t	i;
@@ -66,7 +66,7 @@ char	*ft_tiny_split(char *s, size_t *cut)
 	return (new);
 }
 
-char	ft_find(char *s)
+static char	ft_find(char *s)
 {
 	size_t	i;
 
