@@ -36,8 +36,8 @@ int	main(int ac, char **av)
 		printf("open fd		/%d|%d\\\n", data.fd[0], data.fd[1]);
 		data.s_ls  = NULL;
 		data.s_gnl = NULL;
-		data.out_fd[0] = open("ls_out",  O_RDWR | O_CREAT | O_TRUNC, 0644);
-		data.out_fd[1] = open("gnl_out", O_RDWR | O_CREAT | O_TRUNC, 0644);
+		data.out_fd[0] = open("ls_out",  O_RDWR | O_CREAT /*| O_TRUNC*/, 0644);
+		data.out_fd[1] = open("gnl_out", O_RDWR | O_CREAT /*| O_TRUNC*/, 0644);
 		printf("open fd_out	/%d|%d\\\n", data.out_fd[0], data.out_fd[1]);
 		cmd = combine("echo 'file test %s 🔽\n' >> " OUTFILE, av[ac]);
 		system(cmd);
@@ -104,7 +104,9 @@ int	main(int ac, char **av)
 					if (LS_STYLE == 3)
 						fprintf(stderr ,LINE"%3d "NB_CHAR"%4zu"RESET" %s", data.loop, sm_strlen(data.s_gnl), data.s_gnl);
 					if (LS_STYLE == 2)
+					{
 						Ct_mprintf(data.s_gnl, sm_strlen(data.s_gnl) + 1, 1, 'A');
+					}
 					else if (LS_STYLE == 1)
 						printf(GRN"|"WHT);
 					else

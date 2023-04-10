@@ -36,13 +36,15 @@ void	gnl_partial_tester(int buff, char *test);
 int		sm_atoi(char *str);
 char	*combine(char *s, ...);
 void	sm_clear_str(char *str);
+char	*ft_strchr(const char *s, int c);
 char	**ft_split(char const *s, char c);
 int		sm_look_for_word(char *str, char *word);
 int		sm_while_space_tab(int start, char *str);
 int		sm_get_keybord_input(char *return_txt, int size);
-int		sm_copy_str_to(char *input, char *return_v, int start_p, int end_p);
-char	*ft_strchr(const char *s, int c);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*sm_strnstr(const char *haystack, const char *needle, size_t len);
+int		sm_copy_str_to(char *input, char *return_v, int start_p, int end_p);
 
 //menu
 void	val_install(void);

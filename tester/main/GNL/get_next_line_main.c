@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 06:48:21 by wdelaros          #+#    #+#             */
-/*   Updated: 2022/12/02 13:19:06 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/04/09 20:46:42 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,6 @@ int		gnl_mem(int test,int BS)
 	system("echo " WHT);
 	if (test == 0)
 	{
-		
 		//test 0
 		system("echo 'start mem verif\n' >> tester/GNL/GNL_dif.txt");
 		cmd = combine(GCCF " tester/main/GNL/val_gnl_mem.c -o mem_test.out "GNL_C" "GNLU_C" -D BUFFER_SIZE=%d  -D TEST_NB=%d ", BS, 0);
@@ -203,14 +202,32 @@ void	new_gnl_test(t_define_in *data)
 	int			i;
 	char		*tmp;
 	char		*tmp2;
+	char		*path;
+	char		**setting_file;
+	int			fd_set_file;
 	t_define_in	*data_tmp;
 
-	i = 1;
+	tmp = NULL;
+	tmp2 = NULL;
+	path = NULL;
+	setting_file = NULL;
 	printf("\n\n\n");
 	printf("welcome in Gnl tester !\n");
+	//look for gnl file
 	if (check_gnl() == -1)
 		return ;
 	tmp = combine(GCCF" tester/ls_gnl.c "GNL_C" "GNLU_C" tester/GNL/GNL_mainV2.c "SM_FT" .."C_TOOLS" ");
+	/* tmp look like 
+	gcc -Wall -Werror -Wextra
+	tester/ls_gnl.c
+	get_next_line/get_next_line.c
+	get_next_line/get_next_line_utils.c
+	tester/GNL/GNL_mainV2.c
+	tester/anboisve_ft.c
+	../C_tools/C_tool.a
+	*/
+	//		*		*		*//
+	// add the setting
 	while(data)
 	{
 		data_tmp = data;
@@ -237,15 +254,41 @@ void	new_gnl_test(t_define_in *data)
 	//-o gnl.out
 	tmp2 = combine("%s -o gnl.out", tmp);
 	system(tmp2);
-	sm_free(tmp2);
-	sm_free(tmp);
-	while (i < 9)
+	tmp2 = sm_free(tmp2);
+	tmp =  sm_free(tmp);
+	fd_set_file = open("tester/.settings.data", O_RDONLY);
+	if (fd_set_file == -1)
 	{
-		sleep(2);
-		printf("\n\n\n");
-		tmp = combine("./gnl.out "TF"text%d.txt ", i);
-		system(tmp);
-		sm_free(tmp);
+		printf(RED"can't open \".settings.data\"\n"WHT);
+		return ;
+	}
+	tmp2 = "ls-tester";
+	while (tmp2)
+	{
+		tmp2 = sm_get_next_line(fd_set_file);
+		tmp = ft_str_ff_join(tmp, tmp2);
+	}
+	setting_file = ft_split(tmp, '\n');
+	tmp = sm_free(tmp);
+	i = 0;
+	while (setting_file[i])
+	{
+		if (ft_strncmp(setting_file[i], "PATH=", 5) == 0)
+		{
+			if (path)
+				free(path);
+			path = sm_str_dup(setting_file[i] + 5);
+			printf("new path %s\n", path);
+		}
+		if (setting_file[i][0] == '\t')
+		{
+			tmp = combine("./gnl.out %s/%s", path ,setting_file[i] + 1);
+			printf("ici\n%s\n", tmp);
+			system(tmp);
+			sm_free(tmp);
+			sleep(1);
+			printf("\n\n\n");
+		}
 		i++;
 	}
 	printf("\n");
