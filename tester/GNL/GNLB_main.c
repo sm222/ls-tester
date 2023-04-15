@@ -216,10 +216,10 @@ char	*str_join_char(char *s, char c)
 	return (new);
 }
 
-/*
-make a new str from str and va_arg;
-use like a printf
-*/
+/// @brief do like a printf
+/// @param s char *s input
+/// @param ... variable input
+/// @return char *
 char	*combine(char *s, ...)
 {
 	va_list	list;

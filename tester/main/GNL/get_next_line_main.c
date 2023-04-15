@@ -277,7 +277,7 @@ void	new_gnl_test(t_define_in *data)
 		i++;
 		if (setting_file[i] == NULL)
 		{
-			sm_putstr(RED"can't find 'GNL={' in .settings.data"WHT"\n", 2);
+			ls_printf(2 , RED"can't find 'GNL={' in .settings.data"WHT"\n");
 			return ;
 		}
 	}
