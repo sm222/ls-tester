@@ -6,7 +6,7 @@ A wonderfull tester to make sure your get_next_line & printf!
 ## How to use ##
 launch the tester with `./ls_tester.sh` from the root of the directory or make an alias ;)
 
-after that, you should see that screen.\n
+after that, you should see that screen.
 
 ![Screenshot 2023-04-15 194604](https://user-images.githubusercontent.com/41463323/232258688-7c82df9a-e631-4edb-aef7-8b4b96c9213c.png)
 
