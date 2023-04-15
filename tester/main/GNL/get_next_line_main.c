@@ -266,11 +266,21 @@ void	new_gnl_test(t_define_in *data)
 	while (tmp2)
 	{
 		tmp2 = sm_get_next_line(fd_set_file);
-		tmp = ft_str_ff_join(tmp, tmp2);
+		if (tmp2)
+			tmp = ft_str_ff_join(tmp, tmp2);
 	}
 	setting_file = ft_split(tmp, '\n');
 	tmp = sm_free(tmp);
 	i = 0;
+	while (ft_strncmp("GNL={", setting_file[i], 5) != 0)
+	{
+		i++;
+		if (setting_file[i] == NULL)
+		{
+			sm_putstr(RED"can't find 'GNL={' in .settings.data"WHT"\n", 2);
+			return ;
+		}
+	}
 	while (setting_file[i])
 	{
 		if (ft_strncmp(setting_file[i], "PATH=", 5) == 0)
@@ -278,17 +288,20 @@ void	new_gnl_test(t_define_in *data)
 			if (path)
 				free(path);
 			path = sm_str_dup(setting_file[i] + 5);
-			printf("new path %s\n", path);
+			sm_putstr("new path ", 2);
+			sm_putstr(path, 2);
+			sm_putstr("\n", 2);
 		}
 		if (setting_file[i][0] == '\t')
 		{
-			tmp = combine("./gnl.out %s/%s", path ,setting_file[i] + 1);
-			printf("ici\n%s\n", tmp);
+			tmp = combine("./gnl.out %s%s", path ,setting_file[i] + 1);
 			system(tmp);
 			sm_free(tmp);
 			sleep(1);
 			printf("\n\n\n");
 		}
+		if (setting_file[i][0] == '}')
+			break ;
 		i++;
 	}
 	printf("\n");

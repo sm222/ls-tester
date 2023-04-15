@@ -1,9 +1,8 @@
-NAME=sm222
-
 
 GNL={
 
-PATH=tester/text
+PATH=tester/text/
+
 	text-1.txt
 	text.txt
 	text0.txt
@@ -17,4 +16,13 @@ PATH=tester/text
 	text8.txt
 	text42.txt
 	peepy.ans
+
+PATH=get_next_line/
+	get_next_line.c
+	get_next_line.h
+	get_next_line_bonus.c
+	get_next_line_bonus.h
+	get_next_line_utils.c
+	get_next_line_utils_bonus.c
+
 }

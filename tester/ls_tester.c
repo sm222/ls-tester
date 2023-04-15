@@ -26,11 +26,11 @@ char	*menu_loop(int *loop, char *call_back)
 	char	up[4] = {27, 91, 65, 0};
 
 	if (call_back != NULL)
-		printf("last command : "YEL "%s\n" WHT, call_back);
-	if (ft_memcmp(name, "anboisve", 9) == 0)
-		printf(BLU"%s"WHT"/ls-tester: ", name);
+		ls_printf(1, "last command : "YEL "%s\n" WHT, call_back);
+	if (ft_memcmp(name, "anboisve", 9) == 0 || ft_memcmp(name, "sm222", 6) == 0)
+		ls_printf(1, BLU"%s"WHT"/ls-tester: ", name);
 	else
-		printf("%s/ls-tester: ", name);
+		ls_printf(1, "%s/ls-tester: ", name);
 	//						look for recall input					//
 	if (call_back && *loop == 1)
 	{
@@ -49,22 +49,22 @@ char	*menu_loop(int *loop, char *call_back)
 	{
 		if (sm_func_looking(u_input, "", &str_p) == 0)
 		{
-			printf(ORG"\n- - - - Help List - - - -\n"WHT);
-			printf("val -tuto	shows how to install valgrind\n");
-			printf("gnl		GNL tester\n");
-			printf("gnlb		GNL tester with BONUS\n");
-			printf("pf		PRINTF tester\n");
-			printf("norm		norminette all the files\n");
-			printf("rm		RM all trace files\n");
-			printf("help of (tester name or command) -help - shows help list\n");
-			printf("exit or q	exits the program\n");
-			printf("\n");
+			ls_printf(1, ORG"\n- - - - Help List - - - -\n"WHT);
+			ls_printf(1, "val -tuto	shows how to install valgrind\n");
+			ls_printf(1, "gnl		GNL tester\n");
+			ls_printf(1, "gnlb		GNL tester with BONUS\n");
+			ls_printf(1, "pf		PRINTF tester\n");
+			ls_printf(1, "norm		norminette all the files\n");
+			ls_printf(1, "rm		RM all trace files\n");
+			ls_printf(1, "help of (tester name or command) -help - shows help list\n");
+			ls_printf(1, "exit or q	exits the program\n");
+			ls_printf(1, "\n");
 			sm_log(log_fd,"ls-tester", "call help");
 		}
 		else
 		{
 			sm_copy_str_to(u_input, copy, str_p + 1, -1);
-			printf(YEL "help "RED"%s " WHT "is not a valid argumant\n", copy);
+			ls_printf(1, YEL "help "RED"%s " WHT "is not a valid argumant\n", copy);
 			sm_log(log_fd,"ls-tester", "call help with invalid argument");
 		}
 		return (sm_str_dup(u_input));
@@ -74,9 +74,9 @@ char	*menu_loop(int *loop, char *call_back)
 	{
 		if (sm_func_looking(u_input, "-help", &str_p) == 0)
 		{
-			printf(ORG"\n- - - - Printf Help List - - - -\n"WHT);
-			printf("exit or q - exit the program\n");
-			printf("\n");
+			ls_printf(1, ORG"\n- - - - Printf Help List - - - -\n"WHT);
+			ls_printf(1, "exit or q - exit the program\n");
+			ls_printf(1, "\n");
 		}
 		else if (sm_func_looking(u_input, "", &str_p) == 0)
 		{
@@ -88,7 +88,7 @@ char	*menu_loop(int *loop, char *call_back)
 		else
 		{
 			sm_copy_str_to(u_input, copy, str_p + 1, -1);
-			printf(YEL "pf "RED"%s " WHT "is not a valid argumant\n", copy);
+			ls_printf(1, YEL "pf "RED"%s " WHT "is not a valid argumant\n", copy);
 		}
 		return (sm_str_dup(u_input));
 	}
@@ -97,16 +97,16 @@ char	*menu_loop(int *loop, char *call_back)
 	{
 		if (sm_func_looking(u_input, "-help", &str_p) == 0)
 		{
-			printf(ORG"\n- - - - GNL Help List - - - -\n"WHT);
-			printf("-buff	set buffer size (ex: gnl -buff 42)\n");
-			printf("-test	run one test (ex: gnl -test 5)\n");
-			printf("-mem	run %s test to chek memory\n", VAL);
-			printf("-mem+	test multiple BUFFER_SIZE\n");
-			printf("-pp	run peepy test\n");
-			printf("-dif	show GNL trace file\n");
-			printf("-rm	RM GNL trace file\n");
-			printf("exit or q - exit the program\n");
-			printf("\n");
+			ls_printf(1, ORG"\n- - - - GNL Help List - - - -\n"WHT);
+			ls_printf(1, "-buff	set buffer size (ex: gnl -buff 42)\n");
+			ls_printf(1, "-test	run one test (ex: gnl -test 5)\n");
+			ls_printf(1, "-mem	run %s test to chek memory\n", VAL);
+			ls_printf(1, "-mem+	test multiple BUFFER_SIZE\n");
+			ls_printf(1, "-pp	run peepy test\n");
+			ls_printf(1, "-dif	show GNL trace file\n");
+			ls_printf(1, "-rm	RM GNL trace file\n");
+			ls_printf(1, "exit or q - exit the program\n");
+			ls_printf(1, "\n");
 			sm_log(log_fd,"ls-tester", "call gnl -help");
 		}
 		else if (sm_func_looking(u_input, "-buff", &str_p) == 0)
@@ -122,16 +122,16 @@ char	*menu_loop(int *loop, char *call_back)
 		{
 			sm_log(log_fd,"ls-tester", "call gnl -rm");
 			if (!system("rm tester/GNL/GNL_dif.txt"))
-				printf(RED"GNL_dif.txt, was remove\n"WHT);
+				ls_printf(1, RED"GNL_dif.txt, was remove\n"WHT);
 			return (sm_str_dup(u_input));
 		}
 		else if (sm_func_looking(u_input, "-tt", &str_p) == 0)
 		{
-			printf(WHT);
+			ls_printf(1, WHT);
 			t_define_in *in = NULL;
 			put_time_file('s',"tester/GNL/GNL_dif.txt");
-			make_node_def_last(&in, LS_STYLE_T, 1);
-			make_node_def_last(&in, LS_SPEED_T, 50);
+			make_node_def_last(&in, LS_STYLE_T, 3);
+			make_node_def_last(&in, LS_SPEED_T, 1);
 			new_gnl_test(in);
 			put_time_file('e',"tester/GNL/GNL_dif.txt");
 		}
@@ -139,7 +139,7 @@ char	*menu_loop(int *loop, char *call_back)
 		{
 			sm_log(log_fd,"ls-tester", "call gnl -dif");
 			if (system("cat tester/GNL/GNL_dif.txt"))
-				printf(RED"GNL_dif.txt, don't exist\n"WHT);
+				ls_printf(1, RED"GNL_dif.txt, don't exist\n"WHT);
 			return (sm_str_dup(u_input));
 		}
 		else if (sm_func_looking(u_input, "-pp", &str_p) == 0)
@@ -208,7 +208,7 @@ char	*menu_loop(int *loop, char *call_back)
 		{
 			sm_log(log_fd,"ls-tester", "call gnl 'whit mix argument'");
 			sm_copy_str_to(u_input, copy, str_p + 1, -1);
-			printf(YEL "gnl "RED"%s " WHT "is not a valid argumant\n", copy);
+			ls_printf(1, YEL "gnl "RED"%s " WHT "is not a valid argumant\n", copy);
 		}
 		return (sm_str_dup(u_input));
 	}
@@ -217,13 +217,13 @@ char	*menu_loop(int *loop, char *call_back)
 	{
 		if (sm_func_looking(u_input, "-help", &str_p) == 0)
 		{
-			printf(ORG"\n- - - - GNLB Help List - - - -\n"WHT);
-			printf("-buff	set buffer size (ex: gnl -buff 42)\n");
-			printf("-test	run one test (ex: gnl -test 5)\n");
-			printf("-dif	show GNLB trace file\n");
-			printf("-rm	RM GNLB trace file\n");
-			printf("exit or q - exit the program\n");
-			printf("\n");
+			ls_printf(1, ORG"\n- - - - GNLB Help List - - - -\n"WHT);
+			ls_printf(1, "-buff	set buffer size (ex: gnl -buff 42)\n");
+			ls_printf(1, "-test	run one test (ex: gnl -test 5)\n");
+			ls_printf(1, "-dif	show GNLB trace file\n");
+			ls_printf(1, "-rm	RM GNLB trace file\n");
+			ls_printf(1, "exit or q - exit the program\n");
+			ls_printf(1, "\n");
 			sm_log(log_fd,"ls-tester", "call gnlb -help");
 		}
 		else if (sm_func_looking(u_input, "-buff", &str_p) == 0)
@@ -238,14 +238,14 @@ char	*menu_loop(int *loop, char *call_back)
 		{
 			sm_log(log_fd,"ls-tester", "call gnl -rm");
 			if (!system("rm tester/GNL/GNLB_dif.txt"))
-				printf(RED"GNLB_dif.txt, was remove\n"WHT);
+				ls_printf(1, RED"GNLB_dif.txt, was remove\n"WHT);
 			return (sm_str_dup(u_input));
 		}
 		else if (sm_func_looking(u_input, "-dif", &str_p) == 0)
 		{
 			sm_log(log_fd,"ls-tester", "call gnl -dif");
 			if (system("cat tester/GNL/GNLB_dif.txt"))
-				printf(RED"GNLB_dif.txt, don't exist\n"WHT);
+				ls_printf(1, RED"GNLB_dif.txt, don't exist\n"WHT);
 			return (sm_str_dup(u_input));
 		}
 		else if (sm_func_looking(u_input, "", &str_p) == 0)
@@ -259,7 +259,7 @@ char	*menu_loop(int *loop, char *call_back)
 		{
 			sm_log(log_fd,"ls-tester", "call gnlb 'whit mix argument'");
 			sm_copy_str_to(u_input, copy, str_p + 1, -1);
-			printf(YEL "gnlb "RED"%s " WHT "is not a valid argumant\n", copy);
+			ls_printf(1, YEL "gnlb "RED"%s " WHT "is not a valid argumant\n", copy);
 		}
 		return (sm_str_dup(u_input));
 	}
@@ -269,32 +269,32 @@ char	*menu_loop(int *loop, char *call_back)
 		if (sm_func_looking(u_input, "", &str_p) == 0)
 		{
 			sm_log(log_fd,"ls-tester", "call norminette");
-			printf(BLU"\n-	"GRN"-	"RED"-	\n");
+			ls_printf(1, BLU"\n-	"GRN"-	"RED"-	\n");
 			system("echo " WHT);
 			system("norminette get_next_line ft_printf");
-			printf(RED"\n-	"GRN"-	"BLU"-	\n"WHT);
+			ls_printf(1, RED"\n-	"GRN"-	"BLU"-	\n"WHT);
 		}
 		else if (sm_func_looking(u_input, "-gnl", &str_p) == 0)
 		{
 			sm_log(log_fd,"ls-tester", "call norminette -gnl");
-			printf(BLU"\n-	"GRN"-	"RED"-	\n");
+			ls_printf(1, BLU"\n-	"GRN"-	"RED"-	\n");
 			system("echo " WHT);
 			system("norminette get_next_line");
-			printf(RED"\n-	"GRN"-	"BLU"-	\n"WHT);
+			ls_printf(1, RED"\n-	"GRN"-	"BLU"-	\n"WHT);
 		}
 		else if (sm_func_looking(u_input, "-pf", &str_p) == 0)
 		{
 			sm_log(log_fd,"ls-tester", "call norminette -pf");
-			printf(BLU"\n-	"GRN"-	"RED"-	\n");
+			ls_printf(1, BLU"\n-	"GRN"-	"RED"-	\n");
 			system("echo " WHT);
 			system("norminette ft_printf");
-			printf(RED"\n-	"GRN"-	"BLU"-	\n"WHT);
+			ls_printf(1, RED"\n-	"GRN"-	"BLU"-	\n"WHT);
 		}
 		else
 		{
 			sm_log(log_fd,"ls-tester", "call norm 'whit mix argument'");
 			sm_copy_str_to(u_input, copy, str_p + 1, -1);
-			printf(YEL "norm "RED"%s " WHT "is not a valid argumant\n", copy);
+			ls_printf(1, YEL "norm "RED"%s " WHT "is not a valid argumant\n", copy);
 		}
 		return (sm_str_dup(u_input));
 	}
@@ -305,13 +305,13 @@ char	*menu_loop(int *loop, char *call_back)
 		{
 			sm_log(log_fd,"ls-tester", "rm all test file");
 			if (!system("rm tester/GNL/GNL_dif.txt tester/GNL/GNLB_dif.txt"))
-				printf(RED"GNL_dif.txt, GNLB_dif.txt, was remove\n"WHT);
+				ls_printf(1, RED"GNL_dif.txt, GNLB_dif.txt, was remove\n"WHT);
 		}
 		else
 		{
 			sm_log(log_fd,"ls-tester", "call rm 'whit mix argument'");
 			sm_copy_str_to(u_input, copy, str_p + 1, -1);
-			printf(YEL "rm "RED"%s " WHT "is not a valid argumant\n", copy);
+			ls_printf(1, YEL "rm "RED"%s " WHT "is not a valid argumant\n", copy);
 		}
 		return (sm_str_dup(u_input));
 	}
@@ -327,7 +327,7 @@ char	*menu_loop(int *loop, char *call_back)
 		{
 			sm_log(log_fd,"ls-tester", "call log 'whit mix argument'");
 			sm_copy_str_to(u_input, copy, str_p + 1, -1);
-			printf(YEL "log "RED"%s " WHT "is not a valid argumant\n", copy);
+			ls_printf(1, YEL "log "RED"%s " WHT "is not a valid argumant\n", copy);
 		}
 		return (sm_str_dup(u_input));
 	}
@@ -337,12 +337,12 @@ char	*menu_loop(int *loop, char *call_back)
 		if (sm_func_looking(u_input, "-tuto", &str_p) == 0)
 			val_install();
 		else if (sm_func_looking(u_input, "", &str_p) == 0)
-			printf("did you mean \"val -tuto\" ?\n");
+			ls_printf(1, "did you mean \"val -tuto\" ?\n");
 		else
 		{
 			sm_log(log_fd,"ls-tester", "call val 'whit mix argument'");
 			sm_copy_str_to(u_input, copy, str_p + 1, -1);
-			printf(YEL "val "RED"%s " WHT "is not a valid argumant, use val -tuto for more info\n", copy);
+			ls_printf(1, YEL "val "RED"%s " WHT "is not a valid argumant, use val -tuto for more info\n", copy);
 		}
 		return (sm_str_dup(u_input));
 	}
@@ -350,7 +350,7 @@ char	*menu_loop(int *loop, char *call_back)
 	else if (sm_func_looking(u_input, ("yes"), &str_p) == 0)
 	{
 		if (sm_find_mix_str(u_input, ("itwork"), &str_p) == 0)
-			printf("yes\n");
+			ls_printf(1, "yes\n");
 	}
 	//							git									//
 	else if (sm_func_looking(u_input, ("update"), &str_p) == 0)
@@ -359,22 +359,22 @@ char	*menu_loop(int *loop, char *call_back)
 			system("git pull");
 		else if (sm_func_looking(u_input, (""), &str_p) == 0)
 		{
-			printf("looking for update ...\n");
+			ls_printf(1, "looking for update ...\n");
 			system("git fetch --dry-run");
 			system("git fetch --dry-run");
 		}
 		else if (sm_func_looking(u_input, ("-h"), &str_p) == 0)
 		{
-			printf("\n		"ORG"update"WHT"		\n\n");
-			printf("update		git fetch --dry-run\n");
-			printf("update -i	git pull\n");
-			printf("update -h	show help\n");
+			ls_printf(1, "\n		"ORG"update"WHT"		\n\n");
+			ls_printf(1, "update		git fetch --dry-run\n");
+			ls_printf(1, "update -i	git pull\n");
+			ls_printf(1, "update -h	show help\n");
 		}
 		else
 		{
 			sm_log(log_fd,"ls-tester", "call update 'whit mix argument'");
 			sm_copy_str_to(u_input, copy, str_p + 1, -1);
-			printf(YEL "update "RED"%s " WHT "is not a valid argumant, type update -h for help\n", copy);
+			ls_printf(1, YEL "update "RED"%s " WHT "is not a valid argumant, type update -h for help\n", copy);
 		}
 	}
 	//							void								//
@@ -387,7 +387,7 @@ char	*menu_loop(int *loop, char *call_back)
 	else if (sm_func_looking(u_input, (up), &str_p) == 0)
 	{
 		*loop = 1;
-		printf("\n");
+		ls_printf(1, "\n");
 		sm_log(log_fd,"ls-tester", "up arrow");
 		return (call_back);
 	}
@@ -403,7 +403,7 @@ char	*menu_loop(int *loop, char *call_back)
 	}
 	else if (sm_func_looking(u_input, "pwd", &str_p) == 0)
 	{
-		printf("%s\n", path);
+		ls_printf(1, "%s\n", path);
 	}
 	//							default								//
 	else if (sm_func_looking(u_input, "ls-tester", &str_p) == 0)
@@ -413,7 +413,7 @@ char	*menu_loop(int *loop, char *call_back)
 	else
 	{
 		sm_log(log_fd, "ls-tester", "bad input");
-		printf(RED"%s " WHT"is not a valid input\n", u_input);
+		ls_printf(1, RED"%s " WHT"is not a valid input\n", u_input);
 	}
 	return (sm_str_dup(u_input));
 }
@@ -434,11 +434,11 @@ int	main(int ac, char **av, char **en)
 	system("touch tester/GNL/GNL_dif.txt");
 	system("touch tester/PRINTF/PRINTF_dif.txt");
 	//
-	printf(GRN"compile"WHT"				welcome in ...\n");
+	ls_printf(1, GRN"compile"WHT"				welcome in ...\n");
 	logo();
-	printf(RED "DON'T use this for correction ❗\n"WHT);
-	printf("this is not a finish product ⚠️\n");
-	printf("type \"" YEL "help" WHT "\" to start\n\n");
+	ls_printf(1, RED "DON'T use this for correction ❗\n"WHT);
+	ls_printf(1, "this is not a finish product ⚠️\n");
+	ls_printf(1, "type \"" YEL "help" WHT "\" to start\n\n");
 	sm_log(log_fd, "ls-tester", "hi here");
 	while (en[i])
 	{
@@ -451,7 +451,6 @@ int	main(int ac, char **av, char **en)
 	}
 	while (1)
 		last_call = menu_loop(&loop, last_call);
-	close(log_fd);
 	return (0);
 }
 

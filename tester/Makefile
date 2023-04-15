@@ -6,7 +6,8 @@ SRC = \
 		main/PRINTF/printf_main.c\
 		main/GNL/get_next_line_main.c\
 		main/GNL/get_next_line_main_bonus.c\
-		ls_gnl.c
+		ls_gnl.c\
+		ls_printf.c
 
 
 CC = clang

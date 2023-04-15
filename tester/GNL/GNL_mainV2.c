@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 	while (--ac)
 	{
 		data.loop = 1;
-		printf("file use for test : "MAG"%s\n"WHT, av[ac]);
+		printf(MAG"%s\n"WHT, av[ac]);
 		data.fd[0] = open(av[ac], O_RDONLY);
 		data.fd[1] = open(av[ac], O_RDONLY);
 		printf("open fd		/%d|%d\\\n", data.fd[0], data.fd[1]);
@@ -103,7 +103,7 @@ int	main(int ac, char **av)
 				{
 					if (LS_STYLE == 3)
 						fprintf(stderr ,LINE"%3d "NB_CHAR"%4zu"RESET" %s", data.loop, sm_strlen(data.s_gnl), data.s_gnl);
-					if (LS_STYLE == 2)
+					else if (LS_STYLE == 2)
 					{
 						Ct_mprintf(data.s_gnl, sm_strlen(data.s_gnl) + 1, 1, 'A');
 					}

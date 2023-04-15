@@ -789,9 +789,9 @@ void	*sm_free(void *ptr)
 	return (NULL);
 }
 
-void	sm_putstr(char *s, int fd)
+int	sm_putstr(char *s, int fd)
 {
-	write(fd, s, sm_strlen(s));
+	return (write(fd, s, sm_strlen(s)));
 }
 
 char	*sm_strnstr(const char *haystack, const char *needle, size_t len)
