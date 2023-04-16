@@ -216,16 +216,8 @@ void	new_gnl_test(t_define_in *data)
 	//look for gnl file
 	if (check_gnl() == -1)
 		return ;
-	tmp = combine(GCCF" tester/ls_gnl.c "GNL_C" "GNLU_C" tester/GNL/GNL_mainV2.c "SM_FT" .."C_TOOLS" ");
-	/* tmp look like 
-	gcc -Wall -Werror -Wextra
-	tester/ls_gnl.c
-	get_next_line/get_next_line.c
-	get_next_line/get_next_line_utils.c
-	tester/GNL/GNL_mainV2.c
-	tester/anboisve_ft.c
-	../C_tools/C_tool.a
-	*/
+	tmp = combine(GCCF" tester/ls_gnl.c "GNL_C" "GNLU_C" tester/GNL/GNL_mainV2.c "SM_FT" " LS_PF " .."C_TOOLS" ");
+	ls_printf(1, "%s", tmp);
 	//		*		*		*//
 	// add the setting
 	while(data)

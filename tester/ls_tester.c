@@ -131,7 +131,8 @@ char	*menu_loop(int *loop, char *call_back)
 			t_define_in *in = NULL;
 			put_time_file('s',"tester/GNL/GNL_dif.txt");
 			make_node_def_last(&in, LS_STYLE_T, 3);
-			make_node_def_last(&in, LS_SPEED_T, 1);
+			make_node_def_last(&in, LS_SPEED_T, 5);
+			make_node_def_last(&in, LS_FULL_TEST_T, 1);
 			new_gnl_test(in);
 			put_time_file('e',"tester/GNL/GNL_dif.txt");
 		}
@@ -357,6 +358,8 @@ char	*menu_loop(int *loop, char *call_back)
 	{
 		if (sm_func_looking(u_input, ("-i"), &str_p) == 0)
 			system("git pull");
+		else if (sm_func_looking(u_input, ("-l"), &str_p) == 0)
+			system("git log -5");
 		else if (sm_func_looking(u_input, (""), &str_p) == 0)
 		{
 			ls_printf(1, "looking for update ...\n");
@@ -402,14 +405,10 @@ char	*menu_loop(int *loop, char *call_back)
 		exit(0);
 	}
 	else if (sm_func_looking(u_input, "pwd", &str_p) == 0)
-	{
 		ls_printf(1, "%s\n", path);
-	}
 	//							default								//
 	else if (sm_func_looking(u_input, "ls-tester", &str_p) == 0)
-	{
 		system("curl parrot.live");
-	}
 	else
 	{
 		sm_log(log_fd, "ls-tester", "bad input");

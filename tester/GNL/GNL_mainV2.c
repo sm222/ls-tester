@@ -55,10 +55,14 @@ int	main(int ac, char **av)
 			{
 				if (ft_memcmp(data.s_gnl, data.s_ls, sm_strlen(data.s_ls) + 1) == 0)
 				{
-					if (LS_STYLE == 2)
-						printf(GRN"|"WHT);
+					if (LS_STYLE == 3)
+						fprintf(stderr ,LINE"%3d "NB_CHAR"%4zu"RESET" %s", data.loop, sm_strlen(data.s_gnl), data.s_gnl);
+					else if (LS_STYLE == 2)
+					{
+						Ct_mprintf(data.s_gnl, sm_strlen(data.s_gnl) + 1, 1, 'A');
+					}
 					else if (LS_STYLE == 1)
-						printf(LINE"%.d "NB_CHAR"%.zu"RESET" %s", data.loop, sm_strlen(data.s_gnl), data.s_gnl);
+						printf(GRN"|"WHT);
 					else
 						printf(GRN"[OK]"WHT);
 					cmd = combine("echo '✅%d' >> " OUTFILE, data.loop);
@@ -72,10 +76,14 @@ int	main(int ac, char **av)
 				}
 				else
 				{
-					if (LS_STYLE)
+					if (LS_STYLE == 3)
+						fprintf(stderr ,RED"%3d "NB_CHAR"%4zu"RESET" %s", data.loop, sm_strlen(data.s_gnl), data.s_gnl);
+					else if (LS_STYLE == 2)
 					{
-						printf(RED"|"WHT);
+						Ct_mprintf(data.s_gnl, sm_strlen(data.s_gnl) + 1, 1, 'F');
 					}
+					else if (LS_STYLE == 1)
+						printf(RED"|"WHT);
 					else
 						printf(RED"[KO]"WHT);
 					cmd = combine("echo '✅%d' >> " OUTFILE, data.loop);

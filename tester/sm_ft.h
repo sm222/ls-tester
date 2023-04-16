@@ -22,6 +22,7 @@
 # include <stdarg.h>
 
 # define SM_FT "tester/anboisve_ft.c"
+# define LS_PF "tester/ls_printf.c"
 
 # ifndef HEX_TABLE
 #  define  HEX_TABLE "0123456789abcdefghijklmnopqrstuvwxyz"
