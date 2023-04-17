@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-
 #ifndef LS_GNL_H
 # define LS_GNL_H
+
+# include <unistd.h>
+# include <stdlib.h>
 
 typedef struct s_lsgnl
 {
@@ -31,6 +31,5 @@ typedef struct s_lsgnl
 # endif
 
 char	*sm_get_next_line(int fd);
-
 
 #endif // LS_GNL_H

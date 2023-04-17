@@ -217,7 +217,7 @@ void	new_gnl_test(t_define_in *data)
 	if (check_gnl() == -1)
 		return ;
 	tmp = combine(GCCF" tester/ls_gnl.c "GNL_C" "GNLU_C" tester/GNL/GNL_mainV2.c "SM_FT" " LS_PF " .."C_TOOLS" ");
-	ls_printf(1, "%s", tmp);
+	ls_printf(1, "%s\n", tmp);
 	//		*		*		*//
 	// add the setting
 	while(data)
@@ -233,6 +233,7 @@ void	new_gnl_test(t_define_in *data)
 		sm_free(data_tmp->cmd);
 		sm_free(data_tmp);
 	}
+	//ls_printf(1, "%s\n", tmp);
 	/*
 	0 = off
 	1 = on
