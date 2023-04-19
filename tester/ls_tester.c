@@ -134,7 +134,7 @@ char	*menu_loop(int *loop, char *call_back)
 			make_node_def_last(&in, LS_STYLE_T, 3);
 			make_node_def_last(&in, LS_SPEED_T, 5);
 			make_node_def_last(&in, LS_TRACE_T, 0);
-			make_node_def_last(&in, LS_FULL_TEST_T, 0);
+			make_node_def_last(&in, LS_FULL_TEST_T, 1);
 			new_gnl_test(in);
 			put_time_file('e',"tester/GNL/GNL_dif.txt");
 		}

@@ -12,15 +12,6 @@ PATH=tester/text/
 	text6.txt
 	text7.txt
 	text8.txt
-	text42.txt
-	peepy.ans
-
-PATH=get_next_line/
-	get_next_line.c
-	get_next_line.h
-	get_next_line_bonus.c
-	get_next_line_bonus.h
-	get_next_line_utils.c
-	get_next_line_utils_bonus.c
+peepy.ans
 
 }
