@@ -39,11 +39,11 @@ int	main(int ac, char **av)
 		data.out_fd[0] = open("ls_out",  O_RDWR | O_CREAT /*| O_TRUNC*/, 0644);
 		data.out_fd[1] = open("gnl_out", O_RDWR | O_CREAT /*| O_TRUNC*/, 0644);
 		printf("open fd_out	/%d|%d\\\n", data.out_fd[0], data.out_fd[1]);
-		cmd = combine("echo 'file test %s 🔽\n' >> " OUTFILE, av[ac]);
+		cmd = combine("echo -n '🔽 file test %s \n' >> " OUTFILE, av[ac]);
 		system(cmd);
 		sm_free(cmd);
 		sleep(1);
-		system("echo 'top\\\\\\\\🔜' >> " OUTFILE);
+		system("echo 'top\\\\\\\\' >> " OUTFILE);
 		while (data.loop)
 		{
 			usleep(LS_SPEED * 1000);
@@ -90,12 +90,12 @@ int	main(int ac, char **av)
 					system(cmd);
 					sm_free(cmd);
 					system("echo '	❌ [KO]' >> " OUTFILE);
-					system("echo 'was expecting :' >> " OUTFILE);
+					system("echo -n 'was expecting :' >> " OUTFILE);
 					cmd = combine("echo '%s' >> " OUTFILE, data.s_ls);
 					system(cmd);
 					sm_free(cmd);
 					system("echo '⬆⬇' >> " OUTFILE);
-					system("echo 'got:' >> " OUTFILE);
+					system("echo -n 'got:' >> " OUTFILE);
 					cmd = combine("echo '%s\n' >> " OUTFILE, data.s_gnl);
 					system(cmd);
 					sm_free(cmd);
@@ -133,11 +133,11 @@ int	main(int ac, char **av)
 					printf(RED"\n❌ [KO]\n"WHT);
 					system("echo '	❌ [KO]\n' >> " OUTFILE);
 					printf("\nwas expecting :\n");
-					system("echo 'was expecting :\n' >> " OUTFILE);
-					cmd = combine("echo '%s' >> " OUTFILE, data.s_ls);
+					system("echo -n 'was expecting :\n' >> " OUTFILE);
+					cmd = combine("echo -n '%s' >> " OUTFILE, data.s_ls);
 					system(cmd);
 					sm_free(cmd);
-					system("echo '⬆🆚⬇' >> " OUTFILE);
+					system("echo '[⬆⬇]' >> " OUTFILE);
 					cmd = combine("echo '%s' >> "OUTFILE, data.s_gnl);
 					system(cmd);
 					sm_free(cmd);
@@ -162,7 +162,7 @@ int	main(int ac, char **av)
 			}
 			data.loop++;
 		}
-		system("echo 'bot///🔚\n' >> " OUTFILE);
+		system("echo 'bot///\n' >> " OUTFILE);
 		close(data.fd[0]);
 		close(data.fd[1]);
 		close(data.out_fd[0]);

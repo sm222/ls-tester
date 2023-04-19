@@ -78,7 +78,7 @@ char	*ft_itoa(int n)
 	long int	temp;
 
 	temp = n;
-	r = calloc(ft_num_s(n) + 1, sizeof(char));
+	r = sm_calloc(ft_num_s(n) + 1, sizeof(char));
 	if (!r)
 		return (NULL);
 	else if (temp < 0)
@@ -100,7 +100,7 @@ char	*sm_str_dup(char	*s)
 	i = 0;
 	while(s && s[i])
 		i++;
-	new = calloc(i, sizeof(char));
+	new = sm_calloc(i, sizeof(char));
 	while (i--)
 		new[i] = s[i];
 	return (new);
@@ -117,7 +117,7 @@ char	*ft_str_fback_join(char *sfree, char *s2)
 
 	s1_i = strlen(sfree);
 	s2_i = strlen(s2);
-	new = calloc(s1_i + s2_i + 1, sizeof(char));
+	new = sm_calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
 		return (new = peepyfree(new));
 	while (s1_i + s2_i-- > s1_i)
@@ -138,7 +138,7 @@ char	*ft_str_ffront_join(char *s1, char *sfree)
 
 	s1_i = strlen(s1);
 	s2_i = strlen(sfree);
-	new = calloc(s1_i + s2_i + 1, sizeof(char));
+	new = sm_calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
 		return (new = peepyfree(new));
 	while (s1_i + s2_i-- > s1_i)
@@ -159,7 +159,7 @@ char	*f_strjoin(char *s1, char *s2)
 
 	s1_i = strlen(s1);
 	s2_i = strlen(s2);
-	new = calloc(s1_i + s2_i + 1, sizeof(char));
+	new = sm_calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
 		return (new = peepyfree(new));
 	while (s1_i + s2_i-- > s1_i)
@@ -180,7 +180,7 @@ char	*ft_str_ff_join(char *s1f, char *s2f)
 
 	s1_i = strlen(s1f);
 	s2_i = strlen(s2f);
-	new = calloc(s1_i + s2_i + 1, sizeof(char));
+	new = sm_calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
 		return (new = peepyfree(new));
 	while (s1_i + s2_i-- > s1_i)
@@ -209,7 +209,7 @@ char	*str_join_char(char *s, char c)
 	char	*new;
 
 	size = peepy_strlen(s) + 1;
-	new = calloc(size + 1, sizeof(char));
+	new = sm_calloc(size + 1, sizeof(char));
 	new = strcpy(new, s);
 	new[size - 1] = c;
 	free(s);
@@ -227,7 +227,7 @@ char	*combine(char *s, ...)
 	char	*new;
 	
 	va_start(list, s);
-	new = calloc(1, sizeof(char));
+	new = sm_calloc(1, sizeof(char));
 	i = 0;
 	while (s[i])
 	{

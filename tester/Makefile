@@ -19,16 +19,13 @@ RED		:= \033[1;31m
 
 
 all:
-	$(CC) $(CFLAGS) $(SRC)
-	$(MAKE) -C ../C_tools
+	$(CC) $(CFLAGS) $(SRC) -o ls_tester.out
+	make -C ../C_tools
 	@reset
 # @afplay ./p.wav &>/dev/null &
 
 clean:
 	rm -f a.out
-
-leaks: 
-	$(CC) $(CFLAGS) $(SRC)
 
 re: clean all
 
