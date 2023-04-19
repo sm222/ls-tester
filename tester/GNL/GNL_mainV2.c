@@ -22,6 +22,8 @@ int	main(int ac, char **av)
 {
 	t_gnl	data;
 	char	*cmd;
+	char	*tmp;
+	char	*name;
 
 	cmd = NULL;
 	data.loop = 1;
@@ -36,8 +38,23 @@ int	main(int ac, char **av)
 		printf("open fd		/%d|%d\\\n", data.fd[0], data.fd[1]);
 		data.s_ls  = NULL;
 		data.s_gnl = NULL;
-		data.out_fd[0] = open("ls_out",  O_RDWR | O_CREAT /*| O_TRUNC*/, 0644);
-		data.out_fd[1] = open("gnl_out", O_RDWR | O_CREAT /*| O_TRUNC*/, 0644);
+		data.out_fd[0] = open("ls_out",  O_RDWR | O_CREAT | O_TRUNC, 0644);
+		data.out_fd[1] = open("gnl_out", O_RDWR | O_CREAT | O_TRUNC, 0644);
+		if (LS_TRACE)
+		{
+			name = sm_strrchr(av[ac], '/');
+			name++;
+			tmp = combine("tester/trace/tester_%s.trace", name);
+			data.trace[0] = open(tmp,  O_RDWR | O_CREAT , 0644);
+			if (data.trace[0] < 0)
+				ls_printf(2, "can't make trace :"RED" %s\n"WHT, tmp);
+			sm_free(tmp);
+			tmp = combine("tester/trace/user_%s.trace", name);
+			data.trace[1] = open(tmp, O_RDWR | O_CREAT , 0644);
+			if (data.trace[1] < 0)
+				ls_printf(2, "can't make trace :"RED" %s\n"WHT, tmp);
+			sm_free(tmp);
+		}
 		printf("open fd_out	/%d|%d\\\n", data.out_fd[0], data.out_fd[1]);
 		cmd = combine("echo -n '🔽 file test %s \n' >> " OUTFILE, av[ac]);
 		system(cmd);
@@ -49,8 +66,13 @@ int	main(int ac, char **av)
 			usleep(LS_SPEED * 1000);
 			data.s_ls = sm_get_next_line(data.fd[0]);
 			data.s_gnl  =  get_next_line(data.fd[1]);
-			write(data.out_fd[0], data.s_ls, sm_strlen(data.s_ls));
-			write(data.out_fd[1], data.s_gnl, sm_strlen(data.s_gnl));
+			ls_printf(data.out_fd[0], "%s", data.s_ls);
+			ls_printf(data.out_fd[1], "%s", data.s_gnl);
+			if (LS_TRACE)
+			{
+				ls_printf(data.trace[0], "%s", data.s_ls);
+				ls_printf(data.trace[1], "%s", data.s_gnl);
+			}
 			if (LS_FULL_TEST)
 			{
 				if (ft_memcmp(data.s_gnl, data.s_ls, sm_strlen(data.s_ls) + 1) == 0)
@@ -162,6 +184,11 @@ int	main(int ac, char **av)
 			}
 			data.loop++;
 		}
+		if (LS_TRACE)
+		{
+			close(data.trace[0]);
+			close(data.trace[1]);
+		}
 		system("echo 'bot///\n' >> " OUTFILE);
 		close(data.fd[0]);
 		close(data.fd[1]);
@@ -172,7 +199,7 @@ int	main(int ac, char **av)
 			system("rm -f gnl_out");
 			system("rm -f ls_out");
 		}
-		printf("\n");
+		ls_printf(2,"\n");
 	}
 	printf(RED"\n-"GRN"\n-"BLU"\n-"WHT"\n");
 }

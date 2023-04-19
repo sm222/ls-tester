@@ -62,12 +62,18 @@ LS_SPEED
 #  define LS_SPEED 1
 # endif
 
+# ifndef LS_TRACE
+//sleep speed betwen the test in ulseep, LS_SPEED * 1000
+#  define LS_TRACE 0
+# endif
+
 typedef struct s_gnl
 {
 	char	*s_ls;
 	char	*s_gnl;
 	int		fd[2];
 	int		out_fd[2];
+	int		trace[2];
 	int		loop;
 	int		nb_line;
 	int		Percent;

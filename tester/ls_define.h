@@ -53,6 +53,11 @@ LS_SPEED
 #  define LS_SPEED 1
 # endif
 
+# ifndef LS_TRACE
+//sleep speed betwen the test in ulseep, LS_SPEED * 1000
+#  define LS_TRACE_T "LS_TRACE"
+#  define LS_TRACE 0
+# endif
 
 
 #endif // LS_DEFINE_H

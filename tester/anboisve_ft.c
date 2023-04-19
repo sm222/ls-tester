@@ -44,7 +44,7 @@ int	sm_get_keybord_input(char *return_txt,int size)
 	if(fgets(return_txt,size + 1,stdin))
 	{
 		char *p;
-		if((p = ft_strchr(return_txt, '\n')))
+		if((p = sm_strchr(return_txt, '\n')))
 		{//check exist newline
 			*p = 0;
 		}
@@ -606,6 +606,8 @@ char	*combine(char *s, ...)
 
 	va_start(list, s);
 	new = sm_calloc(1, sizeof(char));
+	if (!new)
+		return (NULL);
 	i = 0;
 	while (s[i])
 	{
@@ -752,7 +754,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 }
 //
 
-char	*ft_strchr(const char *s, int c)
+char	*sm_strchr(const char *s, int c)
 {
 	int		i;
 	int		n;
@@ -828,4 +830,43 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	while ((s1[i] && s2[i]) && s1[i] == s2[i] && i < n - 1)
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+char	*sm_give_time(void)
+{
+	char		*res = NULL;
+	time_t		rawtime;
+	struct tm	*timeinfo;
+	char		*time_s;
+	int			len = 0;
+
+	time(&rawtime);
+	timeinfo = localtime(&rawtime);
+	time_s = asctime(timeinfo);
+	while(*time_s <= '0' || *time_s >= '9')
+		time_s++;
+	while(time_s[len] != '\n')
+		len++;
+	res = sm_calloc(len + 1, sizeof(char));
+	if (!res)
+		return (NULL);
+	while (len--)
+		res[len] = time_s[len];
+	return (res);
+}
+
+char	*sm_strrchr(const char *s, int c)
+{
+	int		i;
+
+	if (!s)
+		return (NULL);
+	i = sm_strlen(s);
+	while (i >= 0)
+	{
+		if (((char *)s)[i] == (char)c)
+			return (((char *)s) + i);
+		i--;
+	}
+	return (NULL);
 }

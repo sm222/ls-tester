@@ -18,15 +18,17 @@ WHT		:= \033[0m
 RED		:= \033[1;31m
 
 
-all:
-	$(CC) $(CFLAGS) $(SRC) -o ls_tester.out
-	make -C ../C_tools
+all: Ctool
+	@$(CC) $(CFLAGS) $(SRC) -o ls_tester.out
 	@reset
 # @afplay ./p.wav &>/dev/null &
+Ctool:
+	@make -C ../C_tools
 
 clean:
-	rm -f a.out
+	@make -C ../C_tools clean
+	rm -f ls_tester.out
 
 re: clean all
 
-releaks: clean leaks
+releaks: clean leaks Ctool

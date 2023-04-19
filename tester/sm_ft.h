@@ -31,6 +31,7 @@
 //--------- anboisve ft
 
 //gnl
+
 int		gnl_mem_info(void);
 void	gnl_tester(int buff);
 void	gnlb_tester(int buff);
@@ -38,10 +39,12 @@ int		gnl_mem(int test, int BS);
 void	gnl_partial_tester(int buff, char *test);
 
 //text
+
 int		sm_atoi(char *str);
 char	*combine(char *s, ...);
 void	sm_clear_str(char *str);
-char	*ft_strchr(const char *s, int c);
+char	*sm_strchr(const char *s, int c);
+char	*sm_strrchr(const char *s, int c);
 char	**ft_split(char const *s, char c);
 int		ls_printf(int fd, const char *str, ...);
 int		sm_look_for_word(char *str, char *word);
@@ -53,6 +56,7 @@ char	*sm_strnstr(const char *haystack, const char *needle, size_t len);
 int		sm_copy_str_to(char *input, char *return_v, int start_p, int end_p);
 
 //menu
+
 void	val_install(void);
 int		sm_print_file(char *name);
 void	sm_make_file_name(char *name);
@@ -62,11 +66,14 @@ int		sm_find_mix_str(char *str, char *word, int *path);
 int		sm_look_for_char_p(char *str, int start_p, int number, char look);
 
 //mem
+
 void	*sm_bzero(void *p, size_t size);
 void	*sm_calloc(size_t coun, size_t size);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 
 //other
+
+char	*sm_give_time(void);
 char	*ft_itoa(int n);
 void	show_color(void);
 void	*sm_free(void *ptr);

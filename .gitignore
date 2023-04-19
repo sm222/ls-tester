@@ -63,6 +63,7 @@ tester/GNL/GNL_dif.txt
 tester/GNL/GNLB_dif.txt
 tester/PRINTF/PRINTF_dif.txt
 .log.txt
+*.trace
 
 # exception
 

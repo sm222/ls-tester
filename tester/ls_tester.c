@@ -95,6 +95,7 @@ char	*menu_loop(int *loop, char *call_back)
 	//							GNL									//
 	else if (sm_func_looking(u_input, "gnl", &str_p) == 0)
 	{
+		system("touch tester/GNL/GNL_dif.txt");
 		if (sm_func_looking(u_input, "-help", &str_p) == 0)
 		{
 			ls_printf(1, ORG"\n- - - - GNL Help List - - - -\n"WHT);
@@ -132,6 +133,7 @@ char	*menu_loop(int *loop, char *call_back)
 			put_time_file('s',"tester/GNL/GNL_dif.txt");
 			make_node_def_last(&in, LS_STYLE_T, 3);
 			make_node_def_last(&in, LS_SPEED_T, 5);
+			make_node_def_last(&in, LS_TRACE_T, 0);
 			make_node_def_last(&in, LS_FULL_TEST_T, 0);
 			new_gnl_test(in);
 			put_time_file('e',"tester/GNL/GNL_dif.txt");
@@ -216,6 +218,7 @@ char	*menu_loop(int *loop, char *call_back)
 	//							GNL_B								//
 	else if (sm_func_looking(u_input, "gnlb", &str_p) == 0)
 	{
+		system("touch tester/GNL/GNLB_dif.txt");
 		if (sm_func_looking(u_input, "-help", &str_p) == 0)
 		{
 			ls_printf(1, ORG"\n- - - - GNLB Help List - - - -\n"WHT);
@@ -305,8 +308,8 @@ char	*menu_loop(int *loop, char *call_back)
 		if (sm_func_looking(u_input, "", &str_p) == 0)
 		{
 			sm_log(log_fd,"ls-tester", "rm all test file");
-			if (!system("rm tester/GNL/GNL_dif.txt tester/GNL/GNLB_dif.txt"))
-				ls_printf(1, RED"GNL_dif.txt, GNLB_dif.txt, was remove\n"WHT);
+			if (!system("rm tester/GNL/GNL_dif.txt tester/GNL/GNLB_dif.txt tester/trace/tester* tester/trace/user*"))
+				ls_printf(1, RED"GNL_dif.txt, GNLB_dif.txt, trace files,was remove\n"WHT);
 		}
 		else
 		{
@@ -430,8 +433,7 @@ int	main(int ac, char **av, char **en)
 	sm_make_file_name(".log.txt");
 	log_fd = open(".log.txt", O_RDWR);
 	// make dif file
-	system("touch tester/GNL/GNL_dif.txt");
-	system("touch tester/PRINTF/PRINTF_dif.txt");
+	//system("touch tester/PRINTF/PRINTF_dif.txt");
 	//
 	ls_printf(1, GRN"compile"WHT"				welcome in ...\n");
 	logo();
