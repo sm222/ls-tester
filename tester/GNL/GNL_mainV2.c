@@ -178,7 +178,8 @@ int	main(int ac, char **av)
 	if (bad)
 	{
 		ls_printf(1, RED"\n❌[KO]\n"WHT);
-		printf("you got %.0f%% bad line\n", to);
+		if (LS_FULL_TEST)
+			printf("you got %.0f%% bad line\n", to);
 		ls_printf(1, RED"\n-"GRN"\n-"BLU"\n-"WHT"\n");
 		return (2);
 	}

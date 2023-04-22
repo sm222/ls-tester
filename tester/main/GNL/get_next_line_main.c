@@ -20,15 +20,15 @@ int	check_gnl(void)
 
 	i = 0;
 	norm = 0;
-	verif[0] = open(GNL_C,  O_RDONLY);
-	verif[1] = open(GNLU_C, O_RDONLY);
-	verif[2] = open(GNL_H,  O_RDONLY);
 	sm_putstr("looking for files", 2);
 	while (i++ < 3)
 	{
 		usleep(200000);
 		sm_putstr(YEL"."WHT, 2);
 	}
+	verif[0] = access(GNL_C, F_OK | R_OK);
+	verif[1] = access(GNLU_C, F_OK | R_OK);
+	verif[2] = access(GNL_H, F_OK | R_OK);
 	if (verif[0] < 0 || verif[1] < 0 || verif[2] < 0)
 	{
 		sm_putstr(RED"\nMissing file:	\n", 2);
@@ -47,9 +47,6 @@ int	check_gnl(void)
 		norm = 1;
 		sm_putstr(YEL "NORM ERROR !\n"WHT, 2);
 	}
-	close(verif[0]);
-	close(verif[1]);
-	close(verif[2]);
 	sm_putstr(WHT, 2);
 	return (norm);
 }

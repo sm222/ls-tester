@@ -18,15 +18,15 @@ print the lego 'ls-tester'
 */
 void	logo(void)
 {
-	printf("\x1b[40m");
-	printf(RED"          ██╗      "BLU" ██████╗     "GRN"████████╗ "YEL"███████╗ "MAG" ██████╗ "CYN"████████╗"PIK" ███████╗"ORG " ██████╗      \n");
-	printf(RED"          ██║      "BLU"██╔════╝     "GRN"╚══██╔══╝ "YEL"██╔════╝ "MAG"██╔════╝ "CYN"╚══██╔══╝"PIK" ██╔════╝"ORG " ██╔══██╗     \n");
-	printf(RED"          ██║      "BLU"╚█████╗      "GRN"   ██║    "YEL"█████╗   "MAG"╚█████╗  "CYN"   ██║   "PIK" █████╗  "ORG " ██████╔╝     \n");
-	printf(RED"          ██║      "BLU" ╚═══██╗     "GRN"   ██║    "YEL"██╔══╝   "MAG" ╚═══██╗ "CYN"   ██║   "PIK" ██╔══╝  "ORG " ██╔══██╗     \n");
-	printf(RED"          ███████╗ "BLU"██████╔╝     "GRN"   ██║    "YEL"███████╗ "MAG"██████╔╝ "CYN"   ██║   "PIK" ███████╗"ORG " ██║  ██║     \n");
-	printf(RED"          ╚══════╝ "BLU"╚═════╝      "GRN"   ╚═╝    "YEL"╚══════╝ "MAG"╚═════╝  "CYN"   ╚═╝   "PIK" ╚══════╝"ORG " ╚═╝  ╚═╝     \n");
-	printf("\x1b[0m");
-	printf("				Made by "BLU"anboisve,"GRN" brheaume, wdelaros"WHT"\n");
+	ls_printf(1, "\x1b[40m");
+	ls_printf(1, RED"          ██╗      "BLU" ██████╗     "GRN"████████╗ "YEL"███████╗ "MAG" ██████╗ "CYN"████████╗"PIK" ███████╗"ORG " ██████╗      \n");
+	ls_printf(1, RED"          ██║      "BLU"██╔════╝     "GRN"╚══██╔══╝ "YEL"██╔════╝ "MAG"██╔════╝ "CYN"╚══██╔══╝"PIK" ██╔════╝"ORG " ██╔══██╗     \n");
+	ls_printf(1, RED"          ██║      "BLU"╚█████╗      "GRN"   ██║    "YEL"█████╗   "MAG"╚█████╗  "CYN"   ██║   "PIK" █████╗  "ORG " ██████╔╝     \n");
+	ls_printf(1, RED"          ██║      "BLU" ╚═══██╗     "GRN"   ██║    "YEL"██╔══╝   "MAG" ╚═══██╗ "CYN"   ██║   "PIK" ██╔══╝  "ORG " ██╔══██╗     \n");
+	ls_printf(1, RED"          ███████╗ "BLU"██████╔╝     "GRN"   ██║    "YEL"███████╗ "MAG"██████╔╝ "CYN"   ██║   "PIK" ███████╗"ORG " ██║  ██║     \n");
+	ls_printf(1, RED"          ╚══════╝ "BLU"╚═════╝      "GRN"   ╚═╝    "YEL"╚══════╝ "MAG"╚═════╝  "CYN"   ╚═╝   "PIK" ╚══════╝"ORG " ╚═╝  ╚═╝     \n");
+	ls_printf(1, "\x1b[0m");
+	ls_printf(1, "				Made by "BLU"anboisve,"GRN" brheaume, wdelaros"WHT"\n");
 }
 
 void	*ft_sfree(void *p)
@@ -44,18 +44,18 @@ give info about mem test
 int		gnl_mem_info(void)
 {
 	char	txt[1];
-	printf("\n	Info\n\n");
-	printf("this test use %s.\n", VAL);
-	printf("if you don't have it please install it : " MAG "https://valgrind.org/" WHT " \n");
-	printf("you can install it using : " MAG "https://brew.sh/" WHT " \n");
-	printf("if you want the instructions, type the command, val -tuto .\n\n");
-	printf("the next test look if you have memory problem with a empty file and\n");
-	printf("if you call your get_next_line the right amount of time if memory is still allocate.\n\n");
-	printf("1. test show if it work with a empty file\n");
-	printf("2. look for the phrase : "YEL"still reachable"WHT".\n");
-	printf("	if you see it and it say somting like '"YEL"still reachable: 1 bytes in 1 blocks"WHT"'\n");
-	printf("	it mean you have memory still allocate event if the rest of the file is empty.\n");
-	printf("\n\nq or x to cancel, enter to continue\n");
+	ls_printf(1, "\n	Info\n\n");
+	ls_printf(1, "this test use %s.\n", VAL);
+	ls_printf(1, "if you don't have it please install it : " MAG "https://valgrind.org/" WHT " \n");
+	ls_printf(1, "you can install it using : " MAG "https://brew.sh/" WHT " \n");
+	ls_printf(1, "if you want the instructions, type the command, val -tuto .\n\n");
+	ls_printf(1, "the next test look if you have memory problem with a empty file and\n");
+	ls_printf(1, "if you call your get_next_line the right amount of time if memory is still allocate.\n\n");
+	ls_printf(1, "1. test show if it work with a empty file\n");
+	ls_printf(1, "2. look for the phrase : "YEL"still reachable"WHT".\n");
+	ls_printf(1, "	if you see it and it say somting like '"YEL"still reachable: 1 bytes in 1 blocks"WHT"'\n");
+	ls_printf(1, "	it mean you have memory still allocate event if the rest of the file is empty.\n");
+	ls_printf(1, "\n\nq or x to cancel, enter to continue\n");
 	sm_get_keybord_input(txt, 1);
 	if (txt[0] == 'x' || txt[0] == 'q')
 		return (1);
@@ -67,13 +67,13 @@ info how to install valgrind
 */
 void	val_install(void)
 {
-	printf("\n	Info\n\n");
-	printf("to install %s, you can use those commande\n", VAL);
-	printf("if something happens to your computer we are not responsible for those software\n\n");
-	printf("	1. \"rm -rf $HOME/.brew && git clone --depth=1 https://github.com/Homebrew/brew $HOME/.brew && echo 'export PATH=$HOME/.brew/bin:$PATH' >> $HOME/.zshrc && source $HOME/.zshrc && brew update\"\n");
-	printf("	2. \"brew tap LouisBrunner/valgrind\"\n");
-	printf("	3. \"brew install --HEAD LouisBrunner/valgrind/valgrind\"\n");
-	printf("\nhave fun testing\n\n");
+	ls_printf(1, "\n	Info\n\n");
+	ls_printf(1, "to install %s, you can use those commande\n", VAL);
+	ls_printf(1, "if something happens to your computer we are not responsible for those software\n\n");
+	ls_printf(1, "	1. \"rm -rf $HOME/.brew && git clone --depth=1 https://github.com/Homebrew/brew $HOME/.brew && echo 'export PATH=$HOME/.brew/bin:$PATH' >> $HOME/.zshrc && source $HOME/.zshrc && brew update\"\n");
+	ls_printf(1, "	2. \"brew tap LouisBrunner/valgrind\"\n");
+	ls_printf(1, "	3. \"brew install --HEAD LouisBrunner/valgrind/valgrind\"\n");
+	ls_printf(1, "\nhave fun testing\n\n");
 }
 //	system("echo '\nStart of Test - - -⏱'$(date '+ %A %d %B %Y%n %T')'\n' >> tester/GNL/GNL_dif.txt");
 
@@ -116,9 +116,9 @@ info about buffer test
 */
 void	gnl_buffer_tester(void)
 {
-	printf("\n	Info\n\n");
-	printf("This test will run your gnl with BUFFER_SIZE from 1 to 10000000.\n");
-	printf("(BUFFER_SIZE * 2 every time)\n");
+	ls_printf(1, "\n	Info\n\n");
+	ls_printf(1, "This test will run your gnl with BUFFER_SIZE from 1 to 10000000.\n");
+	ls_printf(1, "(BUFFER_SIZE * 2 every time)\n");
 }
 
 /*
@@ -127,9 +127,9 @@ give info about a test that take time
 int		test_take_time(void)
 {
 	char	txt[2];
-	printf("\n	Info\n\n");
-	printf("This test take a lot of time, are you sure you want to continue?\n");
-	printf("\n\nq or x to cancel, enter to continue\n");
+	ls_printf(1, "\n	Info\n\n");
+	ls_printf(1, "This test take a lot of time, are you sure you want to continue?\n");
+	ls_printf(1, "\n\nq or x to cancel, enter to continue\n");
 	sm_get_keybord_input(txt, 1);
 	if (txt[0] == 'x' || txt[0] == 'q')
 		return (1);

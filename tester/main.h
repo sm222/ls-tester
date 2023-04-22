@@ -77,6 +77,7 @@ char	*sm_ft_strjoin(char *s1, char *s2);
 void	new_gnl_test(t_define_in *data);
 int		look_for_double_node(t_define_in **head, t_define_in *new);
 void	make_node_def_last(t_define_in **node, t_define_in *new);
+t_define_in	*make_node_define(char *define, int size);
 
 //-----------------------------------------------
 
@@ -87,7 +88,5 @@ int		intlen(long int n, int base);
 //tester INT32_MAX / 50
 
 void	printf_tester(void);
-
-t_define_in	*make_node_define(char *define, int size);
 
 #endif
