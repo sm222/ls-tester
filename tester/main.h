@@ -25,6 +25,7 @@
 
 # include "ls_gnl.h"
 # include "ls_define.h"
+# include "sm_ft.h"
 
 //			ls-tester		//
 # include "color.h"
@@ -74,7 +75,8 @@ char	*menu_loop(int *loop, char *call_back);
 char	*sm_ft_strjoin(char *s1, char *s2);
 
 void	new_gnl_test(t_define_in *data);
-void	make_node_def_last(t_define_in **node, char *define, int size);
+int		look_for_double_node(t_define_in **head, t_define_in *new);
+void	make_node_def_last(t_define_in **node, t_define_in *new);
 
 //-----------------------------------------------
 

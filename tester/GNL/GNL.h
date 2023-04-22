@@ -28,6 +28,19 @@
 
 # include	"../ls_define.h"
 
+// Standard Library headers
+# include <string.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <math.h>
+# include <stdlib.h>
+# include <stdarg.h>
+# include <time.h>
+
+# define GOOD "/"
+# define BAD  "\\"
+
 /*
 LS_FULL_TEST
 LS_INSP_TEST
@@ -82,15 +95,6 @@ typedef struct s_gnl
 
 # include "../../get_next_line/get_next_line.h"
 
-// Standard Library headers
-# include <string.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <math.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include <time.h>
 
 // Function declarations
 

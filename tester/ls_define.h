@@ -59,5 +59,12 @@ LS_SPEED
 #  define LS_TRACE 0
 # endif
 
+# ifndef LS_BUFFER_SIZE
+//sleep speed betwen the test in ulseep, LS_SPEED * 1000
+#  define LS_BUFFER_SIZE_T "BUFFER_SIZE"
+#   ifndef BUFFER_SIZE
+#   define BUFFER_SIZE 5
+#  endif
+# endif
 
 #endif // LS_DEFINE_H

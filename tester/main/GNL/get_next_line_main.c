@@ -265,7 +265,7 @@ void	new_gnl_test(t_define_in *data)
 	setting_file = ft_split(tmp, '\n');
 	tmp = sm_free(tmp);
 	i = 0;
-	while (ft_strncmp("GNL={", setting_file[i], 5) != 0)
+	while (sm_strncmp("GNL={", setting_file[i], 5) != 0)
 	{
 		i++;
 		if (setting_file[i] == NULL)
@@ -276,7 +276,7 @@ void	new_gnl_test(t_define_in *data)
 	}
 	while (setting_file[i])
 	{
-		if (ft_strncmp(setting_file[i], "PATH=", 5) == 0)
+		if (sm_strncmp(setting_file[i], "PATH=", 5) == 0)
 		{
 			if (path)
 				free(path);

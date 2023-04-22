@@ -87,14 +87,18 @@ int	main(int ac, char **av)
 			}
 			if (ft_memcmp(data.s_gnl, data.s_ls, sm_strlen(data.s_ls) + 1) == 0)
 			{
-				if (LS_STYLE == 3)
+				if (LS_STYLE == 5)
+					ls_printf(1, GRN "" GOOD"" WHT);
+				else if (LS_STYLE == 4)
+					ls_printf(1, "✅");
+				else if (LS_STYLE == 3)
 					fprintf(stderr ,LINE"%3d "NB_CHAR"%4zu"RESET" %s", data.loop, sm_strlen(data.s_gnl), data.s_gnl);
 				else if (LS_STYLE == 2)
 					Ct_mprintf(data.s_gnl, sm_strlen(data.s_gnl) + 1, 1, 'A');
 				else if (LS_STYLE == 1)
-					printf(GRN"|"WHT);
+					ls_printf(1, GRN"|"WHT);
 				else
-					printf(GRN"[OK]"WHT);
+					ls_printf(1, GRN"[OK]"WHT);
 				if (LS_FULL_TEST)
 				{
 					cmd = combine("echo '✅%d' >> " OUTFILE, data.loop);
@@ -113,7 +117,11 @@ int	main(int ac, char **av)
 			else
 			{
 				bad++;
-				if (LS_STYLE == 3)
+				if (LS_STYLE == 5)
+					ls_printf(1, RED"" BAD ""WHT);
+				else if (LS_STYLE == 4)
+					ls_printf(1, "❌");
+				else if (LS_STYLE == 3)
 					fprintf(stderr ,RED"%3d "NB_CHAR"%4zu"RESET" %s", data.loop, sm_strlen(data.s_gnl), data.s_gnl);
 				else if (LS_STYLE == 2)
 					Ct_mprintf(data.s_gnl, sm_strlen(data.s_gnl) + 1, 1, 'F');
@@ -134,6 +142,8 @@ int	main(int ac, char **av)
 				cmd = combine("echo '%s\n' >> " OUTFILE, data.s_gnl);
 				system(cmd);
 				sm_free(cmd);
+				if (!LS_FULL_TEST)
+					break ;
 			}
 			sm_free(data.s_ls);
 			sm_free(data.s_gnl);
@@ -146,8 +156,6 @@ int	main(int ac, char **av)
 				system("echo '❌ [KO]' >> " OUTFILE);
 				break ;
 			}
-			if (LS_FULL_TEST)
-				continue ;
 		}
 		if (LS_TRACE)
 		{

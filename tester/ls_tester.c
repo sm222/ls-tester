@@ -21,7 +21,8 @@ char	*menu_loop(int *loop, char *call_back)
 	int		size_i = 80;
 	char	u_input[size_i];
 	char	copy[size_i];
-	char	temp[size_i];
+	//char	temp[size_i];
+	int		file;
 	int		str_p = 0;
 	char	up[4] = {27, 91, 65, 0};
 
@@ -95,7 +96,17 @@ char	*menu_loop(int *loop, char *call_back)
 	//							GNL									//
 	else if (sm_func_looking(u_input, "gnl", &str_p) == 0)
 	{
-		system("touch tester/GNL/GNL_dif.txt");
+		t_define_in *in = NULL;
+		t_define_in *tmp = NULL;
+		if (access("tester/GNL/GNL_dif.txt", F_OK | R_OK) != 0)
+		{
+			ls_printf(1, "making tester/GNL/GNL_dif.txt\n");
+			file = open("tester/GNL/GNL_dif.txt", O_CREAT, 0644);
+			if (file < 0)
+				ls_printf(2, RED"can't make tester/GNL/GNL_dif.txt"WHT);
+			else
+				close(file);
+		}
 		if (sm_func_looking(u_input, "-help", &str_p) == 0)
 		{
 			ls_printf(1, ORG"\n- - - - GNL Help List - - - -\n"WHT);
@@ -110,15 +121,6 @@ char	*menu_loop(int *loop, char *call_back)
 			ls_printf(1, "\n");
 			sm_log(log_fd,"ls-tester", "call gnl -help");
 		}
-		else if (sm_func_looking(u_input, "-buff", &str_p) == 0)
-		{
-			sm_log(log_fd,"ls-tester", "call gnl -buff");
-			put_time_file('s',"tester/GNL/GNL_dif.txt");
-			sm_copy_str_to(u_input, copy, str_p + 1, -1);
-			gnl_mem(1, 100);
-			gnl_tester(peepy_atoi(copy));
-			put_time_file('e',"tester/GNL/GNL_dif.txt");
-		}
 		else if (sm_func_looking(u_input, "-rm", &str_p) == 0)
 		{
 			sm_log(log_fd,"ls-tester", "call gnl -rm");
@@ -126,40 +128,30 @@ char	*menu_loop(int *loop, char *call_back)
 				ls_printf(1, RED"GNL_dif.txt, was remove\n"WHT);
 			return (sm_str_dup(u_input));
 		}
-		else if (sm_func_looking(u_input, "-tt", &str_p) == 0)
+		else if (sm_func_looking(u_input, "-t", &str_p) == 0)
 		{
 			ls_printf(1, WHT);
-			t_define_in *in = NULL;
 			put_time_file('s',"tester/GNL/GNL_dif.txt");
-			make_node_def_last(&in, LS_STYLE_T, 3);
-			make_node_def_last(&in, LS_SPEED_T, 5);
-			make_node_def_last(&in, LS_TRACE_T, 0);
-			make_node_def_last(&in, LS_FULL_TEST_T, 1);
+			tmp = make_node_define(LS_FULL_TEST_T, 1);
+			if (!look_for_double_node(&in, tmp))
+				ls_printf(2, RED"all ready use\n"WHT);
+			make_node_def_last(&in, tmp);
+			tmp = make_node_define(LS_FULL_TEST_T, 1);
+			if (!look_for_double_node(&in, tmp))
+				ls_printf(2, RED"all ready use\n"WHT);
+			else
+				make_node_def_last(&in, tmp);
 			new_gnl_test(in);
 			put_time_file('e',"tester/GNL/GNL_dif.txt");
 		}
 		else if (sm_func_looking(u_input, "-dif", &str_p) == 0)
 		{
 			sm_log(log_fd,"ls-tester", "call gnl -dif");
-			if (system("cat tester/GNL/GNL_dif.txt"))
+			if (access("tester/GNL/GNL_dif.txt", F_OK | R_OK) == 0)
+				ls_printf(1, MAG"tester/GNL/GNL_dif.txt\n"WHT);
+			else
 				ls_printf(1, RED"GNL_dif.txt, don't exist\n"WHT);
 			return (sm_str_dup(u_input));
-		}
-		else if (sm_func_looking(u_input, "-pp", &str_p) == 0)
-		{
-			put_time_file('s',"tester/GNL/GNL_dif.txt");
-			if (sm_func_looking(u_input, "-buff", &str_p) == 0)
-			{
-				sm_log(log_fd,"ls-tester", "call gnl -pp -buff");
-				sm_copy_str_to(u_input, copy, str_p + 1, -1);
-				gnl_partial_tester(peepy_atoi(copy), "pp");
-			}
-			else
-			{
-				sm_log(log_fd,"ls-tester", "call gnl -pp");
-				gnl_partial_tester(1, "pp");
-			}
-			put_time_file('e',"tester/GNL/GNL_dif.txt");
 		}
 		else if (sm_func_looking(u_input, "-mem", &str_p) == 0)
 		{
@@ -182,29 +174,12 @@ char	*menu_loop(int *loop, char *call_back)
 				put_time_file('e',"tester/GNL/GNL_dif.txt");
 			}
 		}
-		else if (sm_func_looking(u_input, "-test", &str_p) == 0)
-		{
-			put_time_file('s',"tester/GNL/GNL_dif.txt");
-			str_p += sm_copy_str_to(u_input, temp, str_p + 1, -1) + 1;
-			if (sm_func_looking(u_input, "-buff", &str_p) == 0)
-			{
-				sm_log(log_fd,"ls-tester", "call gnl -test -buff");
-				sm_copy_str_to(u_input, copy, str_p + 1, -1);
-				gnl_partial_tester(peepy_atoi(copy), combine("text%s", temp));
-				gnl_mem(1, 100);
-			}
-			else
-			{
-				sm_log(log_fd,"ls-tester", "call gnl -test");
-				gnl_partial_tester(1, combine("text%s", temp));
-			}
-			put_time_file('e',"tester/GNL/GNL_dif.txt");
-		}
 		else if (sm_func_looking(u_input, "", &str_p) == 0)
 		{
 			put_time_file('s',"tester/GNL/GNL_dif.txt");
 			sm_log(log_fd,"ls-tester", "call gnl");
-			gnl_tester(1);
+			make_node_def_last(&in, make_node_define(LS_STYLE_T, 3));
+			new_gnl_test(in);
 			put_time_file('e',"tester/GNL/GNL_dif.txt");
 		}
 		else

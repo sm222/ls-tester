@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "main.h"
+#include "sm_ft.h"
 
 /*
 print the lego 'ls-tester'
@@ -139,13 +140,15 @@ int		test_take_time(void)
 struct
 */
 
-void		make_node_def_last(t_define_in **node, char *define, int size)
+void	make_node_def_last(t_define_in **node, t_define_in *new)
 {
 	t_define_in	*tmp;
 
-	if (!*node)
+	if (!new)
+		return ;
+	else if (!*node)
 	{
-		*node = make_node_define(define, size);
+		*node = new;
 		if (!*node)
 		{
 			write(2, "fail to make note\n", 18);
@@ -157,9 +160,7 @@ void		make_node_def_last(t_define_in **node, char *define, int size)
 		tmp = (*node);
 		while (tmp->next)
 			tmp = tmp->next;
-		tmp->next = make_node_define(define, size);
-		if (!tmp->next)
-			write(2, "fail to make note\n", 18);
+		tmp->next = new;
 	}
 }
 
@@ -172,4 +173,20 @@ t_define_in	*make_node_define(char *define, int size)
 	tmp->size = size;
 	tmp->next = NULL;
 	return (tmp);
+}
+
+int	look_for_double_node(t_define_in **head, t_define_in *new)
+{
+	t_define_in	*tmp;
+
+	if (!head || !(*head))
+		return (1);
+	tmp = (*head);
+	while (tmp)
+	{
+		if (sm_strncmp(tmp->cmd, new->cmd, sm_strlen(new->cmd) + 1) == 0)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
 }
