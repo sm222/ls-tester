@@ -870,3 +870,42 @@ char	*sm_strrchr(const char *s, int c)
 	}
 	return (NULL);
 }
+
+int	sm_check_files(char *s, ...)
+{
+	int		verif, i, norm;
+	va_list	in;
+	char	*tmp;
+
+	i = 0;
+	norm = 0;
+	va_start(in, s);
+	sm_putstr("looking for files", 1);
+	while (i++ < 3)
+	{
+		usleep(200000);
+		sm_putstr(YEL"."WHT, 1);
+	}
+	sm_putstr("\n", 1);
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '%' && s[i + 1] && (s[i + 1] == 's' || s[i + 1] == 'S'))
+		{
+			tmp = va_arg(in, char *);
+			verif = access(tmp, F_OK | R_OK);
+			if (verif != 0)
+			{
+				ls_printf(2, RED"can't find %s or open the file\n"WHT, tmp);
+				if (s[i + 1] == 's')
+					return (-1);
+			}
+			else
+				ls_printf(1, GRN"%s\n"WHT, tmp);
+		}
+		i++;
+	}
+	sm_putstr(GRN"\nNo files missing, ready to go!\n"WHT, 2);
+	sm_putstr(WHT, 2);
+	return (norm);
+}

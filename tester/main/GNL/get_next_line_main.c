@@ -12,45 +12,6 @@
 
 #include "../../main.h"
 
-int	check_gnl(void)
-{
-	int	verif[3];
-	int	i;
-	int	norm;
-
-	i = 0;
-	norm = 0;
-	sm_putstr("looking for files", 2);
-	while (i++ < 3)
-	{
-		usleep(200000);
-		sm_putstr(YEL"."WHT, 2);
-	}
-	verif[0] = access(GNL_C, F_OK | R_OK);
-	verif[1] = access(GNLU_C, F_OK | R_OK);
-	verif[2] = access(GNL_H, F_OK | R_OK);
-	if (verif[0] < 0 || verif[1] < 0 || verif[2] < 0)
-	{
-		sm_putstr(RED"\nMissing file:	\n", 2);
-		if (verif[0] < 0)
-			sm_putstr("	"RED GNL_C"\n"WHT, 2);
-		if (verif[1] < 0)
-			sm_putstr("	"RED GNLU_C"\n"WHT, 2);
-		if (verif[2] < 0)
-			sm_putstr("	"RED GNL_H"\n"WHT, 2);
-		sm_putstr(WHT"\n", 2);
-		return (-1);
-	}
-	sm_putstr(GRN"\nNo files missing, ready to go!\n"WHT, 2);
-	if (system("norminette " GNL_C " " GNL_H " " GNLU_C) > 0)
-	{
-		norm = 1;
-		sm_putstr(YEL "NORM ERROR !\n"WHT, 2);
-	}
-	sm_putstr(WHT, 2);
-	return (norm);
-}
-
 void	gnl_partial_tester(int buff, char *test)
 {
 	char	*txt;
@@ -59,7 +20,7 @@ void	gnl_partial_tester(int buff, char *test)
 
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
-	norm = check_gnl();
+	norm = sm_check_files("%s %s %s", GNL_C , GNL_H, GNLU_C);
 	if (norm < 0)
 		return ;
 	//
@@ -111,7 +72,7 @@ void	gnl_tester(int buff)
 	i = 0;
 	norm = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
-	norm = check_gnl();
+	norm = sm_check_files("%s %s %s", GNL_C , GNL_H, GNLU_C);
 	if (norm < 0)
 		return ;
 	gnl_mem(1, 100);
@@ -211,7 +172,7 @@ void	new_gnl_test(t_define_in *data)
 	printf("\n\n\n");
 	printf("welcome in Gnl tester !\n");
 	//look for gnl file
-	if (check_gnl() == -1)
+	if (sm_check_files("%s%s%s", GNL_C , GNL_H, GNLU_C) == -1)
 		return ;
 	tmp = combine(GCCF" tester/ls_gnl.c "GNL_C" "GNLU_C" tester/GNL/GNL_mainV2.c "SM_FT" " LS_PF " .."C_TOOLS" ");
 	ls_printf(1, "%s\n", tmp);

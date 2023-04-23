@@ -81,6 +81,7 @@ char	*sm_str_dup(char *s);
 size_t	sm_strlen(const char *s);
 void	noise(int loop, int size);
 int		sm_putstr(char *s, int fd);
+int		sm_check_files(char *s, ...);
 char	*f_strjoin(char *s1, char *s2);
 int		sm_r_num(int lower, int upper);
 char	*ft_strjoin(char *s1, char *s2);
