@@ -898,7 +898,10 @@ int	sm_check_files(char *s, ...)
 			{
 				ls_printf(2, RED"can't find %s or open the file\n"WHT, tmp);
 				if (s[i + 1] == 's')
+				{
+					va_end(in);
 					return (-1);
+				}
 			}
 			else
 				ls_printf(1, GRN"%s\n"WHT, tmp);
@@ -907,5 +910,6 @@ int	sm_check_files(char *s, ...)
 	}
 	sm_putstr(GRN"\nNo files missing, ready to go!\n"WHT, 2);
 	sm_putstr(WHT, 2);
+	va_end(in);
 	return (norm);
 }
