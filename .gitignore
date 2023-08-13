@@ -17,10 +17,10 @@
 *.pch
 
 # Libraries
-*.lib
-!/readline/libhistory.a
-!/readline/libreadline.a
 *.a
+!readline/libhistory.a
+!readline/libreadline.a
+*.lib
 *.la
 *.lo
 
