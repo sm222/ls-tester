@@ -8,5 +8,7 @@
 # include "../readline/history.h"
 # include "../readline/readline.h"
 
+short	read_ft(char *s);
+
 
 #endif // TESTER_H

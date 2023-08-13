@@ -8,8 +8,8 @@ int	main(void)
 	while (s)
 	{
 		s = readline("ls-tester: ");
-		if (s)
-			free(s);
+		read_ft(s);
+		Ct_free(s);
 	}
 	return (0);
 }

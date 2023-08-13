@@ -15,6 +15,7 @@ RM				=	rm -f
 
 # Sources are all .c files
 SRCS	=	tester/main.c\
+			tester/read_ft.c\
 
 #env -i ./minishell
 
