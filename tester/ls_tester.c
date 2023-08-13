@@ -96,7 +96,7 @@ char	*menu_loop(int *loop, char *call_back)
 	//							GNL									//
 	else if (sm_func_looking(u_input, "gnl", &str_p) == 0)
 	{
-		t_define_in *in = NULL;
+		t_define_in *in =  NULL;
 		t_define_in *tmp = NULL;
 		if (access("tester/GNL/GNL_dif.txt", F_OK | R_OK) != 0)
 		{
@@ -133,16 +133,13 @@ char	*menu_loop(int *loop, char *call_back)
 			ls_printf(1, WHT);
 			put_time_file('s',"tester/GNL/GNL_dif.txt");
 			tmp = make_node_define(LS_FULL_TEST_T, 1);
-			if (!look_for_double_node(&in, tmp))
-				ls_printf(2, RED"all ready use\n"WHT);
 			make_node_def_last(&in, tmp);
 			tmp = make_node_define(LS_FULL_TEST_T, 1);
-			if (!look_for_double_node(&in, tmp))
-				ls_printf(2, RED"all ready use\n"WHT);
-			else
-				make_node_def_last(&in, tmp);
+			make_node_def_last(&in, tmp);
+			tmp = make_node_define(LS_TRACE_T, 1);
+			make_node_def_last(&in, tmp);
 			new_gnl_test(in);
-			put_time_file('e',"tester/GNL/GNL_dif.txt");
+			put_time_file('e', "tester/GNL/GNL_dif.txt");
 		}
 		else if (sm_func_looking(u_input, "-dif", &str_p) == 0)
 		{
