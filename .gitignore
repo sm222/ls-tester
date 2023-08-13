@@ -18,6 +18,8 @@
 
 # Libraries
 *.lib
+!readline/libhistory.a
+!readline/libreadline.a
 *.a
 *.la
 *.lo
