@@ -7,6 +7,7 @@
 # include "../C_tools/inc/C_tool.h"
 # include "../readline/history.h"
 # include "../readline/readline.h"
+# include "ls_data.h"
 
 short	read_ft(char *s);
 

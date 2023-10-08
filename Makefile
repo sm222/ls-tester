@@ -34,6 +34,10 @@ $(NAME): $(OBJS)
 #https://github.com/sm222/C_tools
 tools:
 	@make -C $(CT_DIR)
+
+lib:
+	@make -C $(LIB_DIR)
+
 # Removes objects
 clean:
 	$(RM) $(OBJS)
